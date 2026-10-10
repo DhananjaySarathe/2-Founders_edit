@@ -1,0 +1,746 @@
+.product-section .ls-layout {
+  display: grid;
+  grid-template-columns: 0.93fr 1.15fr;
+  align-items: center;
+  gap: 54px;
+}
+.product-section .ls-copy h2 {
+  font-size: clamp(34px, 4.4vw, 52px);
+  font-weight: 800;
+  margin: 15px 0 18px;
+  max-width: 12ch;
+}
+.product-section .ls-intro {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 43ch;
+}
+.product-section .ls-benefits {
+  display: grid;
+  gap: 19px;
+  list-style: none;
+  margin: 28px 0 30px;
+}
+.product-section .ls-benefit {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.product-section .ls-benefit-icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  background: var(--lime-soft);
+  border: 1px solid #e2edc6;
+  border-radius: 9px;
+}
+.product-section .ls-benefit-icon svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.product-section .ls-benefit h3 {
+  font-size: 17px;
+  line-height: 1.3;
+  font-weight: 700;
+  margin: 0 0 3px;
+}
+.product-section .ls-benefit p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 43ch;
+}
+.product-section .ls-cta {
+  gap: 11px;
+}
+.product-section .ls-cta svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.product-section .ls-cta-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 12px;
+}
+.product-section .ls-demo {
+  position: relative;
+  min-width: 0;
+  padding: 24px 0 32px;
+}
+.product-section .ls-browser {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow:
+    0 24px 58px -30px rgba(20, 20, 20, 0.35),
+    0 4px 14px -8px rgba(20, 20, 20, 0.15);
+  transform: rotate(1.5deg);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.product-section .ls-demo:hover .ls-browser {
+  transform: none;
+}
+.product-section .ls-browserbar {
+  height: 39px;
+  padding: 0 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid var(--line);
+  background: #f5f3ee;
+}
+.product-section .ls-browserdot {
+  height: 7px;
+  width: 7px;
+  border-radius: 50%;
+  background: #d4d0c8;
+}
+.product-section .ls-browserdot:first-child {
+  background: #e99b85;
+}
+.product-section .ls-address {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 23px;
+  background: #fff;
+  border: 1px solid #eae6dd;
+  flex: 1;
+  max-width: 260px;
+  margin: 0 auto;
+  border-radius: 5px;
+  color: #7c776d;
+  font:
+    10px/1.2 "JetBrains Mono",
+    monospace;
+  letter-spacing: 0;
+}
+.product-section .ls-address svg {
+  width: 9px;
+  height: 9px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+.product-section .ls-browsermenu {
+  font-size: 17px;
+  color: #938c80;
+  line-height: 1;
+  letter-spacing: 2px;
+}
+.product-section .ls-browsercontent {
+  display: grid;
+  grid-template-columns: 0.68fr 1.32fr;
+  min-height: 394px;
+}
+.product-section .ls-youtube {
+  padding: 16px 13px;
+  background: #faf9f6;
+  border-right: 1px solid var(--line);
+  overflow: hidden;
+}
+.product-section .ls-yt-wordmark {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: #37332d;
+  font:
+    700 11px/1 Inter,
+    sans-serif;
+  margin-bottom: 19px;
+}
+.product-section .ls-yt-wordmark svg {
+  width: 18px;
+  height: 13px;
+}
+.product-section .ls-videoart {
+  aspect-ratio: 1.24;
+  position: relative;
+  border-radius: 8px;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+.product-section .ls-videoart::before {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(
+    circle,
+    rgba(201, 242, 75, 0.25),
+    transparent 67%
+  );
+  z-index: -1;
+}
+.product-section .ls-videoart svg {
+  width: 82%;
+  height: 62px;
+}
+.product-section .ls-video-time {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  font:
+    9px/1 "JetBrains Mono",
+    monospace;
+  letter-spacing: 0;
+  color: #c9f24b;
+  background: #242822;
+  padding: 3px 4px;
+  border-radius: 3px;
+}
+.product-section .ls-video-title {
+  font-size: 11px;
+  line-height: 1.4;
+  font-weight: 600;
+  margin: 10px 0 4px;
+}
+.product-section .ls-video-author {
+  font-size: 9px;
+  color: #837c70;
+  margin-bottom: 19px;
+}
+.product-section .ls-comment-label {
+  font-size: 9px;
+  font-weight: 600;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  margin-bottom: 13px;
+}
+.product-section .ls-comment {
+  display: grid;
+  grid-template-columns: 17px 1fr;
+  gap: 6px;
+  margin-bottom: 15px;
+}
+.product-section .ls-avatar {
+  width: 17px;
+  height: 17px;
+  background: #e7e3d9;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font:
+    600 7px/1 Inter,
+    sans-serif;
+  color: #686255;
+}
+.product-section .ls-comment:nth-of-type(2) .ls-avatar {
+  background: #e3eccb;
+  color: #5c7047;
+}
+.product-section .ls-comment-lines {
+  display: grid;
+  gap: 5px;
+  padding-top: 3px;
+}
+.product-section .ls-comment-lines i {
+  display: block;
+  height: 4px;
+  background: #e6e2d9;
+  border-radius: 2px;
+}
+.product-section .ls-comment-lines i:first-child {
+  width: 40%;
+  height: 3px;
+  background: #d2cdc1;
+}
+.product-section .ls-comment-lines i:last-child {
+  width: 70%;
+}
+.product-section .ls-connector {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 19px;
+  color: var(--coral-ink);
+  font:
+    9px/1.4 "JetBrains Mono",
+    monospace;
+}
+.product-section .ls-connector svg {
+  width: 12px;
+  height: 12px;
+  flex: none;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.product-section .ls-panel {
+  padding: 16px 16px 14px;
+  min-width: 0;
+}
+.product-section .ls-panel-head {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border-bottom: 1px solid #efece4;
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+}
+.product-section .ls-mark {
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 7px;
+  background: var(--lime);
+}
+.product-section .ls-mark svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.product-section .ls-brand {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+.product-section .ls-panel-head small {
+  margin-left: auto;
+  font:
+    8px/1.2 "JetBrains Mono",
+    monospace;
+  letter-spacing: 0.08em;
+  color: #746c5e;
+  background: #f3f1eb;
+  padding: 4px 5px;
+  border-radius: 4px;
+}
+.product-section .ls-report-label {
+  font:
+    8px/1.4 "JetBrains Mono",
+    monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #797368;
+  margin-bottom: 7px;
+}
+.product-section .ls-panel h3 {
+  font-size: 17px;
+  line-height: 1.25;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  margin: 0 0 6px;
+}
+.product-section .ls-report-sub {
+  font-size: 9px;
+  line-height: 1.5;
+  color: #7a7368;
+  margin-bottom: 16px;
+}
+.product-section .ls-split {
+  display: grid;
+  grid-template-columns: 82px 1fr;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 16px;
+}
+.product-section .ls-donut {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 82px;
+  width: 82px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--lime) 0% 62%,
+    #141414 62% 87%,
+    #e8e4dc 87% 100%
+  );
+  transform: rotate(-90deg);
+}
+.product-section .ls-donut::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  background: #fff;
+  border-radius: 50%;
+}
+.product-section .ls-donut-label {
+  position: relative;
+  transform: rotate(90deg);
+  font-size: 19px;
+  font-weight: 700;
+  font-family: "Inter Tight", Inter, sans-serif;
+  line-height: 1;
+  text-align: center;
+  letter-spacing: -0.04em;
+}
+.product-section .ls-donut-label span {
+  display: block;
+  font:
+    7px/1.3 "JetBrains Mono",
+    monospace;
+  color: #837c70;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.product-section .ls-answer-list {
+  list-style: none;
+  display: grid;
+  gap: 9px;
+}
+.product-section .ls-answer-list li {
+  display: grid;
+  grid-template-columns: 6px 1fr auto;
+  gap: 5px;
+  align-items: center;
+  font-size: 9px;
+  line-height: 1.3;
+  color: #655f54;
+}
+.product-section .ls-answer-list i {
+  height: 6px;
+  width: 6px;
+  border-radius: 2px;
+  background: var(--lime);
+}
+.product-section .ls-answer-list li:nth-child(2) i {
+  background: var(--ink);
+}
+.product-section .ls-answer-list li:nth-child(3) i {
+  background: #e8e4dc;
+}
+.product-section .ls-answer-list b {
+  font:
+    600 9px/1 "JetBrains Mono",
+    monospace;
+  color: var(--ink);
+}
+.product-section .ls-insight {
+  border: 1px solid #e1ebc5;
+  background: #f4f9e7;
+  border-radius: 8px;
+  padding: 10px 11px;
+  margin-bottom: 9px;
+}
+.product-section .ls-insight-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font:
+    600 8px/1.2 "JetBrains Mono",
+    monospace;
+  color: #566832;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.product-section .ls-insight-label svg {
+  width: 11px;
+  height: 11px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.product-section .ls-insight p {
+  font-size: 10px;
+  line-height: 1.5;
+  color: #43512d;
+}
+.product-section .ls-confidence {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0 12px;
+  font-size: 9px;
+  color: #7a7368;
+  gap: 6px;
+}
+.product-section .ls-confidence b {
+  font-size: 8px;
+  font-weight: 500;
+  padding: 3px 5px;
+  border-radius: 4px;
+  background: #f4f1ea;
+  color: #6f6757;
+}
+.product-section .ls-export {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-top: 1px solid #efece4;
+  padding-top: 10px;
+  font:
+    8px/1.2 "JetBrains Mono",
+    monospace;
+  color: #746c5e;
+}
+.product-section .ls-export-types {
+  display: flex;
+  gap: 4px;
+}
+.product-section .ls-export-types span {
+  border: 1px solid #e3ded3;
+  border-radius: 4px;
+  padding: 4px 5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.product-section .ls-export-types svg {
+  width: 9px;
+  height: 9px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.product-section .ls-demo-badge {
+  position: absolute;
+  right: 17px;
+  top: 9px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--lime);
+  border: 1px solid #bcd941;
+  border-radius: 7px;
+  padding: 9px 12px;
+  font:
+    600 10px/1.2 "JetBrains Mono",
+    monospace;
+  letter-spacing: 0.01em;
+  transform: rotate(-4deg);
+  box-shadow: 0 8px 18px -12px rgba(20, 20, 20, 0.3);
+}
+.product-section .ls-demo-badge svg {
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.product-section .ls-caption {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #827b6e;
+  margin: 16px 0 0 12px;
+  text-align: center;
+}
+@media (max-width: 1000px) {
+  .product-section .ls-layout {
+    gap: 30px;
+    grid-template-columns: 1fr 1.1fr;
+  }
+  .product-section .ls-split {
+    grid-template-columns: 72px 1fr;
+    gap: 9px;
+  }
+  .product-section .ls-donut {
+    width: 72px;
+    height: 72px;
+  }
+  .product-section .ls-donut::before {
+    inset: 11px;
+  }
+  .product-section .ls-panel {
+    padding: 15px 12px;
+  }
+  .product-section .ls-answer-list li {
+    font-size: 8px;
+  }
+  .product-section .ls-copy h2 {
+    font-size: 43px;
+  }
+}
+@media (max-width: 820px) {
+  .product-section .ls-layout {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .product-section .ls-copy h2 {
+    font-size: clamp(36px, 6vw, 48px);
+    max-width: 16ch;
+  }
+  .product-section .ls-intro {
+    max-width: 59ch;
+  }
+  .product-section .ls-benefit p {
+    max-width: 55ch;
+  }
+  .product-section .ls-demo {
+    max-width: 570px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .product-section .ls-split {
+    grid-template-columns: 90px 1fr;
+    gap: 18px;
+  }
+  .product-section .ls-donut {
+    width: 90px;
+    height: 90px;
+  }
+  .product-section .ls-donut::before {
+    inset: 13px;
+  }
+  .product-section .ls-panel {
+    padding: 18px;
+  }
+  .product-section .ls-answer-list li {
+    font-size: 10px;
+  }
+  .product-section .ls-panel h3 {
+    font-size: 19px;
+  }
+  .product-section .ls-report-sub,
+  .product-section .ls-confidence {
+    font-size: 10px;
+  }
+  .product-section .ls-insight p {
+    font-size: 11px;
+  }
+  .product-section .ls-browsercontent {
+    min-height: 415px;
+  }
+  .product-section .ls-youtube {
+    padding: 18px 15px;
+  }
+  .product-section .ls-comment {
+    margin-bottom: 18px;
+  }
+  .product-section .ls-video-title {
+    font-size: 12px;
+  }
+}
+@media (max-width: 450px) {
+  .product-section .ls-demo {
+    padding-bottom: 12px;
+  }
+  .product-section .ls-browser {
+    transform: none;
+    border-radius: 12px;
+  }
+  .product-section .ls-browsercontent {
+    grid-template-columns: 0.53fr 1.47fr;
+    min-height: 380px;
+  }
+  .product-section .ls-youtube {
+    padding: 15px 9px;
+  }
+  .product-section .ls-yt-wordmark {
+    font-size: 10px;
+  }
+  .product-section .ls-yt-wordmark svg {
+    width: 15px;
+  }
+  .product-section .ls-videoart {
+    aspect-ratio: 1;
+  }
+  .product-section .ls-video-title {
+    font-size: 10px;
+  }
+  .product-section .ls-video-author {
+    font-size: 8px;
+  }
+  .product-section .ls-panel {
+    padding: 14px 11px;
+  }
+  .product-section .ls-panel h3 {
+    font-size: 16px;
+  }
+  .product-section .ls-panel-head small {
+    font-size: 7px;
+  }
+  .product-section .ls-brand {
+    font-size: 11px;
+  }
+  .product-section .ls-mark {
+    width: 23px;
+    height: 23px;
+  }
+  .product-section .ls-split {
+    grid-template-columns: 62px 1fr;
+    gap: 8px;
+  }
+  .product-section .ls-donut {
+    width: 62px;
+    height: 62px;
+  }
+  .product-section .ls-donut::before {
+    inset: 9px;
+  }
+  .product-section .ls-donut-label {
+    font-size: 17px;
+  }
+  .product-section .ls-donut-label span {
+    font-size: 6px;
+  }
+  .product-section .ls-answer-list {
+    gap: 7px;
+  }
+  .product-section .ls-answer-list li {
+    font-size: 8px;
+    gap: 4px;
+  }
+  .product-section .ls-answer-list b {
+    font-size: 8px;
+  }
+  .product-section .ls-report-sub,
+  .product-section .ls-confidence {
+    font-size: 9px;
+  }
+  .product-section .ls-insight {
+    padding: 9px;
+  }
+  .product-section .ls-insight p {
+    font-size: 10px;
+  }
+  .product-section .ls-export {
+    font-size: 7px;
+  }
+  .product-section .ls-connector {
+    font-size: 8px;
+    flex-wrap: wrap;
+  }
+  .product-section .ls-demo-badge {
+    font-size: 9px;
+    right: 11px;
+    padding: 8px 10px;
+  }
+  .product-section .ls-caption {
+    font-size: 10px;
+    margin-left: 0;
+  }
+  .product-section .ls-copy h2 {
+    max-width: 12ch;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .product-section .ls-browser {
+    transition: none;
+    transform: none;
+  }
+}
