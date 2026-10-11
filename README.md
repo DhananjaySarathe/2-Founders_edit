@@ -2,7 +2,9 @@
 
 The 2 Founders marketing site is a static HTML/CSS/JavaScript site with a small Vercel Edge Function for country detection. It introduces two ways to work with the studio: custom automation builds and focused, one-off, recurring, or usage-based services.
 
-The original cream, lime, coral, typography, floating labels, crossed marquees, scroll effects, and video library are retained. A fixed headline states the AI automation offer; the original rotating animation lives in a supporting accent. The first screen shows the two engagement routes and an illustrative business workflow. Shipped-work links, substantial capability cards, contrasting service sections, Liquid Signal, and the creator engine explain what the studio delivers.
+The original cream, lime, coral, typography, floating labels, crossed marquees, scroll effects, and video library are retained. The large centred hero reads “You build. We automate.” with a rotating first-line word, an explicit AI automation label, and two engagement routes. The page follows one story: a clickable task-to-output workflow, two examples of work we have built, two buying choices, and an enquiry. Extra editing samples and FAQs expand on demand.
+
+The rotating words share an intrinsic CSS grid, reserving space for the longest word and its line height. This keeps letters visible and the headline centred when fonts load or the viewport changes. The accessible heading stays stable; reduced-motion preferences stop word changes.
 
 The second design pass draws on [200 primary website reviews](docs/research/README.md). Research covers offers, calls to action, section order, buying models, and evidence; it does not claim visual inspection or measured conversion gains.
 
@@ -35,14 +37,14 @@ The local `scripts/serve.mjs` server is a development/test tool; Vercel serves t
 - `index.html`: copy, sections, Liquid Signal link, FAQ, enquiry options, metadata.
 - `styles.css`: shared theme, responsive layouts, motion, and accessibility styles.
 - `product.css`: the scoped Liquid Signal product illustration.
-- `landing.css`: the automation-first hero, capability cards, section hierarchy, and responsive proof placement, using the shared theme variables.
+- `landing.css`: the centred hero, connected workflow/proof/service layout, compact expandable sections, and responsive spacing, using the shared theme variables.
 - `app.js`: `CONFIG` contact/video settings, workflow walkthroughs, region selection, and email brief preparation.
 - `media/fonts/`: locally hosted Latin variable fonts and their OFL licenses.
 - `media/social-preview.png`: 1200 × 630 link preview.
 
 The enquiry form prepares a `mailto:` email to `beyondthebuildofficial@gmail.com`; it does not submit or store visitor details. A copy-brief fallback appears after preparation. Reply through the visitor's email app. The direct email link also works without JavaScript.
 
-The workflow board explains steps; it does not execute automation jobs. The default enquiry-to-action workflow and broader custom-build cards are explicitly examples. Liquid Signal's sample interface/data are labeled. Existing videos show the studio's editing work. The creator engine and focused services are described separately from the Chrome extension. Capability links can prepare a starter brief when the visitor has not already written one.
+The workflow board explains steps; it does not execute automation jobs. The default enquiry-to-action workflow is explicitly an example of a custom build. Liquid Signal's sample interface/data are labeled. Existing videos show the studio's editing work. The creator engine and focused services are described separately from the Chrome extension. The workflow enquiry link can prepare a starter brief when the visitor has not already written one. Closing the editing-samples drawer stops embedded playback.
 
 ## Personalization and languages
 

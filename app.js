@@ -52,6 +52,7 @@ $("mailTxt").href =
 const workflows = {
   creator: {
     path: "creator-engine",
+    label: "Creator engine",
     title: "Your channel. Your next three ideas.",
     kind: "Our creator workflow · illustrated",
     output: "3 daily ideas + an edit for your review",
@@ -60,30 +61,31 @@ const workflows = {
         "chart",
         "Audit the channel",
         "Understand the signals",
-        "Start with an in-depth look at your channel to find patterns and decide what to make next.",
+        "Find the channel patterns that guide what to make next.",
       ],
       [
         "bulb",
         "3 daily ideas",
         "Give direction to your day",
-        "The idea engine recommends three ideas each day, informed by the channel audit. Choose the one you want to record.",
+        "Choose from three daily ideas informed by your channel audit.",
       ],
       [
         "camera",
         "You record",
         "Your voice. Your expertise.",
-        "Bring the idea to camera. Your perspective stays yours; the workflow takes care of the work around it.",
+        "Record the idea in your own voice.",
       ],
       [
         "spark",
         "AI edit + review",
         "Bring the idea to life",
-        "The AI editing workflow turns the footage into an edit with cuts, captions, graphics, and sound. You review before posting.",
+        "Cuts, captions, graphics, and sound. You review before posting.",
       ],
     ],
   },
   research: {
     path: "audience-research",
+    label: "Audience research",
     title: "Comments in. Audience insights out.",
     kind: "Liquid Signal · product walkthrough",
     output: "A searchable report + CSV / JSON export",
@@ -92,30 +94,31 @@ const workflows = {
         "search",
         "Pick a question",
         "Start with what you need",
-        "In Liquid Signal, ask your own question or choose a suggested question about a YouTube audience.",
+        "Ask your own audience question or choose a suggested one.",
       ],
       [
         "doc",
         "Read comments",
         "A sample of public replies",
-        "Liquid Signal analyzes a sample of public comments from the selected YouTube video.",
+        "Analyze sampled public comments from the selected video.",
       ],
       [
         "chart",
         "Find the signal",
         "Answers, patterns, context",
-        "Explore audience answer splits, a plain-language summary, purchase intent, barriers, and confidence.",
+        "Explore answer splits, audience intent, barriers, and confidence.",
       ],
       [
         "folder",
         "Use the report",
         "Export your findings",
-        "Search and filter the full report, then export CSV or JSON to use the findings in your next decision.",
+        "Search, filter, and export the findings as CSV or JSON.",
       ],
     ],
   },
   custom: {
     path: "enquiry-to-action",
+    label: "Business admin",
     title: "An enquiry. A clear next step.",
     kind: "Illustrative custom workflow",
     output: "An organised task + a draft reply",
@@ -124,25 +127,25 @@ const workflows = {
         "doc",
         "A new enquiry arrives",
         "Email, form, or your existing tool",
-        "An example of a workflow we could build: an incoming request becomes the starting point, using the tools you already work in.",
+        "A workflow we could build around requests in your existing tools.",
       ],
       [
         "spark",
         "AI organises the details",
         "Extract the brief. Prepare the next step.",
-        "The workflow could extract the request, organise key details, and prepare a task and draft reply using rules we agree with you.",
+        "Extract the brief and prepare a task and draft reply.",
       ],
       [
         "shield",
         "You review what matters",
         "Approve the proposed action",
-        "Review the proposed action and any draft that needs your judgment. The workflow moves forward at the checkpoints you approve.",
+        "Approve the proposed action at your agreed review point.",
       ],
       [
         "check",
-        "The work moves forward",
+        "Task + reply draft",
         "A task and draft reply in the right tools",
-        "The agreed next action lands in the right tool: for example, a task for your team and a reply saved as a draft.",
+        "A task for your team. A reply saved as a draft.",
       ],
     ],
   },
@@ -174,7 +177,7 @@ function stopWalkthrough() {
 function setScenario(next) {
   stopWalkthrough();
   scenario = next;
-  $("workflowPath").textContent = "2founders / " + workflows[next].path;
+  $("workflowPath").textContent = workflows[next].label;
   $("workflowTitle").textContent = workflows[next].title;
   $("workflowKind").textContent = workflows[next].kind;
   $("workflowOutput").textContent = workflows[next].output;
@@ -189,7 +192,7 @@ function setScenario(next) {
   $("workflowNodes").innerHTML = workflows[next].steps
     .map(
       (step, i) =>
-        `<button class="node" type="button" data-step="${i}" aria-pressed="${i === 0}"><span class="node-number">${String(i + 1).padStart(2, "0")}</span><span class="node-icon">${icon(step[0])}</span><b>${step[1]}</b><small>${step[2]}</small></button>`,
+        `<button class="node" type="button" data-step="${i}" aria-pressed="${i === 0}"><span class="node-number">${String(i + 1).padStart(2, "0")}</span><span class="node-icon">${icon(step[0])}</span><b>${step[1]}</b></button>`,
     )
     .join("");
   showStep(0);
@@ -228,27 +231,20 @@ document.addEventListener("visibilitychange", () => {
   if (document.hidden) stopWalkthrough();
 });
 
-// Keep the original rotating accent, while the main company offer stays fixed.
+// The centred hero reserves space for every word in CSS, including during font loading.
 (function initRotator() {
   const rot = $("rot");
   const words = [...rot.children];
-  const fit = (word) => {
-    rot.style.width = word.getBoundingClientRect().width + "px";
-  };
+  const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
   let i = 0;
-  fit(words[0]);
-  document.fonts.ready.then(() => fit(words[i]));
-  addEventListener("resize", () => fit(words[i]));
-  if (reduce) return;
   setInterval(() => {
-    if (document.hidden) return;
+    if (document.hidden || motionPreference.matches) return;
     const old = words[i];
     i = (i + 1) % words.length;
     old.classList.remove("on");
     old.classList.add("out");
     words[i].classList.remove("out");
     words[i].classList.add("on");
-    fit(words[i]);
     setTimeout(() => old.classList.remove("out"), 600);
   }, 2600);
 })();
@@ -277,6 +273,9 @@ function stopEmbeddedVideos() {
     if (frame.videoFacade) frame.replaceWith(frame.videoFacade);
   });
 }
+$("work").addEventListener("toggle", () => {
+  if (!$("work").open) stopEmbeddedVideos();
+});
 let renderedRegion = null;
 let regionChosen = false;
 function normRegion(value) {
