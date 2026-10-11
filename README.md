@@ -2,7 +2,9 @@
 
 The 2 Founders marketing site is a static HTML/CSS/JavaScript site with a small Vercel Edge Function for country detection. It introduces two ways to work with the studio: custom automation builds and focused, one-off, recurring, or usage-based services.
 
-The original cream, lime, coral, typography, rotating headline, floating labels, crossed marquees, scroll effects, and video library are retained. The site now leads with an interactive workflow walkthrough, followed by the service offers, Liquid Signal product, and creator automation pipeline.
+The original cream, lime, coral, typography, floating labels, crossed marquees, scroll effects, and video library are retained. A fixed headline states the AI automation offer; the original rotating animation lives in a supporting accent. The first screen shows the two engagement routes and an illustrative business workflow. Shipped-work links, substantial capability cards, contrasting service sections, Liquid Signal, and the creator engine explain what the studio delivers.
+
+The second design pass draws on [200 primary website reviews](docs/research/README.md). Research covers offers, calls to action, section order, buying models, and evidence; it does not claim visual inspection or measured conversion gains.
 
 ## Local development
 
@@ -33,13 +35,14 @@ The local `scripts/serve.mjs` server is a development/test tool; Vercel serves t
 - `index.html`: copy, sections, Liquid Signal link, FAQ, enquiry options, metadata.
 - `styles.css`: shared theme, responsive layouts, motion, and accessibility styles.
 - `product.css`: the scoped Liquid Signal product illustration.
+- `landing.css`: the automation-first hero, capability cards, section hierarchy, and responsive proof placement, using the shared theme variables.
 - `app.js`: `CONFIG` contact/video settings, workflow walkthroughs, region selection, and email brief preparation.
 - `media/fonts/`: locally hosted Latin variable fonts and their OFL licenses.
 - `media/social-preview.png`: 1200 × 630 link preview.
 
 The enquiry form prepares a `mailto:` email to `beyondthebuildofficial@gmail.com`; it does not submit or store visitor details. A copy-brief fallback appears after preparation. Reply through the visitor's email app. The direct email link also works without JavaScript.
 
-The workflow board and weekly schedule are explanatory illustrations, not live automation executions. Liquid Signal's sample interface/data are labeled. Existing videos show the studio's editing work. The full creator engine and focused services are described separately from the Chrome extension.
+The workflow board explains steps; it does not execute automation jobs. The default enquiry-to-action workflow and broader custom-build cards are explicitly examples. Liquid Signal's sample interface/data are labeled. Existing videos show the studio's editing work. The creator engine and focused services are described separately from the Chrome extension. Capability links can prepare a starter brief when the visitor has not already written one.
 
 ## Personalization and languages
 

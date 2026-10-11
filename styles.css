@@ -1503,16 +1503,19 @@ footer a {
 }
 .mbar {
   display: none;
+  visibility: hidden;
   position: fixed;
   left: 12px;
   right: 12px;
   bottom: 12px;
   z-index: 25;
   transform: translateY(140%);
-  transition: transform 0.35s;
+  transition: transform 0.35s, visibility 0s 0.35s;
 }
 .mbar.show {
   transform: none;
+  visibility: visible;
+  transition-delay: 0s;
 }
 .mbar a {
   display: flex;

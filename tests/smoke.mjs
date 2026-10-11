@@ -21,7 +21,7 @@ for (const country of ['', 'IN', 'US']) {
   assert.deepEqual(await response.json(), { country }); checks++;
 }
 for (const [path, type] of [
-  ['/styles.css', 'text/css'], ['/product.css', 'text/css'], ['/app.js', 'javascript'],
+  ['/styles.css', 'text/css'], ['/product.css', 'text/css'], ['/landing.css', 'text/css'], ['/app.js', 'javascript'],
   ['/media/fonts/inter-tight.woff2', 'font/woff2'], ['/media/fonts/inter.woff2', 'font/woff2'],
   ['/media/fonts/jetbrains-mono.woff2', 'font/woff2'], ['/media/favicon.svg', 'image/svg+xml'],
   ['/media/pitch-poster.jpg', 'image/jpeg'], ['/media/social-preview.png', 'image/png']
@@ -37,7 +37,7 @@ equal((await media.arrayBuffer()).byteLength, 100, 'Video range is the requested
 
 const browser = await chromium.launch({ executablePath, headless: true, args: ['--no-sandbox'] });
 try {
-  const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, timezoneId: 'UTC' });
+  const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, timezoneId: 'UTC' });
   // Third-party playback is checked through iframe wiring; this suite is otherwise local.
   await context.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
   // Exercise the visible manual-copy fallback when browser clipboard access fails.
@@ -59,7 +59,7 @@ try {
   equal(await page.title(), '2 Founders × SmokeCompany', 'Company links personalize the title');
   equal(await page.locator('#forName').innerText(), 'SmokeCompany', 'Company links personalize the hero');
   check(await page.locator('#forChip').isVisible(), 'Personalized chip is visible');
-  check((await page.locator('h1').innerText()).includes('We automate.'), 'Hero communicates automation');
+  check((await page.locator('h1').innerText()).includes('AI automation.'), 'Hero communicates the broad company category');
   equal(await page.locator('main').count(), 1, 'Page has one main landmark');
   equal(await page.locator('h1').count(), 1, 'Page has one main heading');
   await page.keyboard.press('Tab');
@@ -67,9 +67,26 @@ try {
   const outline = await page.locator(':focus').evaluate(el => getComputedStyle(el).outlineStyle);
   check(outline !== 'none', 'Keyboard focus is visible');
 
-  // The workflow is an explorable illustration with functional stages and playback controls.
-  await page.getByRole('button', { name: 'Research & insights', exact: true }).click();
-  check((await page.locator('#workflowPath').innerText()).includes('audience-research'), 'Workflow tab updates the example');
+  // The default example is broad business work, clearly distinguished from shipped product proof.
+  equal(await page.locator('.scenario-tabs [aria-pressed="true"]').innerText(), 'Business admin', 'Business admin is the default example');
+  equal(await page.locator('#workflowKind').innerText(), 'Illustrative custom workflow', 'Default example does not imply a deployed system');
+  equal(await page.locator('#workflowOutput').innerText(), 'An organised task + a draft reply', 'Default example shows a business output');
+  check((await page.locator('#workflowDetail').innerText()).includes('could build'), 'Default workflow is explicitly hypothetical');
+  // A scenario switch must update the complete explanation, rather than only its node labels.
+  for (const [name, path, title, kind, output] of [
+    ['Audience research', 'audience-research', 'Comments in. Audience insights out.', 'Liquid Signal · product walkthrough', 'A searchable report + CSV / JSON export'],
+    ['Creator engine', 'creator-engine', 'Your channel. Your next three ideas.', 'Our creator workflow · illustrated', '3 daily ideas + an edit for your review'],
+    ['Business admin', 'enquiry-to-action', 'An enquiry. A clear next step.', 'Illustrative custom workflow', 'An organised task + a draft reply']
+  ]) {
+    await page.getByRole('button', { name, exact: true }).click();
+    equal(await page.locator('#workflowPath').innerText(), '2founders / ' + path, name + ' changes the workflow path');
+    equal(await page.locator('#workflowTitle').innerText(), title, name + ' changes the title');
+    equal(await page.locator('#workflowKind').innerText(), kind, name + ' changes its evidence label');
+    equal(await page.locator('#workflowOutput').innerText(), output, name + ' changes the output');
+    equal(await page.locator('.scenario-tabs [aria-pressed="true"]').count(), 1, 'One scenario is selected');
+    equal(await page.locator('#workflowNodes [aria-pressed="true"]').count(), 1, 'Switching scenario selects one stage');
+  }
+  await page.getByRole('button', { name: 'Audience research', exact: true }).click();
   await page.locator('#workflowNodes button').nth(2).click();
   check((await page.locator('#workflowDetail').innerText()).includes('Find the signal'), 'Stage selection updates the explanation');
   equal(await page.locator('#workflowNodes [aria-pressed="true"]').count(), 1, 'One stage is selected');
@@ -80,9 +97,35 @@ try {
   const pausedDetail = await page.locator('#workflowDetail').innerText();
   await page.waitForTimeout(2750);
   equal(await page.locator('#workflowDetail').innerText(), pausedDetail, 'Paused walkthrough does not advance');
-  await page.getByRole('button', { name: 'Your workflow', exact: true }).click();
-  check((await page.locator('#workflowDetail').innerText()).includes('Your input'), 'Custom workflow is explorable');
+  await page.getByRole('button', { name: 'Business admin', exact: true }).click();
+  check((await page.locator('#workflowDetail').innerText()).includes('A new enquiry arrives'), 'Custom workflow is explorable');
   equal(await page.locator('#walkthrough').getAttribute('aria-pressed'), 'false', 'Switching workflow stops playback');
+
+  // Native section links land their chapter and heading below the sticky navigation.
+  for (const [target, label] of [
+    ['automate', 'What we automate'], ['services', 'Two ways to work with us'],
+    ['product', "A product we've shipped"], ['how', 'How it comes together']
+  ]) {
+    await page.locator('#nav a[href="#' + target + '"]').click();
+    await page.waitForFunction(id => {
+      const chapter = document.querySelector('#' + id + ' .chapter').getBoundingClientRect();
+      const heading = document.querySelector('#' + id + ' h2').getBoundingClientRect();
+      return location.hash === '#' + id && chapter.top >= document.querySelector('#nav').getBoundingClientRect().bottom && heading.bottom < innerHeight;
+    }, target);
+    equal((await page.locator('#' + target + ' .chapter .mono').innerText()).toLowerCase(), label.toLowerCase(), 'Section link exposes the correct chapter');
+    check(await page.locator('#' + target + ' h2').isVisible(), 'Section link exposes its heading');
+  }
+
+  // Capability prompts help an empty brief while preserving work the visitor has already written.
+  const researchCTA = page.locator('#automate a[data-brief]').first();
+  const adminCTA = page.locator('#automate a[data-brief]').last();
+  await researchCTA.click();
+  equal(await page.locator('#enquiryTask').inputValue(), await researchCTA.getAttribute('data-brief'), 'Research prompt pre-fills an empty brief');
+  equal(await page.locator('#enquiryType').inputValue(), 'custom', 'Capability prompt selects custom automation');
+  const draft = 'Our existing draft: move incoming requests into a reviewed task.';
+  await page.locator('#enquiryTask').fill(draft);
+  await adminCTA.click();
+  equal(await page.locator('#enquiryTask').inputValue(), draft, 'Changing capability preserves the existing draft');
 
   for (const [service, selector] of [
     ['service', '.offer a[data-enquiry="service"]'],
@@ -117,11 +160,6 @@ try {
   await page.locator('#enquiryTools').fill('Sheets');
   check(!(await page.locator('#formStatus').isVisible()), 'Editing the brief hides stale email actions');
 
-  await page.locator('#weekBox button[data-mode="with"]').click();
-  equal(await page.locator('#weekBox').getAttribute('data-mode'), 'with', 'Week comparison switches');
-  check((await page.locator('#weekMsg').innerText()).includes('More space'), 'Week comparison updates its explanation');
-  await page.locator('#weekBox button[data-mode="without"]').click();
-  equal(await page.locator('#weekBox').getAttribute('data-mode'), 'without', 'Week comparison switches back');
   const faq = page.locator('#faq details').first();
   await faq.locator('summary').click();
   check(await faq.evaluate(el => el.open), 'FAQ opens');
@@ -158,8 +196,8 @@ try {
   equal(await page.locator('body').getAttribute('data-region'), 'in', 'Geo detection selects Hindi examples');
   await context.setExtraHTTPHeaders({});
 
-  for (const width of [320, 390, 768, 1440]) {
-    await page.setViewportSize({ width, height: width > 1000 ? 1000 : 844 });
+  for (const width of [320, 390, 701, 720, 740, 768, 1440]) {
+    await page.setViewportSize({ width, height: width > 1000 ? 900 : 844 });
     await goto('?r=global');
     const structure = await page.evaluate(() => {
       const ids = [...document.querySelectorAll('[id]')].map(el => el.id);
@@ -175,10 +213,42 @@ try {
     assert.deepEqual(structure.duplicateIds, [], 'IDs are unique'); checks++;
     check(structure.fontsLoaded, 'Self-hosted fonts load');
     if (width === 390 || width === 1440) {
+      const firstFold = await page.evaluate(() => {
+        const fits = selector => {
+          const rect = document.querySelector(selector).getBoundingClientRect();
+          return rect.top >= document.querySelector('#nav').getBoundingClientRect().bottom && rect.bottom <= innerHeight && rect.left >= 0 && rect.right <= innerWidth;
+        };
+        return {
+          category: fits('.hero-eyebrow') && fits('.hero h1'),
+          customCTA: fits('.hero-ctas a[data-enquiry="custom"]'),
+          servicesCTA: fits('.hero-ctas a[data-enquiry="service"]'),
+          proofBeforeBoard: document.querySelector('.built-strip').getBoundingClientRect().bottom < document.querySelector('.workflow-board').getBoundingClientRect().top
+        };
+      });
+      check(firstFold.category, width + 'px first fold states the automation category');
+      check(firstFold.customCTA && firstFold.servicesCTA, width + 'px first fold shows both engagement choices');
+      if (width === 390) {
+        check(firstFold.proofBeforeBoard, 'Mobile puts shipped proof before the illustrative board');
+        equal(await page.locator('#mbar').evaluate(el => getComputedStyle(el).visibility), 'hidden', 'Initial mobile CTA bar is hidden');
+        await page.locator('#mbar a').evaluate(el => el.focus());
+        check(!(await page.locator('#mbar a').evaluate(el => document.activeElement === el)), 'Hidden mobile CTA cannot take keyboard focus');
+      }
       await mkdir(resultsDir, { recursive: true });
       await page.screenshot({ path: resolve(resultsDir, width === 390 ? 'mobile.png' : 'desktop.png'), animations: 'disabled' });
     }
   }
+  await page.setViewportSize({ width: 390, height: 844 });
+  await goto('?r=global');
+  await page.locator('#automate').scrollIntoViewIfNeeded();
+  await page.waitForFunction(() => document.querySelector('#mbar').classList.contains('show'));
+  equal(await page.locator('#mbar').evaluate(el => getComputedStyle(el).visibility), 'visible', 'Mobile CTA becomes available inside the page');
+  await page.locator('#mbar a').evaluate(el => el.focus());
+  check(await page.locator('#mbar a').evaluate(el => document.activeElement === el), 'Visible mobile CTA can take keyboard focus');
+  await page.locator('footer').scrollIntoViewIfNeeded();
+  await page.waitForFunction(() => getComputedStyle(document.querySelector('#mbar')).visibility === 'hidden');
+  await page.evaluate(() => document.activeElement.blur());
+  await page.locator('#mbar a').evaluate(el => el.focus());
+  check(!(await page.locator('#mbar a').evaluate(el => document.activeElement === el)), 'Footer hides the mobile CTA from keyboard focus');
   const reduced = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce', timezoneId: 'UTC' });
   await reduced.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
   const reducedPage = await reduced.newPage();

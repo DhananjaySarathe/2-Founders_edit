@@ -52,6 +52,9 @@ $("mailTxt").href =
 const workflows = {
   creator: {
     path: "creator-engine",
+    title: "Your channel. Your next three ideas.",
+    kind: "Our creator workflow · illustrated",
+    output: "3 daily ideas + an edit for your review",
     steps: [
       [
         "chart",
@@ -81,6 +84,9 @@ const workflows = {
   },
   research: {
     path: "audience-research",
+    title: "Comments in. Audience insights out.",
+    kind: "Liquid Signal · product walkthrough",
+    output: "A searchable report + CSV / JSON export",
     steps: [
       [
         "search",
@@ -109,36 +115,39 @@ const workflows = {
     ],
   },
   custom: {
-    path: "your-workflow",
+    path: "enquiry-to-action",
+    title: "An enquiry. A clear next step.",
+    kind: "Illustrative custom workflow",
+    output: "An organised task + a draft reply",
     steps: [
       [
-        "folder",
-        "Your input",
-        "Where the work begins",
-        "A brief, document, or new item in a tool you already use. We agree what starts the workflow.",
+        "doc",
+        "A new enquiry arrives",
+        "Email, form, or your existing tool",
+        "An example of a workflow we could build: an incoming request becomes the starting point, using the tools you already work in.",
       ],
       [
         "spark",
-        "AI does the work",
-        "The steps we design together",
-        "We identify the repeatable steps and decide where AI can help interpret, organize, or prepare the next output.",
+        "AI organises the details",
+        "Extract the brief. Prepare the next step.",
+        "The workflow could extract the request, organise key details, and prepare a task and draft reply using rules we agree with you.",
       ],
       [
         "shield",
-        "Your review",
-        "A checkpoint that makes sense",
-        "Approve the decisions that need your judgment. We build review points around the process you agree to.",
+        "You review what matters",
+        "Approve the proposed action",
+        "Review the proposed action and any draft that needs your judgment. The workflow moves forward at the checkpoints you approve.",
       ],
       [
         "check",
-        "Useful output",
-        "Back into your process",
-        "Get the agreed deliverable in the right place, with a handover and support plan suited to the workflow.",
+        "The work moves forward",
+        "A task and draft reply in the right tools",
+        "The agreed next action lands in the right tool: for example, a task for your team and a reply saved as a draft.",
       ],
     ],
   },
 };
-let scenario = "creator";
+let scenario = "custom";
 let activeStep = 0;
 let walkthroughTimer = null;
 function showStep(step) {
@@ -166,6 +175,9 @@ function setScenario(next) {
   stopWalkthrough();
   scenario = next;
   $("workflowPath").textContent = "2founders / " + workflows[next].path;
+  $("workflowTitle").textContent = workflows[next].title;
+  $("workflowKind").textContent = workflows[next].kind;
+  $("workflowOutput").textContent = workflows[next].output;
   document
     .querySelectorAll("[data-scenario]")
     .forEach((button) =>
@@ -216,7 +228,7 @@ document.addEventListener("visibilitychange", () => {
   if (document.hidden) stopWalkthrough();
 });
 
-// Original rotating headline, with an accessible fixed label and reduced-motion support.
+// Keep the original rotating accent, while the main company offer stays fixed.
 (function initRotator() {
   const rot = $("rot");
   const words = [...rot.children];
@@ -390,57 +402,14 @@ document.querySelectorAll(".region-tabs button").forEach((button) =>
   });
 })();
 
-// A clearly labeled, illustrative comparison, changed only when requested.
-(function initWeek() {
-  const days = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
-  const without = ["mEEE", "EEmE", "mEEE", "EEmE", "EEmo", "Eooo", "oooo"];
-  const withFlow = ["mmEo", "mmmm", "mmoo", "mmEm", "mmmo", "oooo", "oooo"];
-  const labels = { E: "Routine", m: "Focus", o: "Off" };
-  const classes = { E: "edit", m: "make", o: "off" };
-  $("days").innerHTML = days
-    .map(
-      (day) =>
-        `<div class="day"><div class="dl">${day}</div><div class="slots">${'<div class="slot"></div>'.repeat(4)}</div></div>`,
-    )
-    .join("");
-  const slots = [...$("days").querySelectorAll(".slot")];
-  function apply(mode) {
-    $("weekBox").dataset.mode = mode;
-    const plan = mode === "with" ? withFlow : without;
-    slots.forEach((slot, i) => {
-      const type = plan[Math.floor(i / 4)][i % 4];
-      slot.className = "slot " + classes[type];
-      slot.textContent = labels[type];
-      slot.setAttribute(
-        "aria-label",
-        `${days[Math.floor(i / 4)]}: ${type === "E" ? "Repetitive task" : type === "m" ? "Focused work" : "Off"}`,
-      );
-    });
-    $("weekBox")
-      .querySelectorAll("[data-mode]")
-      .forEach((button) =>
-        button.setAttribute(
-          "aria-pressed",
-          String(button.dataset.mode === mode),
-        ),
-      );
-    $("weekMsg").textContent =
-      mode === "with"
-        ? "Same week. More space for decisions, ideas, and the work that needs you."
-        : "The small tasks fill the calendar. Your bigger ideas get whatever is left.";
-  }
-  $("weekBox")
-    .querySelectorAll("button[data-mode]")
-    .forEach((button) =>
-      button.addEventListener("click", () => apply(button.dataset.mode)),
-    );
-  apply("without");
-})();
-
 // Service-specific enquiry links prepare a real email, without a fake submission success.
 document.querySelectorAll("[data-enquiry]").forEach((link) =>
   link.addEventListener("click", () => {
     $("enquiryType").value = link.dataset.enquiry;
+    if (link.dataset.brief && !$("enquiryTask").value.trim()) {
+      $("enquiryTask").value = link.dataset.brief;
+      $("enquiryTask").setCustomValidity("");
+    }
     $("formStatus").hidden = true;
   }),
 );
