@@ -318,6 +318,17 @@ try {
   await page.locator('#processBoard').scrollIntoViewIfNeeded();
   await page.waitForFunction(() => !document.querySelector('#processStatus').textContent.includes('Waiting'));
   check(await page.locator('#processSteps .lit').count() > 0, 'The process playhead lights steps as it scrolls');
+  // The hero task box turns the visitor's own words into their brief.
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  check((await page.locator('#heroTask').getAttribute('placeholder')).length > 0, 'The hero task box shows an example task');
+  await page.getByRole('button', { name: 'Weekly reports', exact: true }).click();
+  equal(await page.locator('#heroTask').inputValue(), 'Turn our weekly numbers into a report for the team', 'Example chips fill the hero task box');
+  await page.locator('#heroTask').fill('Chase unpaid invoices every Friday');
+  await page.locator('#enquiryTask').fill('');
+  await page.locator('#heroPrompt button[type="submit"]').click();
+  check((await page.locator('#enquiryTask').inputValue()).startsWith("I'd like to automate this: Chase unpaid invoices every Friday."), 'The hero task becomes the enquiry brief');
+  equal(await page.locator('#enquiryType').inputValue(), 'custom', 'The hero task asks for a custom automation');
+  await page.waitForFunction(() => document.querySelector('#talk').getBoundingClientRect().top < innerHeight / 2);
   await context.setExtraHTTPHeaders({ 'x-vercel-ip-country': 'IN' });
   await goto('');
   await page.waitForFunction(() => document.body.dataset.region === 'in');

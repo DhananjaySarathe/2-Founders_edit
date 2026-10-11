@@ -681,6 +681,73 @@ document.querySelectorAll("[data-enquiry]").forEach((link) =>
 $("weekBrief").addEventListener("click", () =>
   fillBrief(meter.brief(), "explore"),
 );
+
+// The hero task box: examples type themselves; the visitor's task becomes their brief.
+(function initHeroPrompt() {
+  const form = $("heroPrompt");
+  const input = $("heroTask");
+  const examples = [
+    "Reply to every new enquiry with a draft and a task",
+    "Turn YouTube comments into a weekly report",
+    "Find three video ideas for my channel every morning",
+    "Move form leads into our CRM and tag them",
+    "Cut long videos into captioned Shorts",
+  ];
+  const resting = "Describe a task you repeat every week";
+  let example = 0;
+  let shown = 0;
+  let erasing = false;
+  let timer = 0;
+  function typeExample() {
+    const text = examples[example];
+    if (!erasing) {
+      shown = Math.min(text.length, shown + 1);
+      input.placeholder = text.slice(0, shown) + "…";
+      if (shown === text.length) erasing = true;
+      timer = setTimeout(typeExample, shown === text.length ? 1800 : 45);
+    } else {
+      shown = Math.max(0, shown - 3);
+      input.placeholder = text.slice(0, shown) + "…";
+      if (!shown) {
+        erasing = false;
+        example = (example + 1) % examples.length;
+      }
+      timer = setTimeout(typeExample, shown ? 18 : 300);
+    }
+  }
+  function start() {
+    clearTimeout(timer);
+    if (!reduce && !input.value && document.activeElement !== input)
+      typeExample();
+    else input.placeholder = resting;
+  }
+  input.addEventListener("focus", () => {
+    clearTimeout(timer);
+    input.placeholder = resting;
+  });
+  input.addEventListener("blur", start);
+  document.addEventListener("visibilitychange", () =>
+    document.hidden ? clearTimeout(timer) : start(),
+  );
+  document.querySelectorAll(".hero-try button").forEach((button) =>
+    button.addEventListener("click", () => {
+      input.value = button.dataset.task;
+      input.focus();
+    }),
+  );
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const task = input.value.trim() || examples[example];
+    fillBrief(
+      `I'd like to automate this: ${task.replace(/[.…]+$/, "")}.\n\nToday we do it by hand. The result we need is…`,
+      "custom",
+    );
+    form.classList.add("is-sent");
+    setTimeout(() => form.classList.remove("is-sent"), 250);
+    $("talk").scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+  });
+  start();
+})();
 const enquiryLabels = {
   custom: "Custom automation",
   service: "Focused AI service",

@@ -224,6 +224,7 @@
     </nav>
     <main id="main">
       <header class="hero" id="top" data-chapter="What we do">
+        <div class="hero-bg" aria-hidden="true"><i></i><i></i></div>
         <div class="hero-copy">
           <div class="for-chip" id="forChip" hidden>
             <span class="dot"></span><span>Made for <b id="forName"></b></span>
@@ -237,43 +238,95 @@
             ><span class="rot" id="rot" aria-hidden="true"
               ><span class="on">build.</span><span>grow.</span
               ><span>create.</span></span
-            ><br /><span class="hl">We automate.</span>
+            ><br /><span class="hl"
+              >We automate.<span class="h1-cursor" aria-hidden="true"></span
+            ></span>
           </h1>
           <p class="sub">
             We're two founders who build AI workflows for the work you keep
             repeating: enquiries, research, reports, content. Or we just do the
             task for you.
           </p>
-          <div class="hero-ctas">
-            <a class="btn btn-dark" href="#talk" data-enquiry="custom"
-              >Build my automation
+          <form class="hero-prompt js-only" id="heroPrompt">
+            <label class="sr-only" for="heroTask"
+              >Describe a task you repeat</label
+            >
+            <span class="hero-prompt-icon" aria-hidden="true"
+              ><svg class="icon"><use href="#i-spark" /></svg></span
+            ><input
+              id="heroTask"
+              name="task"
+              maxlength="200"
+              autocomplete="off"
+              placeholder="Describe a task you repeat every week"
+            /><button class="btn btn-lime" type="submit">
+              <span>Automate<span class="hero-prompt-more"> this</span></span>
               <span class="arr" aria-hidden="true"
                 ><svg class="icon diagonal-arrow">
-                  <use href="#i-arrow" /></svg></span
-            ></a>
-            <a class="btn btn-ghost" href="#services" data-enquiry="service"
-              >Get a task done <span class="arr" aria-hidden="true">↓</span></a
+                  <use href="#i-arrow" /></svg
+              ></span>
+            </button>
+          </form>
+          <div class="hero-try js-only" role="group" aria-label="Example tasks">
+            <span class="mono">Try</span
+            ><button
+              type="button"
+              data-task="Reply to every new enquiry with a draft and a task"
             >
+              Enquiries</button
+            ><button
+              type="button"
+              data-task="Turn our weekly numbers into a report for the team"
+            >
+              Weekly reports</button
+            ><button
+              type="button"
+              data-task="Read YouTube comments and tell us what viewers want"
+            >
+              Comments → insights</button
+            ><button
+              type="button"
+              data-task="Cut long videos into captioned Shorts"
+            >
+              Video edits
+            </button>
+          </div>
+          <div class="hero-routes">
+            <span class="hero-routes-label js-only">Know what you need?</span>
+            <div class="hero-ctas">
+              <a class="btn btn-dark" href="#talk" data-enquiry="custom"
+                >Build my automation
+                <span class="arr" aria-hidden="true"
+                  ><svg class="icon diagonal-arrow">
+                    <use href="#i-arrow" /></svg></span
+              ></a>
+              <a class="btn btn-ghost" href="#services" data-enquiry="service"
+                >Get a task done
+                <span class="arr" aria-hidden="true">↓</span></a
+              >
+            </div>
           </div>
           <p class="hero-footnote">
             Custom builds · One-off, recurring & usage-based services
           </p>
-          <button class="tour-link js-only" id="tourStart" type="button">
-            <span class="tour-link-icon" aria-hidden="true"
-              ><svg class="icon"><use href="#i-play" /></svg></span
-            ><span>New here? <b>Take the 60-second tour</b></span>
-          </button>
-          <div class="built-strip">
-            <span class="mono">Built by us</span
-            ><a href="#product"
-              >Liquid Signal
-              <svg class="icon diagonal-arrow" aria-hidden="true">
-                <use href="#i-arrow" /></svg></a
-            ><a href="#creator"
-              >Creator engine
-              <svg class="icon diagonal-arrow" aria-hidden="true">
-                <use href="#i-arrow" /></svg
-            ></a>
+          <div class="hero-meta">
+            <button class="tour-link js-only" id="tourStart" type="button">
+              <span class="tour-link-icon" aria-hidden="true"
+                ><svg class="icon"><use href="#i-play" /></svg></span
+              ><span>New here? <b>Take the 60-second tour</b></span>
+            </button>
+            <div class="built-strip">
+              <span class="mono">Built by us</span
+              ><a href="#product"
+                >Liquid Signal
+                <svg class="icon diagonal-arrow" aria-hidden="true">
+                  <use href="#i-arrow" /></svg></a
+              ><a href="#creator"
+                >Creator engine
+                <svg class="icon diagonal-arrow" aria-hidden="true">
+                  <use href="#i-arrow" /></svg
+              ></a>
+            </div>
           </div>
         </div>
         <div class="hero-tasks" aria-hidden="true">
