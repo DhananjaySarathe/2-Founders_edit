@@ -7,12 +7,12 @@
     <title>2 Founders — Agentic workflows & AI automation</title>
     <meta
       name="description"
-      content="Custom agentic workflows and focused AI automation services. From audience research to daily content ideas and AI-assisted editing, 2 Founders helps you get more done."
+      content="AI automation built around your work. 2 Founders builds custom agentic workflows for research, admin, and content, and delivers focused one-off, recurring, or usage-based services."
     />
     <link rel="canonical" href="https://2founders.space/" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://2founders.space/" />
-    <meta property="og:title" content="2 Founders — You focus. We automate." />
+    <meta property="og:title" content="2 Founders — You build. We automate." />
     <meta
       property="og:description"
       content="Agentic workflows built around your work. Custom automation, focused services, and tools that give you time back."
@@ -32,6 +32,7 @@
     />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="product.css" />
+    <link rel="stylesheet" href="landing.css" />
     <script src="app.js" defer></script>
     <noscript
       ><style>
@@ -117,11 +118,11 @@
           >2<span class="us"></span>founders</a
         >
         <div class="nav-links">
-          <a href="#services">What we do</a><a href="#product">Our product</a
-          ><a href="#creator">In action</a><a href="#how">The process</a>
+          <a href="#automate">Automations</a><a href="#services">Services</a
+          ><a href="#product">Our work</a><a href="#how">How it works</a>
         </div>
         <a class="btn btn-dark btn-sm" href="#talk"
-          >Let's automate
+          >Talk automation
           <span class="arr" aria-hidden="true"
             ><svg class="icon diagonal-arrow" aria-hidden="true">
               <use href="#i-arrow" /></svg></span
@@ -130,51 +131,70 @@
     </nav>
     <main id="main">
       <header class="hero" id="top">
-        <div class="for-chip" id="forChip" hidden>
-          <span class="dot"></span><span>Made for <b id="forName"></b></span>
+        <div class="hero-copy">
+          <div class="for-chip" id="forChip" hidden>
+            <span class="dot"></span><span>Made for <b id="forName"></b></span>
+          </div>
+          <p class="hero-eyebrow mono">
+            <span class="dot" aria-hidden="true"></span>AI automation, built for
+            you
+          </p>
+          <h1>
+            You <span class="sr-only">build.</span
+            ><span class="rot" id="rot" aria-hidden="true"
+              ><span class="on">build.</span><span>grow.</span
+              ><span>create.</span></span
+            ><br /><span class="hl">We automate.</span>
+          </h1>
+          <p class="sub">
+            We build custom AI workflows—or handle a specific task for you.<br
+              class="desktop-break"
+            />
+            Research, admin, and content, connected.
+          </p>
+          <div class="hero-ctas">
+            <a class="btn btn-dark" href="#talk" data-enquiry="custom"
+              >Build my automation
+              <span class="arr" aria-hidden="true"
+                ><svg class="icon diagonal-arrow">
+                  <use href="#i-arrow" /></svg></span
+            ></a>
+            <a class="btn btn-ghost" href="#services" data-enquiry="service"
+              >Get a task done <span class="arr" aria-hidden="true">↓</span></a
+            >
+          </div>
+          <p class="hero-footnote">
+            Custom builds · One-off, recurring & usage-based services
+          </p>
+          <div class="built-strip">
+            <span class="mono">Built by us</span
+            ><a href="#product"
+              >Liquid Signal
+              <svg class="icon diagonal-arrow" aria-hidden="true">
+                <use href="#i-arrow" /></svg></a
+            ><a href="#creator"
+              >Creator engine
+              <svg class="icon diagonal-arrow" aria-hidden="true">
+                <use href="#i-arrow" /></svg
+            ></a>
+          </div>
         </div>
-        <div>
-          <span class="hero-eyebrow mono"
-            ><span class="dot" aria-hidden="true"></span>Agentic workflows. Real
-            work, done.</span
-          >
-        </div>
-        <h1>
-          You focus on <span class="sr-only">growing.</span
-          ><span class="rot" id="rot" aria-hidden="true"
-            ><span class="on" aria-hidden="true">growing.</span
-            ><span aria-hidden="true">building.</span
-            ><span aria-hidden="true">creating.</span></span
-          ><br /><span class="hl">We automate.</span>
-        </h1>
-        <p class="sub">
-          We build AI workflows that connect your tools, handle the repetitive
-          work, and move things forward. Made for your business. Run on your
-          terms.
-        </p>
-        <div class="hero-ctas">
-          <a class="btn btn-dark" href="#talk" data-enquiry="custom"
-            >Build my workflow
-            <span class="arr" aria-hidden="true"
-              ><svg class="icon diagonal-arrow" aria-hidden="true">
-                <use href="#i-arrow" /></svg></span></a
-          ><a class="btn btn-ghost" href="#product"
-            >See what we've built
-            <span class="arr" aria-hidden="true">↓</span></a
-          >
-        </div>
-        <p class="hero-footnote">
-          Custom automation builds · One-off, recurring & usage-based services
+      </header>
+      <section
+        id="automate"
+        class="wrap workflow-section"
+        aria-labelledby="workflowTitle"
+      >
+        <p class="story-cue">
+          <span class="story-line" aria-hidden="true"></span>Here's how the work
+          moves.
         </p>
         <div class="stage">
           <div class="sticker s1" aria-hidden="true">
             <span class="ck">✓</span>Your tools, connected
           </div>
           <div class="sticker s2" aria-hidden="true">
-            <span class="ck">✓</span>Less busywork
-          </div>
-          <div class="sticker s3" aria-hidden="true">
-            <span class="dot"></span>Human where it matters
+            <span class="ck">✓</span>A result you can use
           </div>
           <div class="workflow-board" id="workflowBoard">
             <div class="board-bar">
@@ -182,10 +202,10 @@
                 ><span class="window-dots" aria-hidden="true"
                   ><i></i><i></i><i></i></span
                 ><span class="mono" id="workflowPath"
-                  >2founders / creator-engine</span
+                  >Business admin</span
                 ></span
-              ><span class="board-status"
-                ><span class="dot"></span>Workflow walkthrough</span
+              ><span class="example-label" id="workflowKind"
+                >Illustrative custom workflow</span
               >
             </div>
             <div class="board-body">
@@ -196,24 +216,25 @@
               >
                 <button
                   type="button"
-                  data-scenario="creator"
+                  data-scenario="custom"
                   aria-pressed="true"
                 >
-                  Creator engine</button
+                  Business admin</button
                 ><button
                   type="button"
                   data-scenario="research"
                   aria-pressed="false"
                 >
-                  Research & insights</button
+                  Audience research</button
                 ><button
                   type="button"
-                  data-scenario="custom"
+                  data-scenario="creator"
                   aria-pressed="false"
                 >
-                  Your workflow
+                  Creator engine
                 </button>
               </div>
+              <h2 id="workflowTitle">An enquiry. A clear next step.</h2>
               <div
                 class="nodes"
                 id="workflowNodes"
@@ -229,8 +250,8 @@
                   <span class="node-number">01</span
                   ><span class="node-icon"
                     ><svg class="icon" aria-hidden="true">
-                      <use href="#i-chart" /></svg></span
-                  ><b>Audit the channel</b><small>Understand the signals</small>
+                      <use href="#i-doc" /></svg></span
+                  ><b>A new enquiry arrives</b>
                 </button>
                 <button
                   class="node"
@@ -241,8 +262,8 @@
                   <span class="node-number">02</span
                   ><span class="node-icon"
                     ><svg class="icon" aria-hidden="true">
-                      <use href="#i-bulb" /></svg></span
-                  ><b>3 daily ideas</b><small>Give direction to your day</small>
+                      <use href="#i-spark" /></svg></span
+                  ><b>AI organises the details</b>
                 </button>
                 <button
                   class="node"
@@ -253,8 +274,8 @@
                   <span class="node-number">03</span
                   ><span class="node-icon"
                     ><svg class="icon" aria-hidden="true">
-                      <use href="#i-camera" /></svg></span
-                  ><b>You record</b><small>Your voice. Your expertise.</small>
+                      <use href="#i-shield" /></svg></span
+                  ><b>You review what matters</b>
                 </button>
                 <button
                   class="node"
@@ -265,16 +286,21 @@
                   <span class="node-number">04</span
                   ><span class="node-icon"
                     ><svg class="icon" aria-hidden="true">
-                      <use href="#i-spark" /></svg></span
-                  ><b>AI edit + review</b><small>Bring the idea to life</small>
+                      <use href="#i-check" /></svg></span
+                  ><b>Task + reply draft</b>
                 </button>
+              </div>
+              <div class="workflow-result">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-check" /></svg
+                ><span class="mono">The output</span
+                ><b id="workflowOutput">An organised task + a draft reply</b>
               </div>
             </div>
             <div class="board-detail">
               <p id="workflowDetail" aria-live="polite">
-                <strong>01 / Audit the channel.</strong> Start with an in-depth
-                look at your channel to find patterns and decide what to make
-                next.
+                <strong>01 / A new enquiry arrives.</strong> A workflow we could
+                build around requests in your existing tools.
               </p>
               <button
                 class="walkthrough js-only"
@@ -288,204 +314,54 @@
             </div>
           </div>
         </div>
-        <div class="hero-bottom">
-          <span
-            ><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg
-            >Built around your process</span
-          ><span
-            ><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg
-            >Useful outputs, fewer handoffs</span
-          ><span
-            ><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg
-            >Review before it goes live</span
-          >
-        </div>
-      </header>
+        <p class="workflow-next">
+          <span>Your task could be next.</span
+          ><a
+            class="text-link"
+            href="#talk"
+            data-enquiry="custom"
+            data-brief="I'd like to automate a repetitive task. Today we manually… The result we need is…"
+            >Tell us what you do by hand
+            <svg class="icon diagonal-arrow" aria-hidden="true">
+              <use href="#i-arrow" /></svg
+          ></a>
+        </p>
+      </section>
       <div class="marquees" aria-hidden="true">
         <div class="mq a"><div class="track" id="mqA"></div></div>
         <div class="mq b"><div class="track" id="mqB"></div></div>
       </div>
-      <section id="services" class="wrap">
-        <div class="section-top">
-          <div class="sec-head reveal">
-            <div class="mono">01 / Two ways to work with us</div>
-            <h2>
-              A workflow of your own.<br />Or help with
-              <span class="coral">one thing.</span>
-            </h2>
-            <p>
-              Start with the job you need done. We can build the whole system or
-              deliver the part you need, when you need it.
-            </p>
-          </div>
-          <p class="aside reveal">
-            For founders, creators, and teams with better things to do than
-            repeat themselves.
-          </p>
-        </div>
-        <div class="offer-grid">
-          <article class="offer offer-custom reveal">
-            <div class="offer-top">
-              <span class="mono">Built for your business</span
-              ><svg class="icon" aria-hidden="true">
-                <use href="#i-workflow" />
-              </svg>
-            </div>
-            <h3>Build my automation.</h3>
-            <p>
-              Have a process that eats up your day? We'll map it, connect the
-              tools, and build an agentic workflow around it.
-            </p>
-            <div class="offer-visual" aria-hidden="true">
-              <span class="mini-tool"
-                ><svg class="icon"><use href="#i-folder" /></svg></span
-              ><span class="mini-line"></span
-              ><span class="mini-tool brain"
-                ><svg class="icon"><use href="#i-spark" /></svg></span
-              ><span class="mini-line"></span
-              ><span class="mini-tool"
-                ><svg class="icon"><use href="#i-doc" /></svg></span
-              ><span class="mini-line"></span
-              ><span class="mini-tool"
-                ><svg class="icon"><use href="#i-check" /></svg
-              ></span>
-            </div>
-            <ul>
-              <li>Designed around your existing tools and process</li>
-              <li>Clear inputs, outputs, and review points</li>
-              <li>Scope, handover, and support agreed upfront</li>
-            </ul>
-            <a class="btn btn-lime" href="#talk" data-enquiry="custom"
-              >Let's build your workflow
-              <span class="arr" aria-hidden="true"
-                ><svg class="icon diagonal-arrow" aria-hidden="true">
-                  <use href="#i-arrow" /></svg></span></a
-            ><span class="offer-note"
-              >A scoped project, built around the work.</span
-            >
-          </article>
-          <article class="offer reveal">
-            <div class="offer-top">
-              <span class="mono">Use what you need</span
-              ><svg class="icon" aria-hidden="true"><use href="#i-tool" /></svg>
-            </div>
-            <h3>Get the job done.</h3>
-            <p>
-              Need an audit, research, content ideas, or an AI-assisted edit?
-              Use a focused service without commissioning a whole system.
-            </p>
-            <div class="offer-visual" aria-hidden="true">
-              <div class="service-tokens">
-                <span>Channel audit</span><span>Daily ideas</span
-                ><span>AI editing</span>
-              </div>
-            </div>
-            <ul>
-              <li>One specific task or an ongoing need</li>
-              <li>One-off, recurring, or usage-based work</li>
-              <li>Deliverables and pricing agreed before we start</li>
-            </ul>
-            <a class="btn btn-dark" href="#talk" data-enquiry="service"
-              >Find the right service
-              <span class="arr" aria-hidden="true"
-                ><svg class="icon diagonal-arrow" aria-hidden="true">
-                  <use href="#i-arrow" /></svg></span></a
-            ><span class="offer-note"
-              >Start small. Add more when it makes sense.</span
-            >
-          </article>
-        </div>
-        <div class="use-cases reveal">
-          <span class="label">What could we take off your plate?</span
-          ><span>Research & reporting</span><span>Content workflows</span
-          ><span>Repeated admin</span><span>Tool handoffs</span>
-        </div>
-      </section>
       <section
         id="product"
-        class="wrap product-section"
-        aria-labelledby="ls-heading"
+        class="wrap product-section proof-story"
+        aria-labelledby="proof-heading"
       >
+        <h2 class="proof-cue reveal" id="proof-heading">
+          Two automations we've built.
+        </h2>
         <div class="ls-layout">
           <div class="ls-copy reveal">
-            <p class="mono">02 / Built by 2 Founders</p>
-            <h2 id="ls-heading">
-              Your comments.<br />A clearer <span class="hl">signal.</span>
-            </h2>
-            <p class="ls-intro">
-              Meet Liquid Signal. Our Chrome extension turns sampled public
-              YouTube comments into a report you can actually use. Understand
-              what viewers want, what holds them back, and what to explore next.
+            <p class="product-name">
+              <span class="dot" aria-hidden="true"></span>Liquid Signal · Chrome
+              extension
             </p>
-            <ul class="ls-benefits">
-              <li class="ls-benefit">
-                <span class="ls-benefit-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M8 10h8M8 14h5M20 11a8 8 0 0 1-8 8H5l-3 3V11a9 9 0 0 1 18 0Z"
-                    /></svg
-                ></span>
-                <div>
-                  <h3>Ask what matters.</h3>
-                  <p>
-                    Bring your own question, or start with three suggested
-                    questions and 2–6 answer choices.
-                  </p>
-                </div>
-              </li>
-              <li class="ls-benefit">
-                <span class="ls-benefit-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M4 20V10M12 20V4M20 20v-7M2 20h20" /></svg
-                ></span>
-                <div>
-                  <h3>Read the room.</h3>
-                  <p>
-                    See answer splits, a plain-language summary, purchase
-                    intent, barriers, and confidence.
-                  </p>
-                </div>
-              </li>
-              <li class="ls-benefit">
-                <span class="ls-benefit-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 3v12m-4-4 4 4 4-4M4 15v5h16v-5" /></svg
-                ></span>
-                <div>
-                  <h3>Keep the useful bits.</h3>
-                  <p>
-                    Search and filter your reports. Export the findings as CSV
-                    or JSON for your next step.
-                  </p>
-                </div>
-              </li>
-            </ul>
+            <h3 class="proof-title" id="ls-heading">
+              Comments in.<br /><span class="hl">Answers out.</span>
+            </h3>
+            <p class="ls-intro">
+              Turn sampled public YouTube comments into audience insights you
+              can search, filter, and export.
+            </p>
             <a
               class="btn btn-dark ls-cta"
               href="https://chromewebstore.google.com/detail/liquid-signal-d1/bcopabbcdihpdoichjlfgmbllfloicki"
               target="_blank"
               rel="noopener noreferrer"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                aria-hidden="true"
-              >
-                <circle cx="12" cy="12" r="9" />
-                <circle cx="12" cy="12" r="3.5" />
-                <path d="M12 8.5h8.2M9 13.8l-4.1-7M14 15l-4.1 5.7" />
-              </svg>
-              Explore Liquid Signal
+              >Explore Liquid Signal
               <span class="arr" aria-hidden="true"
-                ><svg class="icon diagonal-arrow" aria-hidden="true">
-                  <use href="#i-arrow" /></svg
-              ></span>
-            </a>
-            <p class="ls-cta-note">
-              Chrome extension · Works beside your YouTube video
-            </p>
+                ><svg class="icon diagonal-arrow">
+                  <use href="#i-arrow" /></svg></span
+            ></a>
           </div>
           <figure
             class="ls-demo reveal"
@@ -631,345 +507,241 @@
             </figcaption>
           </figure>
         </div>
+        <article
+          id="creator"
+          class="creator-case"
+          aria-labelledby="creator-heading"
+        >
+          <div class="creator-layout">
+            <div class="creator-copy reveal">
+              <p class="product-name">
+                <span class="dot" aria-hidden="true"></span>The creator engine
+              </p>
+              <h3 class="proof-title" id="creator-heading">
+                You record.<br /><span class="hl">AI handles the rest.</span>
+              </h3>
+              <p>
+                Channel research, daily ideas, and AI editing in one flow. Use
+                the whole engine or just one part.
+              </p>
+              <ol class="creator-steps">
+                <li><span class="num">01</span><b>Audit your channel</b></li>
+                <li>
+                  <span class="num">02</span><b>Three ideas, every day</b>
+                </li>
+                <li><span class="num">03</span><b>You hit record</b></li>
+                <li><span class="num">04</span><b>AI edit + your review</b></li>
+              </ol>
+              <a class="text-link" href="#talk" data-enquiry="creator"
+                >Set up my creator workflow
+                <svg class="icon diagonal-arrow" aria-hidden="true">
+                  <use href="#i-arrow" /></svg
+              ></a>
+            </div>
+            <div class="creator-media reveal">
+              <span class="media-label"
+                ><span class="dot"></span>The output, in motion</span
+              >
+              <div class="video-card">
+                <div class="video-frame">
+                  <video
+                    id="exVideo"
+                    muted
+                    loop
+                    playsinline
+                    controls
+                    preload="metadata"
+                    poster="media/pitch-poster.jpg"
+                  >
+                    <source src="media/pitch.mp4" type="video/mp4" />
+                    Your browser cannot play this video.
+                    <a href="media/pitch.mp4">Download the example.</a>
+                  </video>
+                  <div class="vbar" aria-hidden="true"><i id="vprog"></i></div>
+                  <button class="sound js-only" id="exSound" type="button">
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-sound" /></svg
+                    >Watch with sound · 48s
+                  </button>
+                </div>
+                <div class="video-caption">
+                  <b>A sample from our editing work.</b>
+                </div>
+              </div>
+            </div>
+          </div>
+          <details class="work-panel work-drawer" id="work">
+            <summary>
+              More editing examples <span aria-hidden="true">+</span>
+            </summary>
+            <div class="work-drawer-content">
+              <div class="work-heading">
+                <h4>From our own channel.</h4>
+                <div
+                  class="region-tabs js-only"
+                  role="group"
+                  aria-label="Video language"
+                >
+                  <button type="button" data-region="in" aria-pressed="false">
+                    Hindi Shorts</button
+                  ><button
+                    type="button"
+                    data-region="global"
+                    aria-pressed="true"
+                  >
+                    English video
+                  </button>
+                </div>
+              </div>
+              <div id="workIn" class="work-grid shorts" hidden></div>
+              <div id="workGlobal" class="work-grid long"></div>
+              <p class="work-footnote">
+                Existing work from
+                <a
+                  href="https://www.youtube.com/@2Founders"
+                  target="_blank"
+                  rel="noopener"
+                  >@2Founders</a
+                >.
+              </p>
+              <noscript
+                ><p>
+                  <a
+                    href="https://youtu.be/mipDRH7hf60"
+                    target="_blank"
+                    rel="noopener"
+                    >Hindi Short 1</a
+                  >
+                  ·
+                  <a
+                    href="https://youtu.be/Uo2umFjQyc8"
+                    target="_blank"
+                    rel="noopener"
+                    >Hindi Short 2</a
+                  >
+                  ·
+                  <a
+                    href="https://youtu.be/_w4H2c_K0EI"
+                    target="_blank"
+                    rel="noopener"
+                    >English video</a
+                  >
+                </p></noscript
+              >
+            </div>
+          </details>
+        </article>
       </section>
-
-      <section id="creator" class="wrap">
-        <div class="creator-layout">
-          <div class="creator-copy reveal">
-            <div class="mono">03 / Automation in action</div>
-            <h2>
-              From channel signals<br />to
-              <span class="hl">ready to post.</span>
-            </h2>
+      <section
+        id="services"
+        class="wrap service-story"
+        aria-labelledby="services-heading"
+      >
+        <div class="story-heading reveal">
+          <p class="mono">Put it to work for you</p>
+          <h2 id="services-heading">
+            Your own automation.<br /><span class="hl"
+              >Or just the result.</span
+            >
+          </h2>
+        </div>
+        <div class="offer-grid">
+          <article class="offer offer-custom reveal">
+            <div class="offer-top">
+              <span class="mono">Custom automation</span
+              ><svg class="icon" aria-hidden="true">
+                <use href="#i-workflow" />
+              </svg>
+            </div>
+            <h3>Build it for me.</h3>
             <p>
-              Our creator engine joins the dots between what to make and getting
-              it made. You bring the voice. The workflow handles the work around
-              it.
+              We map your process, connect your tools, and build a workflow
+              around your business.
             </p>
-            <ol class="creator-steps">
-              <li>
-                <span class="num">01</span>
-                <div>
-                  <b>A channel audit that goes deeper</b>
-                  <p>
-                    Understand your channel and find a direction for the next
-                    videos.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <span class="num">02</span>
-                <div>
-                  <b>Three ideas, every day</b>
-                  <p>
-                    Get daily recommendations informed by the audit. Choose what
-                    fits.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <span class="num">03</span>
-                <div>
-                  <b>You hit record</b>
-                  <p>
-                    Your experience and perspective stay at the heart of the
-                    content.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <span class="num">04</span>
-                <div>
-                  <b>The AI editing workflow takes over</b>
-                  <p>
-                    Cuts, captions, graphics, and sound, followed by your
-                    review.
-                  </p>
-                </div>
-              </li>
-            </ol>
-            <a class="text-link" href="#talk" data-enquiry="creator"
-              >Talk about my creator workflow
-              <span aria-hidden="true"
-                ><svg class="icon diagonal-arrow" aria-hidden="true">
+            <span class="offer-note"
+              >Scoped project · Agreed handover & support</span
+            ><a class="btn btn-lime" href="#talk" data-enquiry="custom"
+              >Build my workflow
+              <span class="arr" aria-hidden="true"
+                ><svg class="icon diagonal-arrow">
                   <use href="#i-arrow" /></svg></span
             ></a>
-          </div>
-          <div class="creator-media reveal">
-            <span class="media-label"
-              ><span class="dot"></span>The output, in motion</span
-            >
-            <div class="video-card">
-              <div class="video-frame">
-                <video
-                  id="exVideo"
-                  muted
-                  loop
-                  playsinline
-                  controls
-                  preload="metadata"
-                  poster="media/pitch-poster.jpg"
-                >
-                  <source src="media/pitch.mp4" type="video/mp4" />
-                  Your browser cannot play this video.
-                  <a href="media/pitch.mp4">Download the example.</a>
-                </video>
-                <div class="vbar" aria-hidden="true"><i id="vprog"></i></div>
-                <button class="sound js-only" id="exSound" type="button">
-                  <svg class="icon" aria-hidden="true">
-                    <use href="#i-sound" /></svg
-                  >Watch with sound · 48s
-                </button>
-              </div>
-              <div class="video-caption">
-                <b>A sample from our editing work.</b>
-                <p>
-                  The finish we bring to a creator workflow. Watch the cuts,
-                  captions, graphics, and sound come together.
-                </p>
-              </div>
-            </div>
-            <div class="media-tags">
-              <span>Hook-first cuts</span><span>Animated captions</span
-              ><span>Motion graphics</span><span>Sound design</span>
-            </div>
-            <p class="media-note">
-              You can use the full workflow or ask for just an audit, ideas, or
-              an edit.
-            </p>
-          </div>
-        </div>
-        <div class="work-panel reveal" id="work">
-          <div class="work-heading">
-            <h3>More from our own channel.</h3>
-            <div
-              class="region-tabs js-only"
-              role="group"
-              aria-label="Video language"
-            >
-              <button type="button" data-region="in" aria-pressed="false">
-                Hindi Shorts</button
-              ><button type="button" data-region="global" aria-pressed="true">
-                English video
-              </button>
-            </div>
-          </div>
-          <div id="workIn" class="work-grid shorts" hidden></div>
-          <div id="workGlobal" class="work-grid long"></div>
-          <p class="work-footnote">
-            Existing work from
-            <a
-              href="https://www.youtube.com/@2Founders"
-              target="_blank"
-              rel="noopener"
-              >@2Founders</a
-            >.
-          </p>
-          <noscript
-            ><p>
-              <a
-                href="https://youtu.be/mipDRH7hf60"
-                target="_blank"
-                rel="noopener"
-                >Hindi Short 1</a
-              >
-              ·
-              <a
-                href="https://youtu.be/Uo2umFjQyc8"
-                target="_blank"
-                rel="noopener"
-                >Hindi Short 2</a
-              >
-              ·
-              <a
-                href="https://youtu.be/_w4H2c_K0EI"
-                target="_blank"
-                rel="noopener"
-                >English video</a
-              >
-            </p></noscript
-          >
-        </div>
-      </section>
-      <section id="week" class="wrap">
-        <div class="sec-head reveal">
-          <div class="mono">04 / Make room for the work that matters</div>
-          <h2>
-            Your week could use<br />a little
-            <span class="coral">less repetition.</span>
-          </h2>
-          <p>
-            Research, copying between tools, routine edits, follow-ups. Small
-            tasks add up. Here's one way an automated week could feel.
-          </p>
-        </div>
-        <div class="week reveal" id="weekBox" data-mode="without">
-          <div class="week-top">
-            <div
-              class="toggle js-only"
-              role="group"
-              aria-label="Compare an illustrative work week"
-            >
-              <button type="button" data-mode="without" aria-pressed="true">
-                Doing it all manually</button
-              ><button type="button" data-mode="with" aria-pressed="false">
-                With a workflow
-              </button>
-            </div>
-            <div class="legend">
-              <span
-                ><i style="background: var(--coral-soft)"></i>Repetitive
-                tasks</span
-              ><span><i style="background: var(--lime)"></i>Focused work</span>
-            </div>
-          </div>
-          <div class="days" id="days"></div>
-          <div class="week-msg" id="weekMsg" aria-live="polite">
-            Make space for decisions, ideas, and the work that needs you.
-          </div>
-          <p class="week-note">
-            Illustrative schedule. The time you save depends on the task and the
-            workflow.
-          </p>
-        </div>
-      </section>
-      <section id="how" class="wrap">
-        <div class="sec-head reveal">
-          <div class="mono">05 / From a bottleneck to a working system</div>
-          <h2>
-            Start with the process.<br /><span class="hl"
-              >Build from there.</span
-            >
-          </h2>
-          <p>
-            You don't need a technical brief. Tell us what you're doing by hand,
-            where it gets stuck, and what a good result looks like.
-          </p>
-        </div>
-        <div class="process">
-          <article class="process-step reveal">
-            <span class="n">01 — Understand</span>
-            <h3>Show us the work.</h3>
-            <p>
-              We map the steps, the tools, and the decisions. Together, we
-              choose a useful starting point and agree the scope.
-            </p>
-            <span class="deliverable"
-              ><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg
-              >A clear workflow brief</span
-            >
           </article>
-          <article class="process-step reveal">
-            <span class="n">02 — Build & test</span>
-            <h3>Make the parts connect.</h3>
+          <article class="offer reveal">
+            <div class="offer-top">
+              <span class="mono">Focused services</span
+              ><svg class="icon" aria-hidden="true"><use href="#i-tool" /></svg>
+            </div>
+            <h3>Do the task for me.</h3>
             <p>
-              We build the automation and test it with representative inputs.
-              Review points keep you involved in the decisions that matter.
+              Get audience research, channel audits, daily ideas, or AI editing
+              when you need it.
             </p>
-            <span class="deliverable"
-              ><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg
-              >A working flow to review</span
-            >
-          </article>
-          <article class="process-step reveal">
-            <span class="n">03 — Put it to work</span>
-            <h3>Run it your way.</h3>
-            <p>
-              Use the agreed service or take the workflow into your process.
-              Handover, support, and ongoing needs are part of the conversation.
-            </p>
-            <span class="deliverable"
-              ><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg
-              >Agreed delivery and support</span
-            >
+            <div class="service-tokens">
+              <span>One-off</span><span>Recurring</span><span>Usage-based</span>
+            </div>
+            <a class="btn btn-dark" href="#talk" data-enquiry="service"
+              >Choose a service
+              <span class="arr" aria-hidden="true"
+                ><svg class="icon diagonal-arrow">
+                  <use href="#i-arrow" /></svg></span
+            ></a>
           </article>
         </div>
-        <div class="principles reveal">
-          <svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg>
+        <div id="how" class="process-rail reveal" aria-labelledby="how-heading">
+          <h2 id="how-heading">Start with one task.</h2>
+          <ol>
+            <li><span>01</span>Tell us the task</li>
+            <li><span>02</span>Agree the scope</li>
+            <li><span>03</span>Build or deliver</li>
+          </ol>
           <p>
-            <b>Automation with a place for judgment.</b> We agree which steps
-            can run on their own and which need your review before anything is
-            published or sent.
+            Tools, deliverables, pricing, and review points. Agreed before we
+            start.
           </p>
         </div>
-      </section>
-      <section id="faq" class="wrap">
-        <div class="faq-layout">
-          <div class="reveal">
-            <div class="mono">A few things you might be wondering</div>
-            <h2>Good questions.<br />Clear answers.</h2>
-            <p>
-              Have a particular process in mind?
-              <a href="#talk">Tell us about it.</a>
-            </p>
-          </div>
-          <div class="faq-list reveal">
+        <details id="faq" class="faq-drawer">
+          <summary>
+            Questions before we start? <span aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-list">
             <details>
               <summary>What do you mean by an agentic workflow?</summary>
               <p>
-                A connected process where AI can interpret an input and take the
-                next agreed steps across tools, instead of stopping at an answer
-                in a chat. We design the steps, boundaries, and review points
-                around the job you need done.
-              </p>
-            </details>
-            <details>
-              <summary>Do I need to know exactly what to automate?</summary>
-              <p>
-                No. Bring the repetitive task, the tools you use, and the result
-                you want. We'll help work out whether automation makes sense and
-                where to start.
-              </p>
-            </details>
-            <details>
-              <summary>Can I use just one service?</summary>
-              <p>
-                Yes. You can ask for a channel audit, content ideas, audience
-                research, or AI-assisted editing on its own. We can discuss
-                one-off, recurring, and usage-based delivery based on the work.
+                AI interprets an input and takes agreed steps across your tools,
+                with review points where you need them.
               </p>
             </details>
             <details>
               <summary>Is this only for YouTube creators?</summary>
               <p>
-                No. The creator engine and Liquid Signal are examples of what
-                we've built. We also take on custom automation for founders and
-                teams. Tell us your process so we can assess the fit.
+                We build automation for founders and teams too. The creator
+                engine is one example; bring us your process.
               </p>
             </details>
             <details>
               <summary>How do pricing and timelines work?</summary>
               <p>
-                They depend on the workflow, connected tools, volume, and
-                support needed. We agree the scope, deliverables, price, and
-                timeline before starting. Send a short brief and we'll work
-                through the right approach.
+                We agree the scope, deliverables, price, and timeline before
+                starting. Services can be one-off, recurring, or usage-based.
               </p>
             </details>
             <details>
-              <summary>
-                Does AI publish or send things without my approval?
-              </summary>
+              <summary>Do I approve the outputs?</summary>
               <p>
-                That depends on the workflow we agree with you. We define
-                approval points upfront, including where you review content or
-                outputs before they are published or sent.
+                We agree which steps can run automatically and which need your
+                review, including publishing or sending.
               </p>
             </details>
           </div>
-        </div>
+        </details>
       </section>
       <section id="talk" class="wrap">
         <div class="cta reveal">
           <div class="cta-copy">
-            <div class="mono">What would you rather spend your time on?</div>
-            <h2>
-              Let's get<br />your work<br /><span class="hl">moving.</span>
-            </h2>
-            <p>
-              Tell us what you'd like off your plate. We'll help you find a
-              practical place to start.
-            </p>
+            <p class="mono">Let's start with your work</p>
+            <h2>What do you want<br /><span class="hl">automated?</span></h2>
+            <p>Bring the task. We'll help pick the right approach.</p>
             <div class="cta-email">
               Prefer a direct email?<br /><a
                 id="mailTxt"

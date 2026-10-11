@@ -302,16 +302,20 @@ nav .wrap {
 }
 .rot {
   display: inline-grid;
-  vertical-align: bottom;
+  vertical-align: baseline;
   overflow: hidden;
-  height: 1.08em;
+  width: max-content;
+  height: auto;
+  line-height: 1.15;
+  padding: 0.12em 0.04em;
   color: var(--coral);
-  text-align: left;
-  transition: width 0.55s cubic-bezier(0.7, 0, 0.2, 1);
+  text-align: center;
 }
 .rot > span {
   grid-area: 1/1;
-  justify-self: start;
+  justify-self: center;
+  width: max-content;
+  line-height: inherit;
   white-space: nowrap;
   transition:
     transform 0.55s,
@@ -1503,16 +1507,21 @@ footer a {
 }
 .mbar {
   display: none;
+  visibility: hidden;
   position: fixed;
   left: 12px;
   right: 12px;
   bottom: 12px;
   z-index: 25;
   transform: translateY(140%);
-  transition: transform 0.35s;
+  transition:
+    transform 0.35s,
+    visibility 0s 0.35s;
 }
 .mbar.show {
   transform: none;
+  visibility: visible;
+  transition-delay: 0s;
 }
 .mbar a {
   display: flex;

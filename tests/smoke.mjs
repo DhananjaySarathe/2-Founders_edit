@@ -13,6 +13,45 @@ let checks = 0;
 const check = (condition, message) => { assert.ok(condition, message); checks++; };
 const equal = (actual, expected, message) => { assert.equal(actual, expected, message); checks++; };
 
+// Measure rendered text, not just its container: a short overflow-hidden line can clip descenders.
+function headlineGeometry() {
+  const heading = document.querySelector('.hero h1');
+  const rot = document.querySelector('#rot');
+  const word = rot.querySelector('.on');
+  const range = document.createRange();
+  range.selectNodeContents(word);
+  const text = range.getBoundingClientRect();
+  const clip = rot.getBoundingClientRect();
+  const navBottom = document.querySelector('#nav').getBoundingClientRect().bottom;
+  const fits = rect => rect.top >= navBottom && rect.bottom <= innerHeight && rect.left >= 0 && rect.right <= innerWidth;
+  const headingBox = heading.getBoundingClientRect();
+  const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+  const staticText = [];
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    if (!node.textContent.trim() || node.parentElement.closest('.sr-only, #rot')) continue;
+    const staticRange = document.createRange();
+    staticRange.selectNodeContents(node);
+    staticText.push(...staticRange.getClientRects());
+  }
+  return {
+    word: word.textContent.trim(),
+    wordFits: text.top >= clip.top - 0.5 && text.bottom <= clip.bottom + 0.5 && text.left >= clip.left - 0.5 && text.right <= clip.right + 0.5 && fits(text),
+    clipping: { top: clip.top - text.top, bottom: text.bottom - clip.bottom, left: clip.left - text.left, right: text.right - clip.right },
+    centered: getComputedStyle(heading).textAlign === 'center' && Math.abs((headingBox.left + headingBox.right) / 2 - innerWidth / 2) < 1,
+    categoryFits: fits(document.querySelector('.hero-eyebrow').getBoundingClientRect()),
+    headingFits: fits(headingBox) && staticText.every(fits),
+    ctasFit: [...document.querySelectorAll('.hero-ctas a')].every(el => fits(el.getBoundingClientRect())),
+    proofBeforeBoard: document.querySelector('.built-strip').getBoundingClientRect().bottom < document.querySelector('.workflow-board').getBoundingClientRect().top
+  };
+}
+const settledWord = async (page, word) => page.waitForFunction(expected => {
+  const el = document.querySelector('#rot .on');
+  if (!el || el.textContent.trim() !== expected) return false;
+  const style = getComputedStyle(el);
+  return style.opacity === '1' && style.transform === 'none';
+}, word);
+
 // Exercise the real local endpoints and assets, including the video range support.
 for (const country of ['', 'IN', 'US']) {
   const response = await fetch(base + '/api/geo', { headers: country ? { 'x-vercel-ip-country': country } : {} });
@@ -21,7 +60,7 @@ for (const country of ['', 'IN', 'US']) {
   assert.deepEqual(await response.json(), { country }); checks++;
 }
 for (const [path, type] of [
-  ['/styles.css', 'text/css'], ['/product.css', 'text/css'], ['/app.js', 'javascript'],
+  ['/styles.css', 'text/css'], ['/product.css', 'text/css'], ['/landing.css', 'text/css'], ['/app.js', 'javascript'],
   ['/media/fonts/inter-tight.woff2', 'font/woff2'], ['/media/fonts/inter.woff2', 'font/woff2'],
   ['/media/fonts/jetbrains-mono.woff2', 'font/woff2'], ['/media/favicon.svg', 'image/svg+xml'],
   ['/media/pitch-poster.jpg', 'image/jpeg'], ['/media/social-preview.png', 'image/png']
@@ -37,7 +76,7 @@ equal((await media.arrayBuffer()).byteLength, 100, 'Video range is the requested
 
 const browser = await chromium.launch({ executablePath, headless: true, args: ['--no-sandbox'] });
 try {
-  const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, timezoneId: 'UTC' });
+  const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, timezoneId: 'UTC' });
   // Third-party playback is checked through iframe wiring; this suite is otherwise local.
   await context.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
   // Exercise the visible manual-copy fallback when browser clipboard access fails.
@@ -59,7 +98,8 @@ try {
   equal(await page.title(), '2 Founders × SmokeCompany', 'Company links personalize the title');
   equal(await page.locator('#forName').innerText(), 'SmokeCompany', 'Company links personalize the hero');
   check(await page.locator('#forChip').isVisible(), 'Personalized chip is visible');
-  check((await page.locator('h1').innerText()).includes('We automate.'), 'Hero communicates automation');
+  check((await page.locator('.hero-eyebrow').innerText()).toLowerCase().includes('ai automation'), 'Hero communicates the broad company category');
+  equal(await page.getByRole('heading', { level: 1, name: 'You build. We automate.', exact: true }).count(), 1, 'Animated headline has a stable accessible name');
   equal(await page.locator('main').count(), 1, 'Page has one main landmark');
   equal(await page.locator('h1').count(), 1, 'Page has one main heading');
   await page.keyboard.press('Tab');
@@ -67,9 +107,26 @@ try {
   const outline = await page.locator(':focus').evaluate(el => getComputedStyle(el).outlineStyle);
   check(outline !== 'none', 'Keyboard focus is visible');
 
-  // The workflow is an explorable illustration with functional stages and playback controls.
-  await page.getByRole('button', { name: 'Research & insights', exact: true }).click();
-  check((await page.locator('#workflowPath').innerText()).includes('audience-research'), 'Workflow tab updates the example');
+  // The default example is broad business work, clearly distinguished from shipped product proof.
+  equal(await page.locator('.scenario-tabs [aria-pressed="true"]').innerText(), 'Business admin', 'Business admin is the default example');
+  equal(await page.locator('#workflowKind').innerText(), 'Illustrative custom workflow', 'Default example does not imply a deployed system');
+  equal(await page.locator('#workflowOutput').innerText(), 'An organised task + a draft reply', 'Default example shows a business output');
+  check((await page.locator('#workflowDetail').innerText()).includes('could build'), 'Default workflow is explicitly hypothetical');
+  // A scenario switch must update the complete explanation, rather than only its node labels.
+  for (const [name, title, kind, output] of [
+    ['Audience research', 'Comments in. Audience insights out.', 'Liquid Signal · product walkthrough', 'A searchable report + CSV / JSON export'],
+    ['Creator engine', 'Your channel. Your next three ideas.', 'Our creator workflow · illustrated', '3 daily ideas + an edit for your review'],
+    ['Business admin', 'An enquiry. A clear next step.', 'Illustrative custom workflow', 'An organised task + a draft reply']
+  ]) {
+    await page.getByRole('button', { name, exact: true }).click();
+    equal(await page.locator('#workflowPath').innerText(), name, name + ' changes the workflow label');
+    equal(await page.locator('#workflowTitle').innerText(), title, name + ' changes the title');
+    equal(await page.locator('#workflowKind').innerText(), kind, name + ' changes its evidence label');
+    equal(await page.locator('#workflowOutput').innerText(), output, name + ' changes the output');
+    equal(await page.locator('.scenario-tabs [aria-pressed="true"]').count(), 1, 'One scenario is selected');
+    equal(await page.locator('#workflowNodes [aria-pressed="true"]').count(), 1, 'Switching scenario selects one stage');
+  }
+  await page.getByRole('button', { name: 'Audience research', exact: true }).click();
   await page.locator('#workflowNodes button').nth(2).click();
   check((await page.locator('#workflowDetail').innerText()).includes('Find the signal'), 'Stage selection updates the explanation');
   equal(await page.locator('#workflowNodes [aria-pressed="true"]').count(), 1, 'One stage is selected');
@@ -80,9 +137,35 @@ try {
   const pausedDetail = await page.locator('#workflowDetail').innerText();
   await page.waitForTimeout(2750);
   equal(await page.locator('#workflowDetail').innerText(), pausedDetail, 'Paused walkthrough does not advance');
-  await page.getByRole('button', { name: 'Your workflow', exact: true }).click();
-  check((await page.locator('#workflowDetail').innerText()).includes('Your input'), 'Custom workflow is explorable');
+  await page.getByRole('button', { name: 'Business admin', exact: true }).click();
+  check((await page.locator('#workflowDetail').innerText()).includes('A new enquiry arrives'), 'Custom workflow is explorable');
   equal(await page.locator('#walkthrough').getAttribute('aria-pressed'), 'false', 'Switching workflow stops playback');
+
+  // Native section links land their heading below the sticky navigation.
+  for (const [target, headingId, label] of [
+    ['automate', 'workflowTitle', 'An enquiry. A clear next step.'],
+    ['services', 'services-heading', 'Your own automation. Or just the result.'],
+    ['product', 'proof-heading', "Two automations we've built."],
+    ['how', 'how-heading', 'Start with one task.']
+  ]) {
+    await page.locator('#nav a[href="#' + target + '"]').click();
+    await page.waitForFunction(({ target, headingId }) => {
+      const heading = document.getElementById(headingId).getBoundingClientRect();
+      return location.hash === '#' + target && heading.top >= document.querySelector('#nav').getBoundingClientRect().bottom && heading.bottom < innerHeight;
+    }, { target, headingId });
+    equal((await page.locator('#' + headingId).innerText()).replace(/\s+/g, ' '), label, 'Section link exposes the correct heading');
+    check(await page.locator('#' + headingId).isVisible(), 'Section link exposes its heading');
+  }
+
+  // The workflow prompt helps an empty brief while preserving work already written.
+  const workflowCTA = page.locator('#automate a[data-brief]');
+  await workflowCTA.click();
+  equal(await page.locator('#enquiryTask').inputValue(), await workflowCTA.getAttribute('data-brief'), 'Workflow prompt pre-fills an empty brief');
+  equal(await page.locator('#enquiryType').inputValue(), 'custom', 'Workflow prompt selects custom automation');
+  const draft = 'Our existing draft: move incoming requests into a reviewed task.';
+  await page.locator('#enquiryTask').fill(draft);
+  await workflowCTA.click();
+  equal(await page.locator('#enquiryTask').inputValue(), draft, 'Workflow prompt preserves the existing draft');
 
   for (const [service, selector] of [
     ['service', '.offer a[data-enquiry="service"]'],
@@ -117,11 +200,8 @@ try {
   await page.locator('#enquiryTools').fill('Sheets');
   check(!(await page.locator('#formStatus').isVisible()), 'Editing the brief hides stale email actions');
 
-  await page.locator('#weekBox button[data-mode="with"]').click();
-  equal(await page.locator('#weekBox').getAttribute('data-mode'), 'with', 'Week comparison switches');
-  check((await page.locator('#weekMsg').innerText()).includes('More space'), 'Week comparison updates its explanation');
-  await page.locator('#weekBox button[data-mode="without"]').click();
-  equal(await page.locator('#weekBox').getAttribute('data-mode'), 'without', 'Week comparison switches back');
+  await page.locator('#faq > summary').click();
+  check(await page.locator('#faq').evaluate(el => el.open), 'FAQ drawer opens');
   const faq = page.locator('#faq details').first();
   await faq.locator('summary').click();
   check(await faq.evaluate(el => el.open), 'FAQ opens');
@@ -130,6 +210,8 @@ try {
 
   // Original language choice and company parameters remain available with lazy embeds.
   equal(await page.locator('body').getAttribute('data-region'), 'global', 'Global override is preserved');
+  check(!(await page.locator('#work').evaluate(el => el.open)), 'Video library starts collapsed');
+  await page.locator('#work > summary').click();
   equal(await page.locator('#workGlobal .video-facade').count(), 1, 'English example is available');
   equal(await page.locator('#workGlobal iframe').count(), 0, 'YouTube iframe loads only on request');
   await page.locator('#workGlobal .video-facade').click();
@@ -147,6 +229,9 @@ try {
   await page.locator('#workIn .video-facade').last().click();
   equal(await page.locator('#workIn iframe').count(), 1, 'Only one Hindi embed can play at a time');
   check((await page.locator('#workIn iframe').getAttribute('src')).includes('Uo2umFjQyc8'), 'Second play button loads the other existing short');
+  await page.locator('#work > summary').click();
+  await page.waitForFunction(() => !document.querySelector('#work iframe'));
+  equal(await page.locator('#work iframe').count(), 0, 'Closing the video drawer stops playback');
   await goto('?region=india&company=AliasCompany');
   equal(await page.locator('body').getAttribute('data-region'), 'in', 'Legacy region alias is preserved');
   equal(await page.locator('#forName').innerText(), 'AliasCompany', 'Legacy company alias is preserved');
@@ -158,9 +243,12 @@ try {
   equal(await page.locator('body').getAttribute('data-region'), 'in', 'Geo detection selects Hindi examples');
   await context.setExtraHTTPHeaders({});
 
-  for (const width of [320, 390, 768, 1440]) {
-    await page.setViewportSize({ width, height: width > 1000 ? 1000 : 844 });
-    await goto('?r=global');
+  await goto('?r=global');
+  await page.evaluate(() => document.fonts.ready);
+  for (const width of [320, 390, 701, 720, 740, 768, 1440]) {
+    await page.setViewportSize({ width, height: width > 1000 ? 900 : 844 });
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+    await page.evaluate(() => document.fonts.ready);
     const structure = await page.evaluate(() => {
       const ids = [...document.querySelectorAll('[id]')].map(el => el.id);
       return {
@@ -174,11 +262,80 @@ try {
     assert.deepEqual(structure.missingAnchors, [], 'All local anchors resolve'); checks++;
     assert.deepEqual(structure.duplicateIds, [], 'IDs are unique'); checks++;
     check(structure.fontsLoaded, 'Self-hosted fonts load');
-    if (width === 390 || width === 1440) {
-      await mkdir(resultsDir, { recursive: true });
-      await page.screenshot({ path: resolve(resultsDir, width === 390 ? 'mobile.png' : 'desktop.png'), animations: 'disabled' });
+    if ([320, 390, 768, 1440].includes(width)) {
+      for (const word of ['build.', 'grow.', 'create.']) {
+        await settledWord(page, word);
+        const headline = await page.evaluate(headlineGeometry);
+        check(headline.wordFits, width + 'px animated ' + word + ' is not clipped: ' + JSON.stringify(headline.clipping));
+        check(headline.centered && headline.headingFits && headline.categoryFits, width + 'px first fold shows the centered headline and category');
+        check(headline.ctasFit, width + 'px first fold shows both CTAs during ' + word);
+      }
+      if (width === 390) {
+        check((await page.evaluate(headlineGeometry)).proofBeforeBoard, 'Mobile puts shipped proof before the illustrative board');
+        equal(await page.locator('#mbar').evaluate(el => getComputedStyle(el).visibility), 'hidden', 'Initial mobile CTA bar is hidden');
+        await page.locator('#mbar a').evaluate(el => el.focus());
+        check(!(await page.locator('#mbar a').evaluate(el => document.activeElement === el)), 'Hidden mobile CTA cannot take keyboard focus');
+      }
+      if (width === 390 || width === 1440) {
+        await mkdir(resultsDir, { recursive: true });
+        await page.screenshot({ path: resolve(resultsDir, width === 390 ? 'mobile.png' : 'desktop.png'), animations: 'disabled' });
+      }
     }
   }
+  await page.setViewportSize({ width: 390, height: 844 });
+  await goto('?r=global');
+  await page.locator('#product').scrollIntoViewIfNeeded();
+  await page.waitForFunction(() => document.querySelector('#mbar').classList.contains('show'));
+  equal(await page.locator('#mbar').evaluate(el => getComputedStyle(el).visibility), 'visible', 'Mobile CTA becomes available inside the page');
+  await page.locator('#mbar a').evaluate(el => el.focus());
+  check(await page.locator('#mbar a').evaluate(el => document.activeElement === el), 'Visible mobile CTA can take keyboard focus');
+  await page.locator('footer').scrollIntoViewIfNeeded();
+  await page.waitForFunction(() => getComputedStyle(document.querySelector('#mbar')).visibility === 'hidden');
+  await page.evaluate(() => document.activeElement.blur());
+  await page.locator('#mbar a').evaluate(el => el.focus());
+  check(!(await page.locator('#mbar a').evaluate(el => document.activeElement === el)), 'Footer hides the mobile CTA from keyboard focus');
+
+  // Resize while local fonts are still pending, then check the real text once they arrive.
+  const delayed = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  let releaseFonts;
+  const fontGate = new Promise(resolve => { releaseFonts = resolve; });
+  let heldFontRequests = 0;
+  await delayed.route('**/*', async route => {
+    const url = new URL(route.request().url());
+    if (url.origin !== origin) return route.abort();
+    if (url.pathname.endsWith('.woff2')) { heldFontRequests++; await fontGate; }
+    return route.continue();
+  });
+  const delayedPage = await delayed.newPage();
+  delayedPage.on('pageerror', error => errors.push(error.message));
+  try {
+    await delayedPage.goto(base + '/?r=global', { waitUntil: 'domcontentloaded' });
+    await delayedPage.waitForFunction(() => document.fonts.status === 'loading');
+    await delayedPage.setViewportSize({ width: 320, height: 844 });
+    releaseFonts();
+    await delayedPage.evaluate(() => document.fonts.ready);
+    check(heldFontRequests > 0, 'Late-font check actually delayed a local font request');
+    check(await delayedPage.evaluate(() => document.fonts.check('800 16px "Inter Tight"')), 'Headline font loads after resizing');
+    await settledWord(delayedPage, (await delayedPage.locator('#rot .on').textContent()).trim());
+    const headline = await delayedPage.evaluate(headlineGeometry);
+    check(headline.wordFits && headline.headingFits && headline.centered && headline.ctasFit, 'Late font loading after resize preserves the headline and CTAs');
+  } finally { releaseFonts(); await delayed.close(); }
+
+  // The large headline and engagement links stay usable when JavaScript is disabled.
+  const nojs = await browser.newContext({ viewport: { width: 320, height: 844 }, javaScriptEnabled: false });
+  await nojs.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+  const fallbackPage = await nojs.newPage();
+  await fallbackPage.goto(base + '/?r=global', { waitUntil: 'networkidle' });
+  await fallbackPage.evaluate(() => document.fonts.ready);
+  const fallback = await fallbackPage.evaluate(headlineGeometry);
+  equal(fallback.word, 'build.', 'No-JavaScript headline shows its complete default word');
+  check(fallback.wordFits && fallback.headingFits && fallback.centered && fallback.categoryFits && fallback.ctasFit, 'No-JavaScript first fold has a complete headline and both CTAs');
+  equal(await fallbackPage.getByRole('heading', { level: 1, name: 'You build. We automate.', exact: true }).count(), 1, 'No-JavaScript headline remains accessible');
+  await fallbackPage.locator('.hero-ctas a[data-enquiry="service"]').click();
+  await fallbackPage.waitForFunction(() => location.hash === '#services' && document.querySelector('#services-heading').getBoundingClientRect().top >= document.querySelector('#nav').getBoundingClientRect().bottom);
+  equal(new URL(fallbackPage.url()).hash, '#services', 'No-JavaScript services link still navigates');
+  await nojs.close();
+
   const reduced = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce', timezoneId: 'UTC' });
   await reduced.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
   const reducedPage = await reduced.newPage();

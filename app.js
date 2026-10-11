@@ -52,93 +52,105 @@ $("mailTxt").href =
 const workflows = {
   creator: {
     path: "creator-engine",
+    label: "Creator engine",
+    title: "Your channel. Your next three ideas.",
+    kind: "Our creator workflow · illustrated",
+    output: "3 daily ideas + an edit for your review",
     steps: [
       [
         "chart",
         "Audit the channel",
         "Understand the signals",
-        "Start with an in-depth look at your channel to find patterns and decide what to make next.",
+        "Find the channel patterns that guide what to make next.",
       ],
       [
         "bulb",
         "3 daily ideas",
         "Give direction to your day",
-        "The idea engine recommends three ideas each day, informed by the channel audit. Choose the one you want to record.",
+        "Choose from three daily ideas informed by your channel audit.",
       ],
       [
         "camera",
         "You record",
         "Your voice. Your expertise.",
-        "Bring the idea to camera. Your perspective stays yours; the workflow takes care of the work around it.",
+        "Record the idea in your own voice.",
       ],
       [
         "spark",
         "AI edit + review",
         "Bring the idea to life",
-        "The AI editing workflow turns the footage into an edit with cuts, captions, graphics, and sound. You review before posting.",
+        "Cuts, captions, graphics, and sound. You review before posting.",
       ],
     ],
   },
   research: {
     path: "audience-research",
+    label: "Audience research",
+    title: "Comments in. Audience insights out.",
+    kind: "Liquid Signal · product walkthrough",
+    output: "A searchable report + CSV / JSON export",
     steps: [
       [
         "search",
         "Pick a question",
         "Start with what you need",
-        "In Liquid Signal, ask your own question or choose a suggested question about a YouTube audience.",
+        "Ask your own audience question or choose a suggested one.",
       ],
       [
         "doc",
         "Read comments",
         "A sample of public replies",
-        "Liquid Signal analyzes a sample of public comments from the selected YouTube video.",
+        "Analyze sampled public comments from the selected video.",
       ],
       [
         "chart",
         "Find the signal",
         "Answers, patterns, context",
-        "Explore audience answer splits, a plain-language summary, purchase intent, barriers, and confidence.",
+        "Explore answer splits, audience intent, barriers, and confidence.",
       ],
       [
         "folder",
         "Use the report",
         "Export your findings",
-        "Search and filter the full report, then export CSV or JSON to use the findings in your next decision.",
+        "Search, filter, and export the findings as CSV or JSON.",
       ],
     ],
   },
   custom: {
-    path: "your-workflow",
+    path: "enquiry-to-action",
+    label: "Business admin",
+    title: "An enquiry. A clear next step.",
+    kind: "Illustrative custom workflow",
+    output: "An organised task + a draft reply",
     steps: [
       [
-        "folder",
-        "Your input",
-        "Where the work begins",
-        "A brief, document, or new item in a tool you already use. We agree what starts the workflow.",
+        "doc",
+        "A new enquiry arrives",
+        "Email, form, or your existing tool",
+        "A workflow we could build around requests in your existing tools.",
       ],
       [
         "spark",
-        "AI does the work",
-        "The steps we design together",
-        "We identify the repeatable steps and decide where AI can help interpret, organize, or prepare the next output.",
+        "AI organises the details",
+        "Extract the brief. Prepare the next step.",
+        "Extract the brief and prepare a task and draft reply.",
       ],
       [
         "shield",
-        "Your review",
-        "A checkpoint that makes sense",
-        "Approve the decisions that need your judgment. We build review points around the process you agree to.",
+        "You review what matters",
+        "Approve the proposed action",
+        "Approve the proposed action at your agreed review point.",
       ],
       [
         "check",
-        "Useful output",
-        "Back into your process",
-        "Get the agreed deliverable in the right place, with a handover and support plan suited to the workflow.",
+        "Task + reply draft",
+        "A task and draft reply in the right tools",
+        "A task for your team. A reply saved as a draft.",
       ],
     ],
   },
 };
-let scenario = "creator";
+let scenario = "custom";
 let activeStep = 0;
 let walkthroughTimer = null;
 function showStep(step) {
@@ -165,7 +177,10 @@ function stopWalkthrough() {
 function setScenario(next) {
   stopWalkthrough();
   scenario = next;
-  $("workflowPath").textContent = "2founders / " + workflows[next].path;
+  $("workflowPath").textContent = workflows[next].label;
+  $("workflowTitle").textContent = workflows[next].title;
+  $("workflowKind").textContent = workflows[next].kind;
+  $("workflowOutput").textContent = workflows[next].output;
   document
     .querySelectorAll("[data-scenario]")
     .forEach((button) =>
@@ -177,7 +192,7 @@ function setScenario(next) {
   $("workflowNodes").innerHTML = workflows[next].steps
     .map(
       (step, i) =>
-        `<button class="node" type="button" data-step="${i}" aria-pressed="${i === 0}"><span class="node-number">${String(i + 1).padStart(2, "0")}</span><span class="node-icon">${icon(step[0])}</span><b>${step[1]}</b><small>${step[2]}</small></button>`,
+        `<button class="node" type="button" data-step="${i}" aria-pressed="${i === 0}"><span class="node-number">${String(i + 1).padStart(2, "0")}</span><span class="node-icon">${icon(step[0])}</span><b>${step[1]}</b></button>`,
     )
     .join("");
   showStep(0);
@@ -216,27 +231,20 @@ document.addEventListener("visibilitychange", () => {
   if (document.hidden) stopWalkthrough();
 });
 
-// Original rotating headline, with an accessible fixed label and reduced-motion support.
+// The centred hero reserves space for every word in CSS, including during font loading.
 (function initRotator() {
   const rot = $("rot");
   const words = [...rot.children];
-  const fit = (word) => {
-    rot.style.width = word.getBoundingClientRect().width + "px";
-  };
+  const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
   let i = 0;
-  fit(words[0]);
-  document.fonts.ready.then(() => fit(words[i]));
-  addEventListener("resize", () => fit(words[i]));
-  if (reduce) return;
   setInterval(() => {
-    if (document.hidden) return;
+    if (document.hidden || motionPreference.matches) return;
     const old = words[i];
     i = (i + 1) % words.length;
     old.classList.remove("on");
     old.classList.add("out");
     words[i].classList.remove("out");
     words[i].classList.add("on");
-    fit(words[i]);
     setTimeout(() => old.classList.remove("out"), 600);
   }, 2600);
 })();
@@ -265,6 +273,9 @@ function stopEmbeddedVideos() {
     if (frame.videoFacade) frame.replaceWith(frame.videoFacade);
   });
 }
+$("work").addEventListener("toggle", () => {
+  if (!$("work").open) stopEmbeddedVideos();
+});
 let renderedRegion = null;
 let regionChosen = false;
 function normRegion(value) {
@@ -390,57 +401,14 @@ document.querySelectorAll(".region-tabs button").forEach((button) =>
   });
 })();
 
-// A clearly labeled, illustrative comparison, changed only when requested.
-(function initWeek() {
-  const days = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
-  const without = ["mEEE", "EEmE", "mEEE", "EEmE", "EEmo", "Eooo", "oooo"];
-  const withFlow = ["mmEo", "mmmm", "mmoo", "mmEm", "mmmo", "oooo", "oooo"];
-  const labels = { E: "Routine", m: "Focus", o: "Off" };
-  const classes = { E: "edit", m: "make", o: "off" };
-  $("days").innerHTML = days
-    .map(
-      (day) =>
-        `<div class="day"><div class="dl">${day}</div><div class="slots">${'<div class="slot"></div>'.repeat(4)}</div></div>`,
-    )
-    .join("");
-  const slots = [...$("days").querySelectorAll(".slot")];
-  function apply(mode) {
-    $("weekBox").dataset.mode = mode;
-    const plan = mode === "with" ? withFlow : without;
-    slots.forEach((slot, i) => {
-      const type = plan[Math.floor(i / 4)][i % 4];
-      slot.className = "slot " + classes[type];
-      slot.textContent = labels[type];
-      slot.setAttribute(
-        "aria-label",
-        `${days[Math.floor(i / 4)]}: ${type === "E" ? "Repetitive task" : type === "m" ? "Focused work" : "Off"}`,
-      );
-    });
-    $("weekBox")
-      .querySelectorAll("[data-mode]")
-      .forEach((button) =>
-        button.setAttribute(
-          "aria-pressed",
-          String(button.dataset.mode === mode),
-        ),
-      );
-    $("weekMsg").textContent =
-      mode === "with"
-        ? "Same week. More space for decisions, ideas, and the work that needs you."
-        : "The small tasks fill the calendar. Your bigger ideas get whatever is left.";
-  }
-  $("weekBox")
-    .querySelectorAll("button[data-mode]")
-    .forEach((button) =>
-      button.addEventListener("click", () => apply(button.dataset.mode)),
-    );
-  apply("without");
-})();
-
 // Service-specific enquiry links prepare a real email, without a fake submission success.
 document.querySelectorAll("[data-enquiry]").forEach((link) =>
   link.addEventListener("click", () => {
     $("enquiryType").value = link.dataset.enquiry;
+    if (link.dataset.brief && !$("enquiryTask").value.trim()) {
+      $("enquiryTask").value = link.dataset.brief;
+      $("enquiryTask").setCustomValidity("");
+    }
     $("formStatus").hidden = true;
   }),
 );

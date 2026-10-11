@@ -1,0 +1,705 @@
+/* One connected story, in the original palette, type and motion. */
+.hero {
+  max-width: 1120px;
+  padding: 42px 24px 12px;
+  text-align: center;
+}
+.hero-copy {
+  width: 100%;
+  max-width: 960px;
+  margin: auto;
+}
+.hero-eyebrow {
+  margin-bottom: 16px;
+  font-size: 11px;
+  letter-spacing: 0.035em;
+}
+.hero h1 {
+  font-size: clamp(44px, 7.4vw, 86px);
+  line-height: 1.08;
+  margin: 0 auto;
+}
+.hero .sub {
+  max-width: 62ch;
+  margin: 21px auto 0;
+  font-size: 18px;
+  line-height: 1.6;
+}
+.hero-ctas {
+  justify-content: center;
+  margin-top: 25px;
+}
+.hero-ctas .btn {
+  padding: 15px 22px;
+  font-size: 13px;
+}
+.hero-footnote {
+  margin-top: 13px;
+  font-size: 11px;
+}
+.built-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 20px;
+  margin-top: 25px;
+  font-size: 12px;
+}
+.built-strip .mono {
+  font-size: 10px;
+}
+.built-strip a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+}
+.built-strip a:hover {
+  border-color: var(--coral);
+}
+.built-strip svg {
+  width: 12px;
+  height: 12px;
+  vertical-align: -2px;
+}
+section.wrap.workflow-section {
+  padding-top: 26px;
+}
+.story-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.story-line {
+  width: 1px;
+  height: 29px;
+  background: var(--line);
+}
+.stage {
+  max-width: 960px;
+  min-width: 0;
+  margin: 25px auto 0;
+}
+.workflow-board {
+  border-radius: 18px;
+}
+.board-bar {
+  padding: 13px 21px;
+}
+.board-bar .mono {
+  font-size: 10px;
+}
+.example-label {
+  padding: 9px 21px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 11px;
+}
+.board-bar .example-label {
+  padding: 0;
+  border: 0;
+  font-size: 10px;
+  text-align: right;
+}
+.board-body {
+  padding: 24px 28px;
+}
+.scenario-tabs {
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 7px;
+}
+.scenario-tabs button {
+  font-size: 11px;
+  padding: 9px 13px;
+}
+#workflowTitle {
+  font-size: 28px;
+  text-align: center;
+  line-height: 1.2;
+  margin-bottom: 25px;
+}
+.nodes {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  padding: 0;
+}
+.node {
+  padding: 17px;
+  min-height: 137px;
+}
+.node b {
+  margin-top: 11px;
+  font-size: 14px;
+  line-height: 1.3;
+}
+.node-number {
+  top: 13px;
+  right: 13px;
+}
+.node-icon {
+  width: 35px;
+  height: 35px;
+}
+.workflow-result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 7px 10px;
+  padding: 13px 16px;
+  margin-top: 20px;
+  border: 1px solid #e2edc6;
+  background: var(--lime-soft);
+  border-radius: 10px;
+}
+.workflow-result svg {
+  width: 17px;
+  height: 17px;
+}
+.workflow-result .mono {
+  font-size: 10px;
+}
+.workflow-result b {
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+.board-detail {
+  gap: 22px;
+  padding: 16px 21px;
+}
+.board-detail p {
+  max-width: 68ch;
+  font-size: 12px;
+  line-height: 1.65;
+}
+.board-detail p strong {
+  display: block;
+  margin-bottom: 2px;
+}
+.board-detail .btn {
+  padding: 10px 14px;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+.sticker.s1 {
+  left: -22px;
+  top: -27px;
+}
+.sticker.s2 {
+  right: -22px;
+  top: -27px;
+}
+.workflow-next {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px 17px;
+  margin-top: 27px;
+  font-size: 13px;
+}
+.workflow-next > span {
+  color: var(--muted);
+}
+.workflow-next .text-link {
+  font-size: 13px;
+}
+.marquees {
+  height: 127px;
+  margin-top: 37px;
+}
+.story-heading {
+  max-width: 760px;
+  margin: 0 auto 44px;
+  text-align: center;
+}
+.story-heading .mono {
+  font-size: 11px;
+}
+.story-heading h2 {
+  margin-top: 13px;
+  font-size: clamp(36px, 4.6vw, 54px);
+  line-height: 1.08;
+}
+section.wrap.proof-story {
+  padding-top: 63px;
+}
+.proof-cue {
+  margin-bottom: 37px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--muted);
+}
+.product-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.proof-title {
+  margin: 15px 0 20px;
+  font-size: clamp(34px, 4.4vw, 48px);
+  font-weight: 800;
+  line-height: 1.08;
+}
+.product-section .ls-cta {
+  margin-top: 24px;
+}
+.creator-case {
+  margin-top: 65px;
+  padding-top: 65px;
+  border-top: 1px solid var(--line);
+}
+.creator-layout {
+  grid-template-columns: 1.02fr 1fr;
+  gap: 65px;
+}
+.creator-copy .proof-title .hl {
+  background: var(--coral-soft);
+}
+.creator-copy > p:not(.product-name) {
+  max-width: 43ch;
+  font-size: 16px;
+  line-height: 1.65;
+}
+.creator-steps {
+  gap: 12px;
+  margin: 25px 0 27px;
+}
+.creator-steps li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.creator-steps b {
+  font-size: 14px;
+}
+.creator-media .video-caption {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.work-panel.work-drawer {
+  margin-top: 35px;
+  padding-top: 0;
+  border-top: 1px solid var(--line);
+}
+.work-drawer > summary,
+.faq-drawer > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 18px 0;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+.work-drawer > summary::-webkit-details-marker,
+.faq-drawer > summary::-webkit-details-marker {
+  display: none;
+}
+.work-drawer > summary::after,
+.faq-drawer > summary::after {
+  content: none;
+}
+.work-drawer > summary > span,
+.faq-drawer > summary > span {
+  font-size: 23px;
+  font-weight: 400;
+  transition: transform 0.2s;
+}
+.work-drawer[open] > summary > span,
+.faq-drawer[open] > summary > span {
+  transform: rotate(45deg);
+}
+.work-drawer-content {
+  padding: 13px 0 8px;
+}
+.work-heading h4 {
+  font-size: 18px;
+}
+section.wrap.service-story {
+  padding-top: 82px;
+}
+.offer-grid {
+  gap: 22px;
+}
+.offer {
+  padding: 32px;
+}
+.offer h3 {
+  margin-top: 22px;
+  font-size: 34px;
+}
+.offer > p {
+  margin-top: 13px;
+  font-size: 15px;
+  max-width: 40ch;
+}
+.offer-note {
+  display: block;
+  margin-top: 20px;
+  font-size: 12px;
+  color: #c5c0b7;
+}
+.offer .btn {
+  margin-top: 27px;
+  align-self: flex-start;
+}
+.service-tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 20px;
+}
+.service-tokens span {
+  padding: 4px 9px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  border-radius: 999px;
+  font-size: 11px;
+}
+.process-rail {
+  margin-top: 41px;
+  padding: 27px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+.process-rail h2 {
+  font-size: 25px;
+}
+.process-rail ol {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  list-style: none;
+  max-width: 760px;
+  margin: 23px auto 0;
+}
+.process-rail li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.process-rail li > span {
+  color: var(--coral);
+  font:
+    11px/1.4 "JetBrains Mono",
+    monospace;
+}
+.process-rail li:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  right: -20px;
+  color: var(--muted);
+  font-weight: 400;
+}
+.process-rail > p {
+  margin-top: 19px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.faq-drawer {
+  max-width: 800px;
+  margin: 17px auto 0;
+}
+.faq-list details p {
+  font-size: 14px;
+}
+.cta {
+  padding: 43px;
+}
+.cta h2 {
+  font-size: clamp(36px, 4.6vw, 54px);
+}
+.cta-copy > p {
+  font-size: 15px;
+  max-width: 34ch;
+}
+@media (max-width: 1000px) {
+  .stage {
+    max-width: 870px;
+  }
+  .creator-layout {
+    gap: 40px;
+  }
+}
+@media (max-width: 850px) {
+  .nav-links {
+    display: none;
+  }
+  .hero {
+    padding-top: 33px;
+  }
+  .hero h1 {
+    font-size: clamp(44px, 10vw, 80px);
+  }
+  .hero .sub {
+    font-size: 16px;
+  }
+  .creator-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 27px;
+  }
+  .creator-copy > p:not(.product-name) {
+    font-size: 14px;
+  }
+  .proof-title {
+    font-size: 38px;
+  }
+  .offer {
+    padding: 27px;
+  }
+  .offer h3 {
+    font-size: 30px;
+  }
+  .cta {
+    padding: 32px;
+  }
+}
+@media (max-width: 700px) {
+  .hero {
+    padding: 28px 18px 9px;
+  }
+  .hero h1 {
+    font-size: clamp(38px, 11.8vw, 72px);
+  }
+  .hero-eyebrow {
+    font-size: 10px;
+    margin-bottom: 11px;
+  }
+  .hero .sub {
+    max-width: 40ch;
+    font-size: 15px;
+    margin-top: 18px;
+  }
+  .desktop-break {
+    display: none;
+  }
+  .hero-ctas {
+    margin-top: 21px;
+    gap: 9px;
+  }
+  .hero-ctas .btn {
+    padding: 13px 14px;
+    font-size: 12px;
+  }
+  .hero-footnote {
+    max-width: 36ch;
+    margin: 12px auto 0;
+    font-size: 11px;
+  }
+  .built-strip {
+    gap: 8px 15px;
+    margin-top: 22px;
+    font-size: 11px;
+  }
+  .built-strip .mono {
+    font-size: 9px;
+  }
+  section.wrap.workflow-section {
+    padding-top: 16px;
+  }
+  .story-cue {
+    font-size: 11px;
+    gap: 10px;
+  }
+  .story-line {
+    height: 21px;
+  }
+  .stage {
+    margin-top: 20px;
+  }
+  .board-bar {
+    padding: 12px 15px;
+  }
+  .board-bar .mono {
+    font-size: 9px;
+  }
+  .example-label {
+    padding: 9px 15px;
+    font-size: 10px;
+  }
+  .board-body {
+    padding: 18px 15px;
+  }
+  .scenario-tabs {
+    gap: 5px;
+    margin-bottom: 19px;
+  }
+  .scenario-tabs button {
+    font-size: 10px;
+    padding: 8px 9px;
+  }
+  #workflowTitle {
+    font-size: 23px;
+    margin-bottom: 20px;
+  }
+  .nodes {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .node {
+    min-height: 116px;
+    padding: 13px;
+  }
+  .node b {
+    font-size: 12px;
+  }
+  .node:not(:last-child)::after {
+    display: none;
+  }
+  .workflow-result {
+    margin-top: 16px;
+    padding: 12px 9px;
+  }
+  .workflow-result b {
+    font-size: 12px;
+    flex-basis: 100%;
+  }
+  .board-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 15px;
+  }
+  .board-detail p {
+    font-size: 12px;
+  }
+  .workflow-next,
+  .workflow-next .text-link {
+    font-size: 12px;
+  }
+  .workflow-next {
+    margin-top: 23px;
+  }
+  .marquees {
+    height: 107px;
+    margin-top: 28px;
+  }
+  .mq .track {
+    font-size: 19px;
+  }
+  .story-heading {
+    margin-bottom: 30px;
+  }
+  .story-heading .mono {
+    font-size: 10px;
+  }
+  .story-heading h2 {
+    font-size: 35px;
+  }
+  section.wrap.proof-story {
+    padding-top: 47px;
+  }
+  .proof-title {
+    font-size: 38px;
+  }
+  .product-section .ls-intro {
+    font-size: 15px;
+  }
+  .creator-case {
+    margin-top: 43px;
+    padding-top: 43px;
+  }
+  .creator-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .creator-copy > p:not(.product-name) {
+    font-size: 15px;
+  }
+  .creator-media {
+    max-width: 540px;
+    margin: auto;
+    width: 100%;
+  }
+  .work-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 13px;
+  }
+  section.wrap.service-story {
+    padding-top: 57px;
+  }
+  .offer-grid {
+    grid-template-columns: 1fr;
+    gap: 17px;
+  }
+  .offer {
+    padding: 27px;
+  }
+  .offer h3 {
+    font-size: 31px;
+  }
+  .offer > p {
+    font-size: 14px;
+  }
+  .process-rail {
+    margin-top: 30px;
+    padding: 24px 0;
+  }
+  .process-rail h2 {
+    font-size: 24px;
+  }
+  .process-rail ol {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .process-rail li {
+    font-size: 14px;
+  }
+  .process-rail li:not(:last-child)::after {
+    display: none;
+  }
+  .process-rail > p {
+    max-width: 39ch;
+    margin: 21px auto 0;
+    font-size: 12px;
+  }
+  .cta {
+    padding: 28px 23px;
+  }
+  .cta h2 {
+    font-size: 38px;
+  }
+}
+@media (max-width: 350px) {
+  nav .btn-sm {
+    padding: 10px 12px;
+    font-size: 11px;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  .hero-ctas .btn {
+    padding: 12px 13px;
+    font-size: 11px;
+  }
+  .scenario-tabs button {
+    padding: 8px 7px;
+    font-size: 9px;
+  }
+  .proof-title {
+    font-size: 34px;
+  }
+  .story-heading h2 {
+    font-size: 32px;
+  }
+}
