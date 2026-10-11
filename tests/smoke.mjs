@@ -60,7 +60,7 @@ for (const country of ['', 'IN', 'US']) {
   assert.deepEqual(await response.json(), { country }); checks++;
 }
 for (const [path, type] of [
-  ['/styles.css', 'text/css'], ['/product.css', 'text/css'], ['/landing.css', 'text/css'], ['/app.js', 'javascript'],
+  ['/styles.css', 'text/css'], ['/product.css', 'text/css'], ['/landing.css', 'text/css'], ['/experience.css', 'text/css'], ['/app.js', 'javascript'],
   ['/media/fonts/inter-tight.woff2', 'font/woff2'], ['/media/fonts/inter.woff2', 'font/woff2'],
   ['/media/fonts/jetbrains-mono.woff2', 'font/woff2'], ['/media/favicon.svg', 'image/svg+xml'],
   ['/media/pitch-poster.jpg', 'image/jpeg'], ['/media/social-preview.png', 'image/png']
@@ -98,6 +98,9 @@ try {
   equal(await page.title(), '2 Founders × SmokeCompany', 'Company links personalize the title');
   equal(await page.locator('#forName').innerText(), 'SmokeCompany', 'Company links personalize the hero');
   check(await page.locator('#forChip').isVisible(), 'Personalized chip is visible');
+  equal((await page.locator('#talk-heading').innerText()).replace(/\s+/g, ' '), 'What should we automate for SmokeCompany?', 'Company links personalize the closing question');
+  check(await page.locator('#ctaExtra').isHidden(), 'Optional WhatsApp and booking links stay hidden until configured');
+  check((await page.locator('.hero .sub').innerText()).includes('two founders'), 'Hero says who is behind the studio');
   check((await page.locator('.hero-eyebrow').innerText()).toLowerCase().includes('ai automation'), 'Hero communicates the broad company category');
   equal(await page.getByRole('heading', { level: 1, name: 'You build. We automate.', exact: true }).count(), 1, 'Animated headline has a stable accessible name');
   equal(await page.locator('main').count(), 1, 'Page has one main landmark');
@@ -112,11 +115,13 @@ try {
   equal(await page.locator('#workflowKind').innerText(), 'Illustrative custom workflow', 'Default example does not imply a deployed system');
   equal(await page.locator('#workflowOutput').innerText(), 'An organised task + a draft reply', 'Default example shows a business output');
   check((await page.locator('#workflowDetail').innerText()).includes('could build'), 'Default workflow is explicitly hypothetical');
+  equal(await page.locator('#workflowNodes .artifact').count(), 4, 'Every default stage shows an illustrated artifact');
+  equal(await page.locator('#workflowNodes .node').first().getAttribute('aria-pressed'), 'true', 'The first stage starts selected');
   // A scenario switch must update the complete explanation, rather than only its node labels.
-  for (const [name, title, kind, output] of [
-    ['Audience research', 'Comments in. Audience insights out.', 'Liquid Signal · product walkthrough', 'A searchable report + CSV / JSON export'],
-    ['Creator engine', 'Your channel. Your next three ideas.', 'Our creator workflow · illustrated', '3 daily ideas + an edit for your review'],
-    ['Business admin', 'An enquiry. A clear next step.', 'Illustrative custom workflow', 'An organised task + a draft reply']
+  for (const [name, title, kind, output, artifact] of [
+    ['Audience research', 'Comments in. Audience insights out.', 'Liquid Signal · product walkthrough', 'A searchable report + CSV / JSON export', '.art-bars'],
+    ['Creator engine', 'Your channel. Your next three ideas.', 'Our creator workflow · illustrated', '3 daily ideas + an edit for your review', '.art-ideas'],
+    ['Business admin', 'An enquiry. A clear next step.', 'Illustrative custom workflow', 'An organised task + a draft reply', '.art-approve']
   ]) {
     await page.getByRole('button', { name, exact: true }).click();
     equal(await page.locator('#workflowPath').innerText(), name, name + ' changes the workflow label');
@@ -125,6 +130,8 @@ try {
     equal(await page.locator('#workflowOutput').innerText(), output, name + ' changes the output');
     equal(await page.locator('.scenario-tabs [aria-pressed="true"]').count(), 1, 'One scenario is selected');
     equal(await page.locator('#workflowNodes [aria-pressed="true"]').count(), 1, 'Switching scenario selects one stage');
+    equal(await page.locator('#workflowNodes .artifact').count(), 4, name + ' shows one artifact per stage');
+    equal(await page.locator('#workflowNodes ' + artifact).count(), 1, name + ' shows its own artifacts');
   }
   await page.getByRole('button', { name: 'Audience research', exact: true }).click();
   await page.locator('#workflowNodes button').nth(2).click();
@@ -144,9 +151,9 @@ try {
   // Native section links land their heading below the sticky navigation.
   for (const [target, headingId, label] of [
     ['automate', 'workflowTitle', 'An enquiry. A clear next step.'],
+    ['about', 'about-heading', "We're 2 Founders."],
     ['services', 'services-heading', 'Your own automation. Or just the result.'],
-    ['product', 'proof-heading', "Two automations we've built."],
-    ['how', 'how-heading', 'Start with one task.']
+    ['product', 'proof-heading', "Two automations we've built."]
   ]) {
     await page.locator('#nav a[href="#' + target + '"]').click();
     await page.waitForFunction(({ target, headingId }) => {
@@ -200,9 +207,37 @@ try {
   await page.locator('#enquiryTools').fill('Sheets');
   check(!(await page.locator('#formStatus').isVisible()), 'Editing the brief hides stale email actions');
 
-  await page.locator('#faq > summary').click();
-  check(await page.locator('#faq').evaluate(el => el.open), 'FAQ drawer opens');
+  // The week meter adds up the visitor's own numbers and turns them into a brief without replacing their words.
+  await page.locator('#week').scrollIntoViewIfNeeded();
+  const weekShows = (id, value) => page.waitForFunction(([id, value]) => document.getElementById(id).textContent === value, [id, value]);
+  await weekShows('weekHours', '4');
+  equal(await page.locator('#meterTasks .task[aria-pressed="true"]').count(), 2, 'Two example tasks start ticked');
+  await page.getByRole('button', { name: 'Copying data between tools', exact: true }).click();
+  await page.getByRole('button', { name: 'More hours: Copying data between tools', exact: true }).click();
+  await weekShows('weekHours', '7');
+  await weekShows('weekYear', '336');
+  equal(await page.locator('.wk-slot.is-repeat').count(), 7, 'The week grid fills one slot per hour');
+  await page.getByRole('button', { name: 'Fewer hours: Copying data between tools', exact: true }).click();
+  await page.getByRole('button', { name: 'Answering the same enquiries', exact: true }).click();
+  await weekShows('weekHours', '4');
+  check((await page.locator('#weekMsg').innerText()).startsWith('4 hours of your week'), 'Week message reflects the estimate');
+  await page.locator('#handOff').click();
+  equal(await page.locator('#handOff').getAttribute('aria-pressed'), 'true', 'Hand-off view can be toggled');
+  equal(await page.locator('.wk-slot.is-handed').count(), 4, 'Handed-off hours change colour');
+  await page.locator('#enquiryTask').fill('');
+  await page.locator('#weekBrief').click();
+  equal(await page.locator('#enquiryType').inputValue(), 'explore', 'Week brief asks for help choosing an approach');
+  const weekBrief = await page.locator('#enquiryTask').inputValue();
+  check(weekBrief.includes('Copying data between tools: about 2h a week') && weekBrief.includes('roughly 4 hours a week'), 'Week brief lists the ticked tasks and total');
+  check(!weekBrief.includes('Answering the same enquiries'), 'Unticked tasks stay out of the brief');
+  await page.locator('#enquiryTask').fill('My own words first.');
+  await page.locator('#weekBrief').click();
+  const appended = await page.locator('#enquiryTask').inputValue();
+  check(appended.startsWith('My own words first.') && appended.includes('Copying data between tools'), 'Week brief is added below what the visitor wrote');
+
+  equal(await page.locator('#faq details').count(), 6, 'FAQ answers the main buying questions');
   const faq = page.locator('#faq details').first();
+  check(await faq.locator('summary').isVisible(), 'FAQ questions are visible without opening a drawer');
   await faq.locator('summary').click();
   check(await faq.evaluate(el => el.open), 'FAQ opens');
   await faq.locator('summary').click();
@@ -237,6 +272,50 @@ try {
   equal(await page.locator('#forName').innerText(), 'AliasCompany', 'Legacy company alias is preserved');
   await goto('?r=global&c=' + encodeURIComponent('<img src=x onerror=alert(1)>'));
   equal(await page.locator('#forName img').count(), 0, 'Company personalization is inserted as text');
+  equal(await page.locator('#talk-heading img').count(), 0, 'Personalized closing question is inserted as text');
+
+  // The guided experience: the board plays in view, the tour narrates each chapter, and the guide tracks progress.
+  await goto('?r=global&c=SmokeCompany');
+  equal(await page.locator('#walkthrough').getAttribute('aria-pressed'), 'false', 'The board waits until it is on screen');
+  await page.locator('#workflowBoard').scrollIntoViewIfNeeded();
+  await page.waitForFunction(() => document.querySelector('#walkthrough').getAttribute('aria-pressed') === 'true');
+  await page.waitForFunction(() => document.querySelector('#workflowNodes [data-step="1"]').getAttribute('aria-pressed') === 'true');
+  await page.locator('#workflowNodes button').nth(3).click();
+  equal(await page.locator('#walkthrough').getAttribute('aria-pressed'), 'false', 'Choosing a stage stops autoplay');
+  await page.waitForTimeout(2800);
+  equal(await page.locator('#workflowNodes [aria-pressed="true"]').getAttribute('data-step'), '3', 'Autoplay stays stopped after a manual choice');
+  equal(await page.locator('#workflowNodes .is-done').count(), 3, 'Earlier stages show as done');
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  await page.locator('#tourStart').click();
+  check(await page.locator('#tour').isVisible(), 'The tour opens');
+  equal(await page.locator('#tourCount').innerText(), '01 / 06', 'The tour starts at the first chapter');
+  check(await page.locator('#tourBack').isDisabled(), 'The first tour step has nowhere to go back to');
+  check((await page.locator('#tourLive').textContent()).startsWith('Hi, SmokeCompany team.'), 'The tour greets a personalized visitor');
+  equal(await page.locator('#walkthrough').getAttribute('aria-pressed'), 'true', 'The tour starts the workflow walkthrough');
+  await page.locator('#tourNext').click();
+  equal(await page.locator('#tourCount').innerText(), '02 / 06', 'The tour moves to the next chapter');
+  equal(await page.locator('#tourTitle').innerText(), 'Your turn', 'The tour narrates the week meter');
+  await page.waitForFunction(() => Math.abs(document.querySelector('#week').getBoundingClientRect().top - 100) < 40);
+  await page.locator('#tourPlay').click();
+  equal(await page.locator('#tourPlay').getAttribute('aria-pressed'), 'false', 'The tour can be paused');
+  await page.keyboard.press('Escape');
+  check(await page.locator('#tour').isHidden(), 'Escape closes the tour');
+  equal(await page.evaluate(() => document.activeElement.id), 'tourStart', 'Closing the tour returns focus to its button');
+  await page.evaluate(() => window.scrollTo({ top: document.querySelector('#about').getBoundingClientRect().top + scrollY - 80, behavior: 'instant' }));
+  await page.waitForFunction(() => document.querySelector('#guideLabel').textContent === 'Who we are');
+  check(await page.locator('#guide').evaluate(el => el.classList.contains('show')), 'The chapter guide appears after the hero');
+  equal(await page.locator('#guideCount').innerText(), '03/06', 'The guide counts chapters');
+  await page.locator('#guideToggle').click();
+  equal(await page.locator('#guideChapters a').count(), 6, 'The guide lists every chapter');
+  check((await page.locator('#guideChapters a[aria-current="true"]').textContent()).includes('Who we are'), 'The guide marks the current chapter');
+  await page.keyboard.press('Escape');
+  check(await page.locator('#guideMenu').isHidden(), 'Escape closes the guide menu');
+  await page.evaluate(() => window.scrollTo({ top: document.querySelector('#aboutPath').getBoundingClientRect().top + scrollY - innerHeight * 0.3, behavior: 'instant' }));
+  await page.waitForFunction(() => document.querySelectorAll('#aboutPath .is-reached').length > 0);
+  check(Number(await page.locator('#aboutPath').evaluate(el => el.style.getPropertyValue('--p'))) > 0, 'The founders’ story path fills in as it scrolls');
+  await page.locator('#processBoard').scrollIntoViewIfNeeded();
+  await page.waitForFunction(() => !document.querySelector('#processStatus').textContent.includes('Waiting'));
+  check(await page.locator('#processSteps .lit').count() > 0, 'The process playhead lights steps as it scrolls');
   await context.setExtraHTTPHeaders({ 'x-vercel-ip-country': 'IN' });
   await goto('');
   await page.waitForFunction(() => document.body.dataset.region === 'in');
@@ -272,6 +351,8 @@ try {
       }
       if (width === 390) {
         check((await page.evaluate(headlineGeometry)).proofBeforeBoard, 'Mobile puts shipped proof before the illustrative board');
+        equal(await page.locator('#workflowNodes .artifact:visible').count(), 1, 'Mobile board expands only the active stage');
+        check(await page.locator('#guide').isHidden(), 'Mobile relies on the bottom bar instead of the chapter guide');
         equal(await page.locator('#mbar').evaluate(el => getComputedStyle(el).visibility), 'hidden', 'Initial mobile CTA bar is hidden');
         await page.locator('#mbar a').evaluate(el => el.focus());
         check(!(await page.locator('#mbar a').evaluate(el => document.activeElement === el)), 'Hidden mobile CTA cannot take keyboard focus');
@@ -355,10 +436,18 @@ try {
   }));
   equal(motion.smooth, 'auto', 'Reduced motion disables smooth scrolling');
   equal(motion.animated, 0, 'Reduced motion disables decorative animations');
+  await reducedPage.locator('#workflowBoard').scrollIntoViewIfNeeded();
   await reducedPage.locator('#exVideo').scrollIntoViewIfNeeded();
   await reducedPage.waitForTimeout(2750);
   equal(await reducedPage.locator('#rot .on').innerText(), motion.word, 'Reduced motion stops the rotating headline');
   check(await reducedPage.locator('#exVideo').evaluate(el => el.paused), 'Reduced motion does not autoplay sample video');
+  equal(await reducedPage.locator('#walkthrough').getAttribute('aria-pressed'), 'false', 'Reduced motion does not autoplay the workflow board');
+  equal(await reducedPage.locator('#aboutPath .is-reached').count(), 4, 'Reduced motion shows the whole story path at once');
+  equal(await reducedPage.locator('#processStatus').innerText(), '✓ Up and running', 'Reduced motion shows the finished process');
+  await reducedPage.locator('#tourStart').click();
+  equal(await reducedPage.locator('#tourPlay').getAttribute('aria-pressed'), 'false', 'Reduced motion tour waits for Next');
+  check((await reducedPage.locator('#tourText').innerText()).length > 40, 'Reduced motion tour shows its full text at once');
+  await reducedPage.keyboard.press('Escape');
   assert.deepEqual(errors, [], 'No page JavaScript errors'); checks++;
   await reduced.close();
   await context.close();

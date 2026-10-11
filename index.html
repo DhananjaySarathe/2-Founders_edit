@@ -7,7 +7,7 @@
     <title>2 Founders — Agentic workflows & AI automation</title>
     <meta
       name="description"
-      content="AI automation built around your work. 2 Founders builds custom agentic workflows for research, admin, and content, and delivers focused one-off, recurring, or usage-based services."
+      content="Two founders who build AI workflows for the work you keep repeating: enquiries, research, reports, and content. Custom automation builds, or focused one-off, recurring, and usage-based services."
     />
     <link rel="canonical" href="https://2founders.space/" />
     <meta property="og:type" content="website" />
@@ -15,7 +15,7 @@
     <meta property="og:title" content="2 Founders — You build. We automate." />
     <meta
       property="og:description"
-      content="Agentic workflows built around your work. Custom automation, focused services, and tools that give you time back."
+      content="Two founders building AI workflows for the work you repeat. Speed from AI, taste from people. Custom builds or focused services."
     />
     <meta
       property="og:image"
@@ -33,7 +33,22 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="product.css" />
     <link rel="stylesheet" href="landing.css" />
+    <link rel="stylesheet" href="experience.css" />
     <script src="app.js" defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "2 Founders",
+        "url": "https://2founders.space/",
+        "email": "beyondthebuildofficial@gmail.com",
+        "description": "Agentic workflows and AI automation: custom builds and focused services.",
+        "sameAs": [
+          "https://www.youtube.com/@2Founders",
+          "https://chromewebstore.google.com/detail/liquid-signal-d1/bcopabbcdihpdoichjlfgmbllfloicki"
+        ]
+      }
+    </script>
     <noscript
       ><style>
         .reveal {
@@ -42,6 +57,24 @@
         }
         .js-only {
           display: none !important;
+        }
+        .reveal:not(.in) .combine-card.speed,
+        .reveal:not(.in) .combine-card.taste {
+          opacity: 1;
+          translate: none;
+        }
+        .reveal:not(.in) .combine-plus {
+          scale: 1;
+        }
+        .reveal:not(.in) .combine-lines i {
+          transform: none;
+        }
+        .reveal:not(.in) .combine-squiggle {
+          stroke-dashoffset: 0;
+        }
+        .meter {
+          grid-template-columns: 1fr;
+          max-width: 620px;
         }
       </style></noscript
     >
@@ -106,10 +139,46 @@
       <symbol id="i-play" viewBox="0 0 24 24">
         <path d="m8 4 12 8-12 8V4Z" />
       </symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24">
+        <path d="M8 5v14m8-14v14" />
+      </symbol>
       <symbol id="i-sound" viewBox="0 0 24 24">
         <path
           d="m11 5-5 4H2v6h4l5 4V5Zm4 3a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"
         />
+      </symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="m3 7 9 6 9-6" />
+      </symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24">
+        <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" />
+      </symbol>
+      <symbol id="i-pen" viewBox="0 0 24 24">
+        <path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16v4Z" />
+        <path d="m13.5 6.5 4 4" />
+      </symbol>
+      <symbol id="i-target" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="5" />
+        <path d="M12 12h.01" />
+      </symbol>
+      <symbol id="i-plug" viewBox="0 0 24 24">
+        <path d="M9 2v6m6-6v6M6 8h12v3a6 6 0 0 1-12 0V8Zm6 9v5" />
+      </symbol>
+      <symbol id="i-tag" viewBox="0 0 24 24">
+        <path d="M3 12V4h8l10 10-8 8L3 12Z" />
+        <path d="M7.5 7.5h.01" />
+      </symbol>
+      <symbol id="i-compass" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="m15.5 8.5-2 5-5 2 2-5 5-2Z" />
+      </symbol>
+      <symbol id="i-x" viewBox="0 0 24 24">
+        <path d="M6 6l12 12M18 6 6 18" />
+      </symbol>
+      <symbol id="i-message" viewBox="0 0 24 24">
+        <path d="M21 12a8 8 0 0 1-8 8H4l2.5-3A8 8 0 1 1 21 12Z" />
       </symbol>
     </svg>
     <nav id="nav" aria-label="Main navigation">
@@ -118,11 +187,11 @@
           >2<span class="us"></span>founders</a
         >
         <div class="nav-links">
-          <a href="#automate">Automations</a><a href="#services">Services</a
-          ><a href="#product">Our work</a><a href="#how">How it works</a>
+          <a href="#automate">What we do</a><a href="#about">About us</a
+          ><a href="#product">Our work</a><a href="#services">Work with us</a>
         </div>
         <a class="btn btn-dark btn-sm" href="#talk"
-          >Talk automation
+          >Let's talk
           <span class="arr" aria-hidden="true"
             ><svg class="icon diagonal-arrow" aria-hidden="true">
               <use href="#i-arrow" /></svg></span
@@ -130,7 +199,7 @@
       </div>
     </nav>
     <main id="main">
-      <header class="hero" id="top">
+      <header class="hero" id="top" data-chapter="What we do">
         <div class="hero-copy">
           <div class="for-chip" id="forChip" hidden>
             <span class="dot"></span><span>Made for <b id="forName"></b></span>
@@ -147,10 +216,9 @@
             ><br /><span class="hl">We automate.</span>
           </h1>
           <p class="sub">
-            We build custom AI workflows—or handle a specific task for you.<br
-              class="desktop-break"
-            />
-            Research, admin, and content, connected.
+            We're two founders who build AI workflows for the work you keep
+            repeating: enquiries, research, reports, content. Or we just do the
+            task for you.
           </p>
           <div class="hero-ctas">
             <a class="btn btn-dark" href="#talk" data-enquiry="custom"
@@ -166,6 +234,11 @@
           <p class="hero-footnote">
             Custom builds · One-off, recurring & usage-based services
           </p>
+          <button class="tour-link js-only" id="tourStart" type="button">
+            <span class="tour-link-icon" aria-hidden="true"
+              ><svg class="icon"><use href="#i-play" /></svg></span
+            ><span>New here? <b>Take the 60-second tour</b></span>
+          </button>
           <div class="built-strip">
             <span class="mono">Built by us</span
             ><a href="#product"
@@ -178,6 +251,28 @@
                 <use href="#i-arrow" /></svg
             ></a>
           </div>
+        </div>
+        <div class="hero-tasks" aria-hidden="true">
+          <span class="htask ht1"
+            ><span class="htask-box"></span
+            ><span class="htask-text">Reply to 6 enquiries</span
+            ><span class="htask-tag">automated</span></span
+          >
+          <span class="htask ht2"
+            ><span class="htask-box"></span
+            ><span class="htask-text">Update the CRM</span
+            ><span class="htask-tag">automated</span></span
+          >
+          <span class="htask ht3"
+            ><span class="htask-box"></span
+            ><span class="htask-text">Weekly report</span
+            ><span class="htask-tag">automated</span></span
+          >
+          <span class="htask ht4"
+            ><span class="htask-box"></span
+            ><span class="htask-text">Find 3 video ideas</span
+            ><span class="htask-tag">automated</span></span
+          >
         </div>
       </header>
       <section
@@ -251,7 +346,16 @@
                   ><span class="node-icon"
                     ><svg class="icon" aria-hidden="true">
                       <use href="#i-doc" /></svg></span
-                  ><b>A new enquiry arrives</b>
+                  ><b>A new enquiry arrives</b
+                  ><span class="artifact art-mail" aria-hidden="true"
+                    ><span class="art-top"
+                      ><span class="art-ping"></span>Inbox · new</span
+                    ><span class="art-from">Website form <em>09:41</em></span
+                    ><span class="art-msg"
+                      >“Hi! Could you quote 40 custom mugs for our event on the
+                      18th?”</span
+                    ></span
+                  >
                 </button>
                 <button
                   class="node"
@@ -263,7 +367,16 @@
                   ><span class="node-icon"
                     ><svg class="icon" aria-hidden="true">
                       <use href="#i-spark" /></svg></span
-                  ><b>AI organises the details</b>
+                  ><b>AI organises the details</b
+                  ><span class="artifact art-fields" aria-hidden="true"
+                    ><span class="art-row"
+                      ><em>Request</em><b>40 custom mugs</b></span
+                    ><span class="art-row"><em>Date</em><b>The 18th</b></span
+                    ><span class="art-row"><em>Needs</em><b>A quote</b></span
+                    ><span class="art-row art-done"
+                      ><em>Next</em><b>Reply drafted ✓</b></span
+                    ></span
+                  >
                 </button>
                 <button
                   class="node"
@@ -275,7 +388,16 @@
                   ><span class="node-icon"
                     ><svg class="icon" aria-hidden="true">
                       <use href="#i-shield" /></svg></span
-                  ><b>You review what matters</b>
+                  ><b>You review what matters</b
+                  ><span class="artifact art-approve" aria-hidden="true"
+                    ><span class="art-top art-warn">Needs your OK</span
+                    ><span class="art-msg"
+                      >“Thanks for asking! For 40 mugs, here's our quote…”</span
+                    ><span class="art-actions"
+                      ><span class="art-btn">Edit</span
+                      ><span class="art-btn art-yes">Approve</span
+                      ><span class="art-cursor"></span></span
+                  ></span>
                 </button>
                 <button
                   class="node"
@@ -287,7 +409,18 @@
                   ><span class="node-icon"
                     ><svg class="icon" aria-hidden="true">
                       <use href="#i-check" /></svg></span
-                  ><b>Task + reply draft</b>
+                  ><b>Task + reply draft</b
+                  ><span class="artifact art-out" aria-hidden="true"
+                    ><span class="art-item"
+                      ><span class="art-box"></span>Quote: 40 mugs
+                      <em>Due Thu</em></span
+                    ><span class="art-item"
+                      ><span class="art-tick">✓</span>Task for your team</span
+                    ><span class="art-item"
+                      ><span class="art-tick">✓</span>Reply saved as a
+                      draft</span
+                    ></span
+                  >
                 </button>
               </div>
               <div class="workflow-result">
@@ -326,19 +459,372 @@
               <use href="#i-arrow" /></svg
           ></a>
         </p>
+        <template id="art-research">
+          <span class="artifact art-ask" aria-hidden="true"
+            ><span class="art-top">Your question</span
+            ><span class="art-input"
+              >What should we cover next?<i class="art-caret"></i></span
+            ><span class="art-chips"
+              ><span>Pricing?</span><span>Format?</span
+              ><span>+ your own</span></span
+            ></span
+          >
+          <span class="artifact art-comments" aria-hidden="true"
+            ><span class="art-bubble">“Please show the full setup”</span
+            ><span class="art-bubble">“Compare it with the old one?”</span
+            ><span class="art-bubble">“Step by step would help”</span
+            ><span class="art-meter"><i></i></span
+            ><span class="art-note">Sampling public comments</span></span
+          >
+          <span class="artifact art-bars" aria-hidden="true"
+            ><span class="art-bar" style="--v: 62%"
+              ><em>Walkthroughs</em><b>62%</b></span
+            ><span class="art-bar" style="--v: 25%"
+              ><em>Comparisons</em><b>25%</b></span
+            ><span class="art-bar" style="--v: 13%"
+              ><em>Creator stories</em><b>13%</b></span
+            ><span class="art-note">Sample confidence: medium</span></span
+          >
+          <span class="artifact art-report" aria-hidden="true"
+            ><span class="art-top">Report saved · searchable</span
+            ><span class="art-msg"
+              >Takeaway: make the next video a walkthrough.</span
+            ><span class="art-chips art-export"
+              ><span>⤓ CSV</span><span>⤓ JSON</span></span
+            ></span
+          >
+        </template>
+        <template id="art-creator">
+          <span class="artifact art-audit" aria-hidden="true"
+            ><span class="art-spark"
+              ><svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                <path d="M0 25 15 21l15 2 15-8 15 2 15-8 25-5" /></svg></span
+            ><span class="art-row"><em>Working</em><b>Walkthroughs</b></span
+            ><span class="art-row"
+              ><em>Slipping</em><b>Long intros</b></span
+            ></span
+          >
+          <span class="artifact art-ideas" aria-hidden="true"
+            ><span class="art-top">Today's three</span
+            ><span class="art-idea"><em>01</em>My setup, step by step</span
+            ><span class="art-idea"><em>02</em>Old vs new: which one?</span
+            ><span class="art-idea"
+              ><em>03</em>What I'd skip in month one</span
+            ></span
+          >
+          <span class="artifact art-rec" aria-hidden="true"
+            ><span class="art-top art-live"><i></i>REC 04:12</span
+            ><span class="art-wave"
+              ><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i
+              ><i></i><i></i><i></i><i></i><i></i></span
+            ><span class="art-note">Your voice. Your take.</span></span
+          >
+          <span class="artifact art-edit" aria-hidden="true"
+            ><span class="art-track"><i></i><i></i><i></i><i></i></span
+            ><span class="art-item"><span class="art-tick">✓</span>Cuts</span
+            ><span class="art-item"
+              ><span class="art-tick">✓</span>Captions + graphics</span
+            ><span class="art-item"><span class="art-tick">✓</span>Sound</span
+            ><span class="art-top art-warn">Ready for your review</span></span
+          >
+        </template>
       </section>
       <div class="marquees" aria-hidden="true">
         <div class="mq a"><div class="track" id="mqA"></div></div>
         <div class="mq b"><div class="track" id="mqB"></div></div>
       </div>
       <section
+        id="week"
+        class="wrap week-section"
+        aria-labelledby="week-heading"
+        data-chapter="Your week"
+      >
+        <div class="story-heading reveal">
+          <p class="mono">Your turn</p>
+          <h2 id="week-heading">
+            Where does your week<br /><span class="coral">actually</span> go?
+          </h2>
+          <p class="story-sub">
+            Tick the work you repeat, set rough hours, and we'll add it up. It
+            stays in your browser unless you send it to us.
+          </p>
+        </div>
+        <div class="meter reveal">
+          <ul
+            class="meter-tasks"
+            id="meterTasks"
+            aria-label="Repeat work you could hand off"
+          >
+            <li>Answering the same enquiries</li>
+            <li>Copying data between tools</li>
+            <li>Putting together reports</li>
+            <li>Researching what to make next</li>
+            <li>Reading comments and feedback</li>
+            <li>Editing and repurposing videos</li>
+            <li>Chasing follow-ups</li>
+          </ul>
+          <div class="meter-card js-only" id="meterCard">
+            <div class="meter-bar">
+              <span class="board-label"
+                ><span class="window-dots" aria-hidden="true"
+                  ><i></i><i></i><i></i></span
+                ><span class="mono">your_week</span></span
+              ><span class="mono meter-scale">Mon–Fri · 40 hours</span>
+            </div>
+            <div class="week-grid" id="weekGrid" aria-hidden="true"></div>
+            <div class="week-legend" aria-hidden="true">
+              <span><i class="lg-repeat"></i>Repeat work</span
+              ><span><i class="lg-yours"></i>Handed off</span
+              ><span><i class="lg-free"></i>Everything else</span>
+            </div>
+            <dl class="week-stats" id="weekStats">
+              <div>
+                <dt>A week</dt>
+                <dd><b id="weekHours">4</b>h</dd>
+              </div>
+              <div>
+                <dt>A year</dt>
+                <dd><b id="weekYear">192</b>h</dd>
+              </div>
+              <div>
+                <dt>Full-time weeks</dt>
+                <dd>≈<b id="weekWeeks">5</b></dd>
+              </div>
+            </dl>
+            <p class="week-msg" id="weekMsg" aria-live="polite">
+              4 hours of your week go to work you've done before.
+            </p>
+            <div class="meter-actions">
+              <button
+                class="btn btn-ghost btn-sm"
+                id="handOff"
+                type="button"
+                aria-pressed="false"
+              >
+                Hand it off
+              </button>
+              <a class="btn btn-dark btn-sm" href="#talk" id="weekBrief"
+                >Turn this into a brief
+                <span class="arr" aria-hidden="true"
+                  ><svg class="icon diagonal-arrow">
+                    <use href="#i-arrow" /></svg></span
+              ></a>
+            </div>
+            <p class="meter-note">Rough estimate over 48 working weeks.</p>
+          </div>
+        </div>
+      </section>
+      <section
+        id="about"
+        class="wrap about-section"
+        aria-labelledby="about-heading"
+        data-chapter="Who we are"
+      >
+        <p class="story-cue">
+          <span class="story-line" aria-hidden="true"></span>So, who's behind
+          this?
+        </p>
+        <div class="about-top">
+          <div class="about-copy reveal">
+            <p class="mono">Who we are</p>
+            <h2 id="about-heading">
+              We're <span class="hl">2 Founders.</span>
+            </h2>
+            <p class="about-lead">
+              Two video makers who ended up building AI workflows.
+            </p>
+            <p>
+              We make videos for our own channel: Hindi Shorts and English
+              long-form, edited in-house. Making them showed us where the hours
+              go. Research. Scripting. Managing. Hours stuck in editing. So we
+              handed the repeat work to AI-powered workflows and kept the
+              creative calls for ourselves.
+            </p>
+            <p>Now we build that around other people's work.</p>
+            <a class="text-link about-mail" href="#talk" data-enquiry="explore"
+              >Tell us about yours
+              <svg class="icon diagonal-arrow" aria-hidden="true">
+                <use href="#i-arrow" /></svg
+            ></a>
+          </div>
+          <figure class="combine reveal" aria-labelledby="combineCaption">
+            <div class="combine-card speed">
+              <span class="combine-icon"
+                ><svg class="icon" aria-hidden="true">
+                  <use href="#i-bolt" /></svg
+              ></span>
+              <span class="combine-kicker">Speed</span>
+              <b>AI-powered workflow</b>
+              <span class="combine-lines"
+                ><span>Reads<i></i></span><span>Sorts<i></i></span
+                ><span>Drafts<i></i></span
+              ></span>
+            </div>
+            <span class="combine-plus" aria-hidden="true">+</span>
+            <div class="combine-card taste">
+              <span class="combine-icon"
+                ><svg class="icon" aria-hidden="true">
+                  <use href="#i-pen" /></svg
+              ></span>
+              <span class="combine-kicker">Taste</span>
+              <b>Human judgment</b>
+              <span class="combine-lines taste-lines"
+                ><span>What matters<i></i></span><span>What's good<i></i></span
+                ><span>What goes out<i></i></span
+              ></span>
+              <svg
+                class="combine-squiggle"
+                viewBox="0 0 120 40"
+                aria-hidden="true"
+              >
+                <path
+                  d="M4 30c14-22 24-22 30-6s16 16 26-4 22-18 28-2 14 12 28-4"
+                />
+              </svg>
+            </div>
+            <figcaption id="combineCaption" class="combine-caption">
+              <span class="mono">We combined both</span>
+              AI does the repeat work. People make the calls.
+            </figcaption>
+          </figure>
+        </div>
+        <div class="story-path reveal">
+          <h3 class="path-title mono">How we got here</h3>
+          <ol class="path" id="aboutPath">
+            <li class="path-step">
+              <span class="path-dot" aria-hidden="true"
+                ><svg class="icon"><use href="#i-camera" /></svg
+              ></span>
+              <span class="path-num">01</span>
+              <h4>We make videos.</h4>
+              <p>
+                Our own channel, @2Founders: Hindi Shorts and English long-form,
+                edited in-house.
+              </p>
+              <a
+                class="text-link"
+                href="https://www.youtube.com/@2Founders"
+                target="_blank"
+                rel="noopener"
+                >Watch on YouTube
+                <svg class="icon diagonal-arrow" aria-hidden="true">
+                  <use href="#i-arrow" /></svg
+              ></a>
+            </li>
+            <li class="path-step">
+              <span class="path-dot" aria-hidden="true"
+                ><svg class="icon"><use href="#i-bolt" /></svg
+              ></span>
+              <span class="path-num">02</span>
+              <h4>AI for speed. People for taste.</h4>
+              <p>
+                An AI-powered workflow takes rough cuts, captions, and audio
+                cleanup. We keep story, pacing, and feel.
+              </p>
+              <a class="text-link" href="#creator"
+                >See a 48-second sample
+                <svg class="icon diagonal-arrow" aria-hidden="true">
+                  <use href="#i-arrow" /></svg
+              ></a>
+            </li>
+            <li class="path-step">
+              <span class="path-dot" aria-hidden="true"
+                ><svg class="icon"><use href="#i-tool" /></svg
+              ></span>
+              <span class="path-num">03</span>
+              <h4>We built our own tools.</h4>
+              <p>
+                A creator engine that runs from channel audit to AI edit, and
+                Liquid Signal, a Chrome extension that turns YouTube comments
+                into answers.
+              </p>
+              <a class="text-link" href="#product"
+                >See what we built
+                <svg class="icon diagonal-arrow" aria-hidden="true">
+                  <use href="#i-arrow" /></svg
+              ></a>
+            </li>
+            <li class="path-step">
+              <span class="path-dot" aria-hidden="true"
+                ><svg class="icon"><use href="#i-workflow" /></svg
+              ></span>
+              <span class="path-num">04</span>
+              <h4>Now we build yours.</h4>
+              <p>
+                The same approach for the work you repeat: enquiries, research,
+                reports, content.
+              </p>
+              <a class="text-link" href="#talk" data-enquiry="custom"
+                >Bring us a task
+                <svg class="icon diagonal-arrow" aria-hidden="true">
+                  <use href="#i-arrow" /></svg
+              ></a>
+            </li>
+          </ol>
+        </div>
+        <div class="principles-block">
+          <h3 class="principles-title reveal">How we work</h3>
+          <div class="principle-grid">
+            <article class="principle reveal">
+              <span class="principle-icon"
+                ><svg class="icon" aria-hidden="true">
+                  <use href="#i-target" /></svg
+              ></span>
+              <h4>One task first.</h4>
+              <p>
+                We start with one repetitive task and get it right. Then we
+                build from there.
+              </p>
+            </article>
+            <article class="principle reveal">
+              <span class="principle-icon"
+                ><svg class="icon" aria-hidden="true">
+                  <use href="#i-plug" /></svg
+              ></span>
+              <h4>Your tools stay.</h4>
+              <p>
+                We connect what you already use, like your inbox, Google Sheets,
+                Notion, or CRM.
+              </p>
+            </article>
+            <article class="principle reveal">
+              <span class="principle-icon"
+                ><svg class="icon" aria-hidden="true">
+                  <use href="#i-shield" /></svg
+              ></span>
+              <h4>You keep the calls.</h4>
+              <p>
+                AI does the repeat work. You approve what matters, including
+                anything published or sent.
+              </p>
+            </article>
+            <article class="principle reveal">
+              <span class="principle-icon"
+                ><svg class="icon" aria-hidden="true">
+                  <use href="#i-tag" /></svg
+              ></span>
+              <h4>No surprises.</h4>
+              <p>
+                Scope, deliverables, price, and timeline are agreed before we
+                start.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section
         id="product"
         class="wrap product-section proof-story"
         aria-labelledby="proof-heading"
+        data-chapter="What we've built"
       >
-        <h2 class="proof-cue reveal" id="proof-heading">
-          Two automations we've built.
-        </h2>
+        <div class="proof-head reveal">
+          <p class="mono">Built by us</p>
+          <h2 id="proof-heading">Two automations we've built.</h2>
+          <p class="story-sub">
+            One you can install today. The other is our own creator workflow.
+          </p>
+        </div>
         <div class="ls-layout">
           <div class="ls-copy reveal">
             <p class="product-name">
@@ -352,6 +838,49 @@
               Turn sampled public YouTube comments into audience insights you
               can search, filter, and export.
             </p>
+            <ul class="ls-benefits">
+              <li class="ls-benefit">
+                <span class="ls-benefit-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M8 10h8M8 14h5M20 11a8 8 0 0 1-8 8H5l-3 3V11a9 9 0 0 1 18 0Z"
+                    /></svg
+                ></span>
+                <div>
+                  <h4>Ask what matters.</h4>
+                  <p>
+                    Bring your own question, or start with three suggested
+                    questions and 2–6 answer choices.
+                  </p>
+                </div>
+              </li>
+              <li class="ls-benefit">
+                <span class="ls-benefit-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 20V10M12 20V4M20 20v-7M2 20h20" /></svg
+                ></span>
+                <div>
+                  <h4>Read the room.</h4>
+                  <p>
+                    See answer splits, a plain-language summary, purchase
+                    intent, barriers, and confidence.
+                  </p>
+                </div>
+              </li>
+              <li class="ls-benefit">
+                <span class="ls-benefit-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3v12m-4-4 4 4 4-4M4 15v5h16v-5" /></svg
+                ></span>
+                <div>
+                  <h4>Keep the useful bits.</h4>
+                  <p>
+                    Search and filter your reports. Export the findings as CSV
+                    or JSON.
+                  </p>
+                </div>
+              </li>
+            </ul>
             <a
               class="btn btn-dark ls-cta"
               href="https://chromewebstore.google.com/detail/liquid-signal-d1/bcopabbcdihpdoichjlfgmbllfloicki"
@@ -362,9 +891,13 @@
                 ><svg class="icon diagonal-arrow">
                   <use href="#i-arrow" /></svg></span
             ></a>
+            <p class="ls-cta-note">
+              On the Chrome Web Store · Works beside your YouTube video
+            </p>
           </div>
           <figure
             class="ls-demo reveal"
+            id="lsDemo"
             aria-label="Illustrative Liquid Signal side panel report"
           >
             <div class="ls-demo-badge">
@@ -444,7 +977,7 @@
                     ><small>SIDE PANEL</small>
                   </div>
                   <p class="ls-report-label">Illustrative report</p>
-                  <h3>What should we cover next?</h3>
+                  <h4>What should we cover next?</h4>
                   <p class="ls-report-sub">
                     A question. A sample. A clearer direction.
                   </p>
@@ -524,13 +1057,42 @@
                 Channel research, daily ideas, and AI editing in one flow. Use
                 the whole engine or just one part.
               </p>
-              <ol class="creator-steps">
-                <li><span class="num">01</span><b>Audit your channel</b></li>
+              <ol class="creator-steps" id="creatorSteps">
                 <li>
-                  <span class="num">02</span><b>Three ideas, every day</b>
+                  <span class="num">01</span
+                  ><span
+                    ><b>Audit your channel</b
+                    ><small
+                      >Find the patterns that tell you what to make next.</small
+                    ></span
+                  >
                 </li>
-                <li><span class="num">03</span><b>You hit record</b></li>
-                <li><span class="num">04</span><b>AI edit + your review</b></li>
+                <li>
+                  <span class="num">02</span
+                  ><span
+                    ><b>Three ideas, every day</b
+                    ><small>Informed by the audit. Pick what fits.</small></span
+                  >
+                </li>
+                <li>
+                  <span class="num">03</span
+                  ><span
+                    ><b>You hit record</b
+                    ><small
+                      >Your voice and expertise stay at the centre.</small
+                    ></span
+                  >
+                </li>
+                <li>
+                  <span class="num">04</span
+                  ><span
+                    ><b>AI edit + your review</b
+                    ><small
+                      >Cuts, captions, graphics, and sound. You approve before
+                      posting.</small
+                    ></span
+                  >
+                </li>
               </ol>
               <a class="text-link" href="#talk" data-enquiry="creator"
                 >Set up my creator workflow
@@ -566,6 +1128,7 @@
                 </div>
                 <div class="video-caption">
                   <b>A sample from our editing work.</b>
+                  <p>Made in-house: motion graphics, captions, and sound.</p>
                 </div>
               </div>
             </div>
@@ -636,9 +1199,10 @@
         id="services"
         class="wrap service-story"
         aria-labelledby="services-heading"
+        data-chapter="Work with us"
       >
         <div class="story-heading reveal">
-          <p class="mono">Put it to work for you</p>
+          <p class="mono">Work with us</p>
           <h2 id="services-heading">
             Your own automation.<br /><span class="hl"
               >Or just the result.</span
@@ -658,8 +1222,27 @@
               We map your process, connect your tools, and build a workflow
               around your business.
             </p>
+            <div class="offer-visual" aria-hidden="true">
+              <span class="mini-tool"
+                ><svg class="icon"><use href="#i-folder" /></svg></span
+              ><span class="mini-line"></span
+              ><span class="mini-tool brain"
+                ><svg class="icon"><use href="#i-spark" /></svg></span
+              ><span class="mini-line"></span
+              ><span class="mini-tool"
+                ><svg class="icon"><use href="#i-shield" /></svg></span
+              ><span class="mini-line"></span
+              ><span class="mini-tool"
+                ><svg class="icon"><use href="#i-check" /></svg
+              ></span>
+            </div>
+            <ul class="offer-list">
+              <li>Built around the tools you already use</li>
+              <li>Clear inputs, outputs, and review points</li>
+              <li>Handover and support agreed upfront</li>
+            </ul>
             <span class="offer-note"
-              >Scoped project · Agreed handover & support</span
+              >Best for work that repeats every day or week.</span
             ><a class="btn btn-lime" href="#talk" data-enquiry="custom"
               >Build my workflow
               <span class="arr" aria-hidden="true"
@@ -677,6 +1260,15 @@
               Get audience research, channel audits, daily ideas, or AI editing
               when you need it.
             </p>
+            <div class="offer-visual offer-menu" aria-hidden="true">
+              <span>Audience research</span><span>Channel audit</span
+              ><span>Daily ideas</span><span>AI editing</span>
+            </div>
+            <ul class="offer-list">
+              <li>One task, or an ongoing need</li>
+              <li>Nothing for you to set up or maintain</li>
+              <li>Deliverables and price agreed first</li>
+            </ul>
             <div class="service-tokens">
               <span>One-off</span><span>Recurring</span><span>Usage-based</span>
             </div>
@@ -688,60 +1280,151 @@
             ></a>
           </article>
         </div>
-        <div id="how" class="process-rail reveal" aria-labelledby="how-heading">
-          <h2 id="how-heading">Start with one task.</h2>
-          <ol>
-            <li><span>01</span>Tell us the task</li>
-            <li><span>02</span>Agree the scope</li>
-            <li><span>03</span>Build or deliver</li>
-          </ol>
-          <p>
-            Tools, deliverables, pricing, and review points. Agreed before we
-            start.
-          </p>
+        <div id="how" class="process-wrap reveal" aria-labelledby="how-heading">
+          <div class="process-head">
+            <h2 id="how-heading">Start with one task.</h2>
+            <p>
+              You don't need a technical brief. Tell us what you do by hand and
+              what a good result looks like.
+            </p>
+          </div>
+          <div class="process-board" id="processBoard">
+            <div class="process-bar">
+              <span class="mono">your_first_automation</span
+              ><b class="process-status" id="processStatus"
+                >● Waiting for your task</b
+              >
+            </div>
+            <div class="process-track" aria-hidden="true">
+              <span class="process-fill" id="processFill"></span
+              ><span class="playhead" id="playhead"></span>
+            </div>
+            <ol class="process-steps" id="processSteps">
+              <li class="process-step">
+                <span class="n">01 — you</span>
+                <h3>Show us the work.</h3>
+                <p>The task, the tools you use, and what good looks like.</p>
+                <span class="deliverable"
+                  ><svg class="icon" aria-hidden="true">
+                    <use href="#i-check" /></svg
+                  >Your brief</span
+                >
+              </li>
+              <li class="process-step">
+                <span class="n">02 — together</span>
+                <h3>Agree the scope.</h3>
+                <p>
+                  Tools, deliverables, price, and review points. Agreed before
+                  we start.
+                </p>
+                <span class="deliverable"
+                  ><svg class="icon" aria-hidden="true">
+                    <use href="#i-check" /></svg
+                  >A clear plan</span
+                >
+              </li>
+              <li class="process-step">
+                <span class="n">03 — us</span>
+                <h3>Build and test.</h3>
+                <p>
+                  We build the workflow and test it on examples like yours, with
+                  your review.
+                </p>
+                <span class="deliverable"
+                  ><svg class="icon" aria-hidden="true">
+                    <use href="#i-check" /></svg
+                  >A working flow</span
+                >
+              </li>
+              <li class="process-step">
+                <span class="n">04 — you</span>
+                <h3>Put it to work.</h3>
+                <p>
+                  Run it in your process, or let us run it for you as a service.
+                </p>
+                <span class="deliverable"
+                  ><svg class="icon" aria-hidden="true">
+                    <use href="#i-check" /></svg
+                  >Agreed handover & support</span
+                >
+              </li>
+            </ol>
+          </div>
         </div>
-        <details id="faq" class="faq-drawer">
-          <summary>
-            Questions before we start? <span aria-hidden="true">+</span>
-          </summary>
-          <div class="faq-list">
+        <div id="faq" class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading" class="reveal">Questions before we start?</h2>
+          <div class="faq-list reveal">
             <details>
               <summary>What do you mean by an agentic workflow?</summary>
               <p>
-                AI interprets an input and takes agreed steps across your tools,
-                with review points where you need them.
+                A connected process where AI reads an input and takes the next
+                agreed steps across your tools, instead of stopping at an answer
+                in a chat. We design the steps, limits, and review points around
+                the job.
+              </p>
+            </details>
+            <details>
+              <summary>Do I need to know exactly what to automate?</summary>
+              <p>
+                No. Bring the repetitive task, the tools you use, and the result
+                you want. We'll help work out whether automation makes sense and
+                where to start.
               </p>
             </details>
             <details>
               <summary>Is this only for YouTube creators?</summary>
               <p>
-                We build automation for founders and teams too. The creator
-                engine is one example; bring us your process.
+                No. The creator engine and Liquid Signal are examples of what
+                we've built. We build automation for founders and teams too, so
+                bring us your process.
+              </p>
+            </details>
+            <details>
+              <summary>Can I use just one service?</summary>
+              <p>
+                Yes. Ask for a channel audit, content ideas, audience research,
+                or AI editing on its own, as one-off, recurring, or usage-based
+                work.
               </p>
             </details>
             <details>
               <summary>How do pricing and timelines work?</summary>
               <p>
-                We agree the scope, deliverables, price, and timeline before
-                starting. Services can be one-off, recurring, or usage-based.
+                They depend on the workflow, the tools involved, volume, and
+                support. We agree the scope, deliverables, price, and timeline
+                before starting.
               </p>
             </details>
             <details>
-              <summary>Do I approve the outputs?</summary>
+              <summary>
+                Does AI publish or send anything without my approval?
+              </summary>
               <p>
-                We agree which steps can run automatically and which need your
-                review, including publishing or sending.
+                Only if you agree it should. We set the review points upfront,
+                including where you check content or outputs before anything is
+                published or sent.
               </p>
             </details>
           </div>
-        </details>
+        </div>
       </section>
-      <section id="talk" class="wrap">
+      <section id="talk" class="wrap" data-chapter="Let's talk">
         <div class="cta reveal">
           <div class="cta-copy">
             <p class="mono">Let's start with your work</p>
-            <h2>What do you want<br /><span class="hl">automated?</span></h2>
-            <p>Bring the task. We'll help pick the right approach.</p>
+            <h2 id="talk-heading">
+              What do you want<br /><span class="hl">automated?</span>
+            </h2>
+            <p>Bring one task. We'll help you pick the right approach.</p>
+            <ol class="next-steps">
+              <li><span>01</span>Your email app opens with your brief.</li>
+              <li><span>02</span>We reply with questions or a first idea.</li>
+              <li>
+                <span>03</span>Scope and price are agreed before any work
+                starts.
+              </li>
+            </ol>
+            <div class="cta-extra" id="ctaExtra" hidden></div>
             <div class="cta-email">
               Prefer a direct email?<br /><a
                 id="mailTxt"
@@ -779,8 +1462,7 @@
             </div>
             <div>
               <label for="enquiryTools"
-                >Tools you use
-                <span style="color: #aaa79b">(optional)</span></label
+                >Tools you use <span class="optional">(optional)</span></label
               ><input
                 id="enquiryTools"
                 name="tools"
@@ -816,7 +1498,7 @@
           automation.
         </div>
         <div class="footer-links">
-          <a href="#services">Services</a
+          <a href="#about">About us</a><a href="#services">Services</a
           ><a
             href="https://chromewebstore.google.com/detail/liquid-signal-d1/bcopabbcdihpdoichjlfgmbllfloicki"
             target="_blank"
@@ -843,6 +1525,67 @@
           <svg class="icon diagonal-arrow" aria-hidden="true">
             <use href="#i-arrow" /></svg></span
       ></a>
+    </div>
+    <div class="guide js-only" id="guide" hidden>
+      <div class="guide-menu" id="guideMenu" hidden>
+        <p class="mono">Jump to a chapter</p>
+        <ol id="guideChapters"></ol>
+        <button class="guide-tour" id="guideTour" type="button">
+          <svg class="icon" aria-hidden="true"><use href="#i-play" /></svg>Play
+          the 60-second tour
+        </button>
+      </div>
+      <button
+        class="guide-pill"
+        id="guideToggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="guideMenu"
+      >
+        <span class="guide-mark" aria-hidden="true">2<i></i></span
+        ><span class="guide-count mono" id="guideCount">01/06</span
+        ><span class="guide-label" id="guideLabel">What we do</span>
+      </button>
+    </div>
+    <div
+      class="tour"
+      id="tour"
+      role="dialog"
+      aria-modal="false"
+      aria-labelledby="tourTitle"
+      tabindex="-1"
+      hidden
+    >
+      <div class="tour-head">
+        <span class="guide-mark" aria-hidden="true">2<i></i></span
+        ><span class="mono" id="tourCount">01 / 06</span
+        ><button class="tour-close" id="tourClose" type="button">
+          <svg class="icon" aria-hidden="true"><use href="#i-x" /></svg
+          ><span class="sr-only">Close tour</span>
+        </button>
+      </div>
+      <p class="tour-title" id="tourTitle">What we do</p>
+      <p class="tour-text" id="tourText" aria-hidden="true"></p>
+      <p class="sr-only" id="tourLive" aria-live="polite"></p>
+      <div class="tour-progress" aria-hidden="true"><i id="tourBar"></i></div>
+      <div class="tour-actions">
+        <button class="tour-back" id="tourBack" type="button">Back</button
+        ><button
+          class="tour-play"
+          id="tourPlay"
+          type="button"
+          aria-pressed="true"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-pause" /></svg
+          ><span class="sr-only">Pause tour</span></button
+        ><button
+          class="btn btn-lime btn-sm tour-next"
+          id="tourNext"
+          type="button"
+        >
+          Next
+        </button>
+      </div>
     </div>
   </body>
 </html>

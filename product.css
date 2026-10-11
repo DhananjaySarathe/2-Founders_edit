@@ -46,7 +46,7 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.product-section .ls-benefit h3 {
+.product-section .ls-benefit h4 {
   font-size: 17px;
   line-height: 1.3;
   font-weight: 700;
@@ -338,7 +338,7 @@
   color: #797368;
   margin-bottom: 7px;
 }
-.product-section .ls-panel h3 {
+.product-section .ls-panel h4 {
   font-size: 17px;
   line-height: 1.25;
   font-weight: 750;
@@ -358,6 +358,11 @@
   gap: 13px;
   margin-bottom: 16px;
 }
+@property --ls-k {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
 .product-section .ls-donut {
   position: relative;
   display: grid;
@@ -366,11 +371,74 @@
   width: 82px;
   border-radius: 50%;
   background: conic-gradient(
-    var(--lime) 0% 62%,
-    #141414 62% 87%,
-    #e8e4dc 87% 100%
+    var(--lime) 0% calc(62% * var(--ls-k)),
+    #141414 calc(62% * var(--ls-k)) calc(87% * var(--ls-k)),
+    #e8e4dc calc(87% * var(--ls-k)) 100%
   );
   transform: rotate(-90deg);
+}
+/* The illustrative report builds itself once, when it scrolls into view. */
+@keyframes ls-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@keyframes ls-fill {
+  from {
+    --ls-k: 0;
+  }
+}
+@keyframes ls-glow {
+  40% {
+    background: var(--lime);
+    border-color: var(--lime);
+  }
+}
+.product-section .is-playing .ls-comment,
+.product-section .is-playing .ls-connector,
+.product-section .is-playing .ls-panel h4,
+.product-section .is-playing .ls-report-sub,
+.product-section .is-playing .ls-answer-list li,
+.product-section .is-playing .ls-insight,
+.product-section .is-playing .ls-confidence {
+  animation: ls-pop 0.5s both;
+}
+.product-section .is-playing .ls-comment:nth-child(7) {
+  animation-delay: 0.2s;
+}
+.product-section .is-playing .ls-comment:nth-child(8) {
+  animation-delay: 0.4s;
+}
+.product-section .is-playing .ls-connector {
+  animation-delay: 0.6s;
+}
+.product-section .is-playing .ls-panel h4 {
+  animation-delay: 0.7s;
+}
+.product-section .is-playing .ls-report-sub {
+  animation-delay: 0.85s;
+}
+.product-section .is-playing .ls-donut {
+  animation: ls-fill 1.4s 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.product-section .is-playing .ls-answer-list li {
+  animation-delay: 1.2s;
+}
+.product-section .is-playing .ls-answer-list li:nth-child(2) {
+  animation-delay: 1.35s;
+}
+.product-section .is-playing .ls-answer-list li:nth-child(3) {
+  animation-delay: 1.5s;
+}
+.product-section .is-playing .ls-insight {
+  animation-delay: 2s;
+}
+.product-section .is-playing .ls-confidence {
+  animation-delay: 2.3s;
+}
+.product-section .is-playing .ls-export-types span:first-child {
+  animation: ls-glow 1.4s 2.6s both;
 }
 .product-section .ls-donut::before {
   content: "";
@@ -612,7 +680,7 @@
   .product-section .ls-answer-list li {
     font-size: 10px;
   }
-  .product-section .ls-panel h3 {
+  .product-section .ls-panel h4 {
     font-size: 19px;
   }
   .product-section .ls-report-sub,
@@ -668,7 +736,7 @@
   .product-section .ls-panel {
     padding: 14px 11px;
   }
-  .product-section .ls-panel h3 {
+  .product-section .ls-panel h4 {
     font-size: 16px;
   }
   .product-section .ls-panel-head small {
