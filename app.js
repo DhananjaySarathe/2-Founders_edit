@@ -377,14 +377,25 @@ document.querySelectorAll(".region-tabs button").forEach((button) =>
       $("vprog").style.width = `${(video.currentTime / video.duration) * 100}%`;
   });
   let soundEnabled = false;
+  let inView = false;
+  function updatePlayback() {
+    const active = !video.closest(".portfolio-slide")?.inert;
+    if (!inView || !active) video.pause();
+    else if (
+      !matchMedia("(prefers-reduced-motion: reduce)").matches &&
+      !soundEnabled
+    )
+      video.play().catch(() => {});
+  }
   video.addEventListener("play", stopEmbeddedVideos);
   new IntersectionObserver(
     ([entry]) => {
-      if (!entry.isIntersecting) video.pause();
-      else if (!reduce && !soundEnabled) video.play().catch(() => {});
+      inView = entry.isIntersecting;
+      updatePlayback();
     },
     { threshold: 0.45 },
   ).observe(video);
+  document.addEventListener("portfoliochange", updatePlayback);
   $("exSound").addEventListener("click", () => {
     soundEnabled = true;
     video.muted = false;

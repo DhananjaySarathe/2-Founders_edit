@@ -2,7 +2,7 @@
 
 The 2 Founders marketing site is a static HTML/CSS/JavaScript site with a small Vercel Edge Function for country detection. It introduces two ways to work with the studio: custom automation builds and focused, one-off, recurring, or usage-based services.
 
-The original cream, lime, coral, typography, floating labels, crossed marquees, scroll effects, and video library are retained. The large centred hero reads “You build. We automate.” with a rotating first-line word, an explicit AI automation label, and two engagement routes. The page follows one story: a clickable task-to-output workflow, two examples of work we have built, two buying choices, and an enquiry. Extra editing samples and FAQs expand on demand.
+The original cream, lime, coral, typography, floating labels, crossed marquees, scroll effects, and video library are retained. The large centred hero reads “You build. We automate.” with a rotating first-line word, an explicit AI automation label, and two engagement routes. The page follows one story: a clickable task-to-output workflow, an Our Work portfolio carousel, two buying choices, and an enquiry. Extra editing samples and FAQs expand on demand.
 
 The rotating words share an intrinsic CSS grid, reserving space for the longest word and its line height. This keeps letters visible and the headline centred when fonts load or the viewport changes. The accessible heading stays stable; reduced-motion preferences stop word changes.
 
@@ -38,6 +38,7 @@ The local `scripts/serve.mjs` server is a development/test tool; Vercel serves t
 - `styles.css`: shared theme, responsive layouts, motion, and accessibility styles.
 - `product.css`: the scoped Liquid Signal product illustration.
 - `landing.css`: the centred hero, connected workflow/proof/service layout, compact expandable sections, and responsive spacing, using the shared theme variables.
+- `portfolio.css` and `portfolio.js`: the responsive Our Work carousel, project navigation, scroll progress, deep links, and media coordination.
 - `app.js`: `CONFIG` contact/video settings, workflow walkthroughs, region selection, and email brief preparation.
 - `media/fonts/`: locally hosted Latin variable fonts and their OFL licenses.
 - `media/social-preview.png`: 1200 × 630 link preview.
@@ -45,6 +46,14 @@ The local `scripts/serve.mjs` server is a development/test tool; Vercel serves t
 The enquiry form prepares a `mailto:` email to `beyondthebuildofficial@gmail.com`; it does not submit or store visitor details. A copy-brief fallback appears after preparation. Reply through the visitor's email app. The direct email link also works without JavaScript.
 
 The workflow board explains steps; it does not execute automation jobs. The default enquiry-to-action workflow is explicitly an example of a custom build. Liquid Signal's sample interface/data are labeled. Existing videos show the studio's editing work. The creator engine and focused services are described separately from the Chrome extension. The workflow enquiry link can prepare a starter brief when the visitor has not already written one. Closing the editing-samples drawer stops embedded playback.
+
+## Adding work to the portfolio
+
+Add an `article.portfolio-slide` directly inside `#portfolioTrack` in `index.html`. Give it a unique `id`, a `data-work-title` for its navigation label, and a heading with a matching `aria-labelledby`. The carousel discovers projects and generates their buttons, counts, and scroll distance automatically. Keep cards concise; detailed samples belong in the expandable drawer below the carousel.
+
+When the whole portfolio stage fits the viewport, it stays below the navigation while normal vertical scrolling moves through the projects horizontally. The scroll distance is capped so adding projects does not create an increasingly long page. Project buttons, arrows, and Left/Right/Home/End keys when the carousel region has focus provide direct browsing; project IDs also support deep links.
+
+On shorter screens, or with reduced motion enabled, it uses a native horizontal carousel with the controls above the cards. Visitors can swipe or choose a project and read all its content through normal page scrolling. Resizing preserves the selected project. Without JavaScript, all projects remain visible as a vertical list. Inactive project links are removed from keyboard navigation, changing away from the creator project pauses its video, and leaving Our Work stops embedded videos. The editing-samples drawer remains outside the pinned stage.
 
 ## Personalization and languages
 
