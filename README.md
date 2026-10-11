@@ -1,27 +1,55 @@
-# 2_founders pitch site
+# 2 Founders — agentic workflows & AI automation
 
-Static page + one Vercel Edge Function for country detection.
+The 2 Founders marketing site is a static HTML/CSS/JavaScript site with a small Vercel Edge Function for country detection. It introduces two ways to work with the studio: custom automation builds and focused, one-off, recurring, or usage-based services.
 
-## Deploy (2 minutes)
-1. `npm i -g vercel` (once), then from this folder: `vercel` → follow prompts → `vercel --prod`.
-   Or drag this folder into vercel.com/new.
-2. Open `index.html`, edit the CONFIG block at the bottom: email, WhatsApp number, booking link.
+The original cream, lime, coral, typography, rotating headline, floating labels, crossed marquees, scroll effects, and video library are retained. The site now leads with an interactive workflow walkthrough, followed by the service offers, Liquid Signal product, and creator automation pipeline.
 
-## Links to use in emails
-- India list:   https://YOUR-SITE/?r=in&c=CompanyName
-- Global list:  https://YOUR-SITE/?r=global&c=CompanyName
+## Local development
 
-`r` forces the region (you already know which list a lead is in).
-`c` shows "Made for CompanyName" at the top and lets you spot visits in Vercel Analytics.
-Without `r`, the page detects the country via Vercel's IP geo header (/api/geo),
-falling back to the browser timezone. The footer has a switch between Hindi and English work.
+Requires Node.js 20.11+ (the development server uses `import.meta.dirname`).
 
-## Pitch video
-Served from /media/pitch.mp4 (compressed from 57 MB to 3.5 MB), autoplays muted with a
-"Tap for sound" button. To use YouTube instead, set `pitch: { type: "youtube", id: "..." }`.
-Self-hosted MP4 autoplays more reliably than a YouTube embed, so keep it here and use the
-YouTube link in emails.
+```sh
+npm ci
+npm run dev
+```
 
-## Link previews
-For WhatsApp/LinkedIn previews, change the og:image in <head> to the full URL,
-e.g. https://YOUR-SITE/media/pitch-poster.jpg
+Open `http://127.0.0.1:8000`. Use `PORT=3000 npm run dev` for another port.
+
+```sh
+npm run check
+npm test
+```
+
+The browser smoke check needs Chromium. It uses `/usr/bin/chromium` when available; otherwise set `CHROMIUM_PATH` to your installed Chromium/Chrome executable. `TEST_BASE_URL` can point the checks at another local server. Test output is saved in the ignored `test-results/` directory. External YouTube requests are intercepted in the smoke test, so it verifies embed wiring rather than third-party playback.
+
+## Deployment
+
+Deploy the repository as a static site on Vercel with **Framework Preset: Other**, no build command, and the project root as the output directory. `vercel.json` specifies these settings, clean URLs, and media caching. The `/api/geo` Edge Function reads the country from Vercel's request header and returns a non-cached response. No app backend, API keys, or environment variables are needed for the marketing site.
+
+The local `scripts/serve.mjs` server is a development/test tool; Vercel serves the site directly. The CSS, JavaScript, local fonts, sample MP4, and product illustration ship as static assets. Optional YouTube thumbnails and click-to-load embeds come from YouTube. Native video controls and direct YouTube links remain available.
+
+## Editing content and contact details
+
+- `index.html`: copy, sections, Liquid Signal link, FAQ, enquiry options, metadata.
+- `styles.css`: shared theme, responsive layouts, motion, and accessibility styles.
+- `product.css`: the scoped Liquid Signal product illustration.
+- `app.js`: `CONFIG` contact/video settings, workflow walkthroughs, region selection, and email brief preparation.
+- `media/fonts/`: locally hosted Latin variable fonts and their OFL licenses.
+- `media/social-preview.png`: 1200 × 630 link preview.
+
+The enquiry form prepares a `mailto:` email to `beyondthebuildofficial@gmail.com`; it does not submit or store visitor details. A copy-brief fallback appears after preparation. Reply through the visitor's email app. The direct email link also works without JavaScript.
+
+The workflow board and weekly schedule are explanatory illustrations, not live automation executions. Liquid Signal's sample interface/data are labeled. Existing videos show the studio's editing work. The full creator engine and focused services are described separately from the Chrome extension.
+
+## Personalization and languages
+
+Existing campaign parameters continue to work:
+
+- `?c=CompanyName` (or `?company=CompanyName`) adds a safe text-only company badge and page title.
+- `?r=in` shows the two Hindi Shorts; `?r=global` shows the English long-form example.
+- Without an explicit region, the browser timezone sets an initial language and `/api/geo` can refine it.
+- Visitors can change the video language beside the examples. A delayed geo response cannot replace a manual choice.
+
+## Production URL
+
+The canonical URL and Open Graph URLs in `index.html` point to `https://2founders.space/`. Update them if you deploy under a different domain.
