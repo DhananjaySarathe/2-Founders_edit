@@ -6,7 +6,7 @@
   "description": "2 Founders agentic workflow automation studio — static Vercel website",
   "scripts": {
     "dev": "node scripts/serve.mjs",
-    "check": "node --check app.js && node --check api/geo.js && node --check scripts/serve.mjs",
+    "check": "node --check app.js && node --check portfolio.js && node --check api/geo.js && node --check scripts/serve.mjs",
     "test": "node tests/smoke.mjs"
   },
   "devDependencies": {
