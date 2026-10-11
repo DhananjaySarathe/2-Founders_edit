@@ -305,6 +305,8 @@ try {
   await page.waitForFunction(() => document.querySelector('#guideLabel').textContent === 'Who we are');
   check(await page.locator('#guide').evaluate(el => el.classList.contains('show')), 'The chapter guide appears after the hero');
   equal(await page.locator('#guideCount').innerText(), '03/06', 'The guide counts chapters');
+  equal(await page.locator('#nav a[aria-current]').getAttribute('data-nav'), 'about', 'The header marks the section being read');
+  check(await page.locator('#nav').evaluate(el => el.classList.contains('scrolled')), 'The header becomes a floating bar after scrolling');
   await page.locator('#guideToggle').click();
   equal(await page.locator('#guideChapters a').count(), 6, 'The guide lists every chapter');
   check((await page.locator('#guideChapters a[aria-current="true"]').textContent()).includes('Who we are'), 'The guide marks the current chapter');
@@ -353,6 +355,13 @@ try {
         check((await page.evaluate(headlineGeometry)).proofBeforeBoard, 'Mobile puts shipped proof before the illustrative board');
         equal(await page.locator('#workflowNodes .artifact:visible').count(), 1, 'Mobile board expands only the active stage');
         check(await page.locator('#guide').isHidden(), 'Mobile relies on the bottom bar instead of the chapter guide');
+        check(await page.locator('#nav a[data-nav="product"]').isHidden(), 'Mobile header links start inside a closed menu');
+        await page.locator('#navToggle').click();
+        equal(await page.locator('#navToggle').getAttribute('aria-expanded'), 'true', 'Mobile menu opens');
+        await page.waitForFunction(() => getComputedStyle(document.querySelector('#nav a[data-nav="product"]')).visibility === 'visible');
+        await page.keyboard.press('Escape');
+        equal(await page.locator('#navToggle').getAttribute('aria-expanded'), 'false', 'Escape closes the mobile menu');
+        equal(await page.evaluate(() => document.activeElement.id), 'navToggle', 'Closing the menu returns focus to its button');
         equal(await page.locator('#mbar').evaluate(el => getComputedStyle(el).visibility), 'hidden', 'Initial mobile CTA bar is hidden');
         await page.locator('#mbar a').evaluate(el => el.focus());
         check(!(await page.locator('#mbar a').evaluate(el => document.activeElement === el)), 'Hidden mobile CTA cannot take keyboard focus');

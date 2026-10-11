@@ -751,6 +751,72 @@ $("enquiryType").addEventListener("change", () => {
   $("formStatus").hidden = true;
 });
 
+// The header: a lime marker follows the section you are reading; phones get a menu.
+const header = (function initHeader() {
+  const nav = $("nav");
+  const box = $("navLinks");
+  const ink = box.querySelector(".nav-ink");
+  const links = [...box.querySelectorAll("a[data-nav]")];
+  const compact = matchMedia("(max-width: 850px)");
+  // Chapters without their own link light up the closest one.
+  const owner = {
+    top: "automate",
+    week: "automate",
+    about: "about",
+    product: "product",
+    services: "services",
+  };
+  let current = null;
+  function place(link) {
+    if (!link || compact.matches) {
+      ink.style.opacity = "0";
+      return;
+    }
+    ink.style.opacity = "1";
+    ink.style.width = `${link.offsetWidth}px`;
+    ink.style.transform = `translateX(${link.offsetLeft}px)`;
+  }
+  function setMenu(open) {
+    nav.classList.toggle("menu-open", open);
+    $("navToggle").setAttribute("aria-expanded", String(open));
+  }
+  links.forEach((link) => {
+    link.addEventListener("mouseenter", () => place(link));
+    link.addEventListener("click", () => setMenu(false));
+  });
+  box.addEventListener("mouseleave", () => place(current));
+  $("navToggle").addEventListener("click", () =>
+    setMenu(!nav.classList.contains("menu-open")),
+  );
+  document.addEventListener("click", (event) => {
+    if (nav.classList.contains("menu-open") && !nav.contains(event.target))
+      setMenu(false);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && nav.classList.contains("menu-open")) {
+      setMenu(false);
+      $("navToggle").focus();
+    }
+  });
+  compact.addEventListener("change", () => {
+    setMenu(false);
+    place(current);
+  });
+  addEventListener("resize", () => place(current));
+  if (document.fonts) document.fonts.ready.then(() => place(current));
+  return {
+    setActive(chapterId) {
+      const id = owner[chapterId];
+      current = links.find((link) => link.dataset.nav === id) || null;
+      links.forEach((link) =>
+        link.toggleAttribute("aria-current", link === current),
+      );
+      if (current) current.setAttribute("aria-current", "true");
+      place(current);
+    },
+  };
+})();
+
 // The guide: chapter progress, a jump menu, and the optional 60-second tour.
 const chapters = [...document.querySelectorAll("[data-chapter]")];
 const chapterHref = (el) => (el.id === "top" ? "#automate" : `#${el.id}`);
@@ -787,6 +853,7 @@ function updateChapter() {
   });
   if (current === chapterIndex) return;
   chapterIndex = current;
+  header.setActive(chapters[current].id);
   $("guideCount").textContent = `${pad(current + 1)}/${pad(chapters.length)}`;
   $("guideLabel").textContent = chapters[current].dataset.chapter;
   $("guideChapters")

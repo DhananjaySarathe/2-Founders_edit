@@ -182,20 +182,44 @@
       </symbol>
     </svg>
     <nav id="nav" aria-label="Main navigation">
-      <div class="wrap">
+      <div class="wrap nav-shell">
         <a class="logo" href="#top" aria-label="2 Founders home"
           >2<span class="us"></span>founders</a
         >
-        <div class="nav-links">
-          <a href="#automate">What we do</a><a href="#about">About us</a
-          ><a href="#product">Our work</a><a href="#services">Work with us</a>
+        <div class="nav-links" id="navLinks">
+          <span class="nav-ink" aria-hidden="true"></span>
+          <a href="#automate" data-nav="automate"
+            ><span class="nav-num" aria-hidden="true">01</span>What we do</a
+          ><a href="#about" data-nav="about"
+            ><span class="nav-num" aria-hidden="true">02</span>About us</a
+          ><a href="#product" data-nav="product"
+            ><span class="nav-num" aria-hidden="true">03</span>Our work</a
+          ><a href="#services" data-nav="services"
+            ><span class="nav-num" aria-hidden="true">04</span>Work with us</a
+          >
+          <p class="nav-menu-foot">
+            <span class="mono">Prefer email?</span
+            ><a href="mailto:beyondthebuildofficial@gmail.com"
+              >beyondthebuildofficial@gmail.com</a
+            >
+          </p>
         </div>
-        <a class="btn btn-dark btn-sm" href="#talk"
-          >Let's talk
+        <a class="btn btn-dark btn-sm nav-cta" href="#talk"
+          ><span class="nav-pulse" aria-hidden="true"></span>Let's talk
           <span class="arr" aria-hidden="true"
             ><svg class="icon diagonal-arrow" aria-hidden="true">
               <use href="#i-arrow" /></svg></span
         ></a>
+        <button
+          class="nav-toggle js-only"
+          id="navToggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="navLinks"
+        >
+          <span aria-hidden="true"></span><span aria-hidden="true"></span
+          ><span class="sr-only">Menu</span>
+        </button>
       </div>
     </nav>
     <main id="main">
