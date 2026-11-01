@@ -1,0 +1,42 @@
+{
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-11-01T12:59:40.794Z",
+        "reason": "owner pinned the existing theme; Inter / Inter Tight are the site's self-hosted incumbent faces"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "styles.css"
+        ],
+        "createdAt": "2026-11-01T12:59:51.155Z",
+        "reason": "owner pinned the existing 2 Founders theme (cream #faf8f4, lime, coral, ink) in chat"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-01T13:02:52.858Z",
+        "reason": "owner pinned the existing 2 Founders theme (cream #faf8f4, lime, coral, ink) in chat"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-01T13:02:52.877Z",
+        "reason": "static-scan false positive: rendered detect on http://localhost:8000 reports no cramped-padding; .facts rows carry 0.8rem padding-block"
+      }
+    ]
+  }
+}

@@ -2,3 +2,4 @@ node_modules/
 .vercel/
 test-results/
 .DS_Store
+.impeccable/review/
