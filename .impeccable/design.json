@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-01T13:30:00Z",
+  "generatedAt": "2026-11-01T15:00:00Z",
   "title": "Design System: 2 Founders",
   "extensions": {
     "colorMeta": {
@@ -198,16 +198,72 @@
           "rgba(250, 248, 244, 0.52)",
           "rgba(250, 248, 244, 0.72)"
         ]
+      },
+      "frame-screen": {
+        "role": "neutral",
+        "displayName": "Frame Screen",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#ffffff"
+        ]
+      },
+      "frame-chrome": {
+        "role": "neutral",
+        "displayName": "Frame Chrome",
+        "canonical": "oklch(94.9% 0.009 84.6)",
+        "tonalRamp": [
+          "#0c0b09",
+          "#262522",
+          "#43413d",
+          "#63605b",
+          "#84817b",
+          "#a7a49e",
+          "#cbc8c1",
+          "#f1eee7"
+        ]
+      },
+      "frame-dot": {
+        "role": "neutral",
+        "displayName": "Frame Dot",
+        "canonical": "oklch(86.9% 0.016 84.6)",
+        "tonalRamp": [
+          "#0c0b08",
+          "#272521",
+          "#44423c",
+          "#64615a",
+          "#85827a",
+          "#a9a59c",
+          "#d8d3c8",
+          "#f3eee3"
+        ]
+      },
+      "frame-edge": {
+        "role": "neutral",
+        "displayName": "Frame Edge",
+        "canonical": "rgba(20, 20, 20, 0.14)",
+        "tonalRamp": [
+          "rgba(20, 20, 20, 0.04)",
+          "rgba(20, 20, 20, 0.08)",
+          "rgba(20, 20, 20, 0.14)",
+          "rgba(20, 20, 20, 0.24)",
+          "rgba(20, 20, 20, 0.36)",
+          "rgba(20, 20, 20, 0.52)",
+          "rgba(20, 20, 20, 0.72)",
+          "rgba(20, 20, 20, 0.88)"
+        ]
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Hero headline only, uppercase; phones clamp(2.6rem, 14.2vw, 5rem) at 0.92."
-      },
-      "giant": {
-        "displayName": "Giant",
-        "purpose": "One per project chapter, the project name, uppercase, fitted to container width by character count --n."
+        "purpose": "Hero headline only, two lines, uppercase; phones clamp(2.5rem, 12.6vw, 5rem) at 0.92."
       },
       "headline-l": {
         "displayName": "Headline L",
@@ -215,23 +271,31 @@
       },
       "headline-m": {
         "displayName": "Headline M",
-        "purpose": "Section statements, max ~13em."
+        "purpose": "Section statements: work, services, how it works."
+      },
+      "product-name": {
+        "displayName": "Product Name",
+        "purpose": "One per work slide, sentence case."
+      },
+      "headline-s": {
+        "displayName": "Headline S",
+        "purpose": "FAQ heading."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Column heads in three-up lists."
+        "purpose": "Heads of the three ways to hire; fork heads use clamp(1.3rem, 2vw, 1.6rem)."
       },
-      "pitch": {
-        "displayName": "Pitch",
-        "purpose": "Opening sentence of each chapter, max 30ch."
+      "title-s": {
+        "displayName": "Title S",
+        "purpose": "Step heads."
       },
       "lede": {
         "displayName": "Lede",
-        "purpose": "First paragraph under a headline, muted."
+        "purpose": "First paragraph under a headline and the hero offer, muted."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Running copy at 36-58ch; 16px on phones."
+        "purpose": "Running copy at 36-64ch; 16px on phones."
       },
       "button": {
         "displayName": "Button",
@@ -239,19 +303,39 @@
       },
       "label-mono": {
         "displayName": "Label Mono",
-        "purpose": "IST clock and drawing labels only (drawing labels 14px in drawing units, 19.5px on phones)."
+        "purpose": "IST clock (0.82rem) and work counter (0.95rem); drawing labels 15px in drawing units, 19.5px on phones."
+      },
+      "url-mono": {
+        "displayName": "URL Mono",
+        "purpose": "Product name and kind in the browser frame's title bar."
       },
       "wordmark": {
         "displayName": "Wordmark",
         "purpose": "Footer 2 Founders, edge to edge, once."
       }
     },
-    "shadows": [],
+    "shadows": [
+      {
+        "name": "frame-on-paper",
+        "value": "0 2px 4px rgba(20, 20, 20, 0.08), 0 24px 48px -18px rgba(20, 20, 20, 0.35)",
+        "purpose": "Browser frames on cream, including the hero deck."
+      },
+      {
+        "name": "frame-on-ink",
+        "value": "0 30px 60px -24px rgba(0, 0, 0, 0.6)",
+        "purpose": "Browser frames on the ink work stage (edge rgba(250, 248, 244, 0.12))."
+      },
+      {
+        "name": "outline-ring",
+        "value": "inset 0 0 0 1.5px #141414",
+        "purpose": "Border of the outline pill; not elevation."
+      }
+    ],
     "motion": [
       {
         "name": "ease-out",
         "value": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "purpose": "House easing for pills, arrows, pings and drawing ink-in."
+        "purpose": "House easing for pills, arrows, pings, deck, FAQ marker and drawing ink-in."
       },
       {
         "name": "thread-intro",
@@ -264,9 +348,29 @@
         "purpose": "Thread follows scroll."
       },
       {
+        "name": "deck-rotate",
+        "value": "every 3400ms; card transform 900ms ease-out, opacity 600ms; front caption fades 400ms after 350ms",
+        "purpose": "Hero deck brings the next product forward; paused on hover, focus, off-screen and reduced motion."
+      },
+      {
+        "name": "work-pin",
+        "value": "section height 100svh + (n - 1) x 70svh; sticky 100svh stage; track translate3d(-progress x travel)",
+        "purpose": "From 961px with motion welcome, vertical scroll walks the track one product per stop."
+      },
+      {
+        "name": "rail-progress",
+        "value": "coral 2px line, transform scaleX(progress) from the left",
+        "purpose": "Work stage progress."
+      },
+      {
+        "name": "slide-info-fade",
+        "value": "opacity 350ms ease",
+        "purpose": "Non-current slides hide their info so neighbours show only their screen."
+      },
+      {
         "name": "ink-in",
-        "value": "1300ms stroke-dashoffset 1 to 0, 45ms stagger per element; labels and dashes fade 600ms after 400ms",
-        "purpose": "Line drawings ink in when 15% inside the viewport."
+        "value": "1300ms stroke-dashoffset 1 to 0, 45ms stagger; labels fade 600ms after 400ms",
+        "purpose": "Line drawings and the fork ink in when 15% inside the viewport."
       },
       {
         "name": "pill-lift",
@@ -274,22 +378,26 @@
         "purpose": "Button hover."
       },
       {
+        "name": "faq-toggle",
+        "value": "vertical bar rotate 90deg to 0 over 250ms ease-out",
+        "purpose": "FAQ plus turns into minus."
+      },
+      {
         "name": "status-ping",
         "value": "2.4s ring scale 0.5 to 1.6, opacity 0.7 to 0, infinite",
         "purpose": "Open-for-projects dot."
       },
       {
-        "name": "follow-nudge",
-        "value": "2.2s, 4px downward nudge at 30%",
-        "purpose": "Follow the thread cue arrow."
-      },
-      {
         "name": "reduced-motion",
-        "value": "thread fully drawn, drawings complete, ping and nudge off, no smooth scroll",
+        "value": "thread fully drawn, deck static, work stage as native snap scroller, drawings complete, ping and transitions off, no smooth scroll",
         "purpose": "prefers-reduced-motion: reduce."
       }
     ],
     "breakpoints": [
+      {
+        "name": "pin",
+        "value": "961px (min-width)"
+      },
       {
         "name": "tablet",
         "value": "960px"
@@ -302,20 +410,44 @@
   },
   "components": [
     {
+      "name": "Ink and Outline Pills",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "Primary (ink) and secondary (outline) actions on cream, as in the hero.",
+      "html": "<div class=\"ds-cream-ground\"><a class=\"ds-btn ds-btn-ink\" href=\"#\">Start a project<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M7 17 17 7M8 7h9v9\"/></svg></a><a class=\"ds-btn ds-btn-line\" href=\"#\">See what we've shipped<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 4v15m-6-6 6 6 6-6\"/></svg></a></div>",
+      "css": ".ds-btn { display:inline-flex; align-items:center; gap:0.6rem; padding:0.95rem 1.45rem; border:0; border-radius:999px; font:600 1rem/1 Inter, system-ui, sans-serif; text-decoration:none; cursor:pointer; transition:background-color 0.2s, color 0.2s, transform 0.2s cubic-bezier(0.16,1,0.3,1); } .ds-btn svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; transition:transform 0.25s cubic-bezier(0.16,1,0.3,1); } .ds-btn:hover { transform:translateY(-2px); } .ds-btn:hover svg { transform:translate(2px,-2px); } .ds-btn:active { transform:none; } .ds-btn:focus-visible { outline:3px solid #e8552c; outline-offset:4px; } .ds-cream-ground { background:#faf8f4; padding:32px; display:flex; flex-wrap:wrap; gap:0.75rem; } .ds-btn-ink { background:#141414; color:#faf8f4; } .ds-btn-ink:hover { background:#2a2a28; } .ds-btn-line { background:transparent; color:#141414; box-shadow:inset 0 0 0 1.5px #141414; } .ds-btn-line:hover { background:#141414; color:#faf8f4; }"
+    },
+    {
       "name": "Lime Pill Button",
       "kind": "button",
       "refersTo": "button-lime",
-      "description": "The action on ink fields and the enquiry submit.",
-      "html": "<div class=\"ds-ink-ground\"><a class=\"ds-btn ds-btn-lime\" href=\"#\">See Framecast<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M7 17 17 7M8 7h9v9\"/></svg></a></div>",
-      "css": ".ds-btn { display:inline-flex; align-items:center; gap:0.6rem; padding:0.95rem 1.45rem; border:0; border-radius:999px; font:600 1rem/1 Inter, system-ui, sans-serif; text-decoration:none; cursor:pointer; transition:background-color 0.2s, transform 0.2s cubic-bezier(0.16,1,0.3,1); } .ds-btn svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; transition:transform 0.25s cubic-bezier(0.16,1,0.3,1); } .ds-btn:hover { transform:translateY(-2px); } .ds-btn:hover svg { transform:translate(2px,-2px); } .ds-btn:active { transform:none; } .ds-btn:focus-visible { outline:3px solid #e8552c; outline-offset:4px; } .ds-ink-ground { background:#141414; padding:32px; } .ds-btn-lime { background:#c9f24b; color:#141414; } .ds-btn-lime:hover { background:#b9e534; }"
+      "description": "The action on ink: each live product's link and the enquiry submit.",
+      "html": "<div class=\"ds-ink-ground\"><a class=\"ds-btn ds-btn-lime\" href=\"#\">Open ExpenseWaale<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M7 17 17 7M8 7h9v9\"/></svg></a></div>",
+      "css": ".ds-btn { display:inline-flex; align-items:center; gap:0.6rem; padding:0.95rem 1.45rem; border:0; border-radius:999px; font:600 1rem/1 Inter, system-ui, sans-serif; text-decoration:none; cursor:pointer; transition:background-color 0.2s, color 0.2s, transform 0.2s cubic-bezier(0.16,1,0.3,1); } .ds-btn svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; transition:transform 0.25s cubic-bezier(0.16,1,0.3,1); } .ds-btn:hover { transform:translateY(-2px); } .ds-btn:hover svg { transform:translate(2px,-2px); } .ds-btn:active { transform:none; } .ds-btn:focus-visible { outline:3px solid #e8552c; outline-offset:4px; } .ds-ink-ground { background:#141414; padding:32px; } .ds-btn-lime { background:#c9f24b; color:#141414; } .ds-btn-lime:hover { background:#b9e534; }"
     },
     {
-      "name": "Ink Pill Button",
-      "kind": "button",
-      "refersTo": "button-ink",
-      "description": "The action on cream fields, including the header's Start a project.",
-      "html": "<div class=\"ds-cream-ground\"><a class=\"ds-btn ds-btn-ink\" href=\"#\">Open StockTax Pro<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M7 17 17 7M8 7h9v9\"/></svg></a> <a class=\"ds-btn ds-btn-ink ds-btn-small\" href=\"#\">Start a project</a></div>",
-      "css": ".ds-btn { display:inline-flex; align-items:center; gap:0.6rem; padding:0.95rem 1.45rem; border:0; border-radius:999px; font:600 1rem/1 Inter, system-ui, sans-serif; text-decoration:none; cursor:pointer; transition:background-color 0.2s, transform 0.2s cubic-bezier(0.16,1,0.3,1); } .ds-btn svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; transition:transform 0.25s cubic-bezier(0.16,1,0.3,1); } .ds-btn:hover { transform:translateY(-2px); } .ds-btn:hover svg { transform:translate(2px,-2px); } .ds-btn:active { transform:none; } .ds-btn:focus-visible { outline:3px solid #e8552c; outline-offset:4px; } .ds-cream-ground { background:#faf8f4; padding:32px; display:flex; gap:16px; align-items:center; } .ds-btn-ink { background:#141414; color:#faf8f4; } .ds-btn-ink:hover { background:#2a2a28; } .ds-btn-small { padding:0.7rem 1.1rem; font-size:0.92rem; }"
+      "name": "Work Stage Controls",
+      "kind": "custom",
+      "refersTo": "button-round",
+      "description": "Mono counter, round prev/next buttons, coral progress line and named rail on the ink work stage.",
+      "html": "<div class=\"ds-stage\"><div class=\"ds-nav\"><p class=\"ds-count\"><span>03</span> / 06</p><button class=\"ds-round\" type=\"button\" aria-label=\"Previous project\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M15 5l-7 7 7 7\"/></svg></button><button class=\"ds-round\" type=\"button\" aria-label=\"Next project\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M9 5l7 7-7 7\"/></svg></button></div><div class=\"ds-rail\"><span class=\"ds-fill\"></span></div><ol class=\"ds-ticks\"><li><button type=\"button\">Framecast</button></li><li><button type=\"button\">AI Video Editor</button></li><li><button type=\"button\" aria-current=\"true\">ExpenseWaale</button></li><li><button type=\"button\">StockTax Pro</button></li></ol></div>",
+      "css": ".ds-stage { background:#141414; color:#faf8f4; padding:32px; font:400 17px/1.6 Inter, system-ui, sans-serif; } .ds-nav { display:flex; align-items:center; gap:0.75rem; justify-content:flex-end; } .ds-count { margin:0 0.5rem 0 0; font:500 0.95rem 'JetBrains Mono', ui-monospace, monospace; color:#bcb7ac; font-variant-numeric:tabular-nums; } .ds-count span { color:#faf8f4; } .ds-round { display:grid; place-items:center; width:48px; height:48px; border:1px solid rgba(250,248,244,0.16); border-radius:50%; background:transparent; color:#faf8f4; cursor:pointer; transition:background-color 0.2s, border-color 0.2s; } .ds-round:hover { background:#c9f24b; border-color:#c9f24b; color:#141414; } .ds-round:focus-visible { outline:3px solid #e8552c; outline-offset:4px; } .ds-round svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; } .ds-rail { position:relative; height:2px; margin-top:32px; background:rgba(250,248,244,0.16); } .ds-fill { position:absolute; inset:0; background:#e8552c; transform:scaleX(0.5); transform-origin:left center; } .ds-ticks { display:grid; grid-template-columns:repeat(4,1fr); margin:0.85rem 0 0; padding:0; list-style:none; } .ds-ticks button { padding:0.25rem 0; border:0; background:none; color:#bcb7ac; font:400 0.88rem Inter, system-ui, sans-serif; text-align:left; cursor:pointer; } .ds-ticks button:hover, .ds-ticks button[aria-current=\"true\"] { color:#faf8f4; } .ds-ticks button[aria-current=\"true\"]::before { content:''; display:inline-block; width:7px; height:7px; margin-right:0.45rem; border-radius:50%; background:#e8552c; vertical-align:0.1em; }"
+    },
+    {
+      "name": "Browser Frame",
+      "kind": "card",
+      "refersTo": "frame",
+      "description": "The only lifted surface: a real product screen under a title bar with window dots and a mono URL line.",
+      "html": "<div class=\"ds-paper\"><span class=\"ds-frame\"><span class=\"ds-frame-bar\"><i></i><i></i><i></i><span class=\"ds-frame-url\">Framecast · live site</span></span><span class=\"ds-frame-body\"></span></span></div>",
+      "css": ".ds-paper { background:#faf8f4; padding:40px; } .ds-frame { display:block; max-width:420px; overflow:hidden; background:#fff; border:1px solid rgba(20,20,20,0.14); border-radius:14px; box-shadow:0 2px 4px rgba(20,20,20,0.08), 0 24px 48px -18px rgba(20,20,20,0.35); transition:border-color 0.2s; } .ds-frame:hover { border-color:#e8552c; } .ds-frame-bar { display:flex; align-items:center; gap:6px; height:30px; padding:0 12px; background:#f1eee7; border-bottom:1px solid rgba(20,20,20,0.08); } .ds-frame-bar i { width:9px; height:9px; border-radius:50%; background:#d8d3c8; } .ds-frame-url { margin-left:0.6rem; overflow:hidden; font:500 11.5px 'JetBrains Mono', ui-monospace, monospace; color:#55524c; white-space:nowrap; text-overflow:ellipsis; } .ds-frame-body { display:block; aspect-ratio:16/10; background:linear-gradient(#fff,#f6f4ef); }"
+    },
+    {
+      "name": "Status Chip",
+      "kind": "chip",
+      "refersTo": "status-chip",
+      "description": "Product status on the ink stage; lime pip when publicly live, Ash when private.",
+      "html": "<div class=\"ds-ink\"><p class=\"ds-status is-live\"><span class=\"ds-pip\"></span>Live web app</p><p class=\"ds-status\"><span class=\"ds-pip\"></span>Client build · private</p></div>",
+      "css": ".ds-ink { background:#141414; color:#faf8f4; padding:32px; display:flex; gap:0.75rem; font:400 17px/1.6 Inter, system-ui, sans-serif; } .ds-status { display:inline-flex; align-items:center; gap:0.5rem; margin:0; padding:0.35rem 0.8rem; border:1px solid rgba(250,248,244,0.16); border-radius:999px; font-size:0.88rem; } .ds-pip { width:8px; height:8px; border-radius:50%; background:#bcb7ac; } .ds-status.is-live .ds-pip { background:#c9f24b; }"
     },
     {
       "name": "Choice Chips",
@@ -337,8 +469,8 @@
       "name": "Header Bar",
       "kind": "nav",
       "refersTo": "logo",
-      "description": "Ink logo block, plain links, live status with IST clock, ink pill.",
-      "html": "<div class=\"ds-bar\"><a class=\"ds-logo\" href=\"#\">2<span>_</span>founders</a><nav class=\"ds-nav\"><a href=\"#\">Work</a><a href=\"#\">How we work</a><a href=\"#\">Contact</a></nav><p class=\"ds-status\"><span class=\"ds-dot\"></span><span>Open for projects</span><span class=\"ds-time\">IST 18:42</span></p><a class=\"ds-pill\" href=\"#\">Start a project</a></div>",
+      "description": "Ink logo block, four plain links, live status with IST clock, small ink pill.",
+      "html": "<div class=\"ds-bar\"><a class=\"ds-logo\" href=\"#\">2<span>_</span>founders</a><nav class=\"ds-nav\"><a href=\"#\">Work</a><a href=\"#\">Services</a><a href=\"#\">How it works</a><a href=\"#\">Contact</a></nav><p class=\"ds-status\"><span class=\"ds-dot\"></span><span>Open for projects</span><span class=\"ds-time\">IST 18:42</span></p><a class=\"ds-pill\" href=\"#\">Start a project</a></div>",
       "css": ".ds-bar { display:flex; align-items:center; gap:2rem; height:68px; padding:0 24px; background:#faf8f4; color:#141414; font:400 17px/1.6 Inter, system-ui, sans-serif; } .ds-logo { font:800 1.15rem/1 'Inter Tight', Inter, sans-serif; letter-spacing:-0.03em; text-decoration:none; padding:0.55rem 0.8rem 0.6rem; background:#141414; color:#faf8f4; border-radius:10px; } .ds-logo span { color:#c9f24b; } .ds-nav { display:flex; gap:1.75rem; font-size:0.95rem; } .ds-nav a { color:inherit; text-decoration:none; } .ds-nav a:hover { text-decoration:underline; text-underline-offset:0.22em; } .ds-status { display:inline-flex; align-items:center; gap:0.55rem; margin:0 0 0 auto; font-size:0.9rem; white-space:nowrap; } .ds-dot { position:relative; width:10px; height:10px; border-radius:50%; background:#c9f24b; border:1.5px solid #3d5200; } .ds-dot::after { content:''; position:absolute; inset:-5px; border-radius:50%; border:1.5px solid #3d5200; opacity:0; animation:ds-ping 2.4s cubic-bezier(0.16,1,0.3,1) infinite; } @keyframes ds-ping { 0% { transform:scale(0.5); opacity:0.7; } 100% { transform:scale(1.6); opacity:0; } } .ds-time { font:500 0.82rem 'JetBrains Mono', ui-monospace, monospace; color:#55524c; font-variant-numeric:tabular-nums; } .ds-pill { padding:0.7rem 1.1rem; border-radius:999px; background:#141414; color:#faf8f4; font:600 0.92rem/1 Inter, sans-serif; text-decoration:none; } .ds-pill:hover { background:#2a2a28; } .ds-bar a:focus-visible { outline:3px solid #e8552c; outline-offset:4px; border-radius:4px; }"
     },
     {
@@ -350,64 +482,66 @@
       "css": ".ds-thread { width:100%; max-width:480px; background:#faf8f4; overflow:visible; } .ds-thread-line { fill:none; stroke:#e8552c; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:600; stroke-dashoffset:600; animation:ds-draw 1.6s cubic-bezier(0.16,1,0.3,1) forwards; } .ds-tip-ring { fill:#faf8f4; stroke:#e8552c; stroke-width:2; } .ds-tip-dot { fill:#e8552c; } @keyframes ds-draw { to { stroke-dashoffset:0; } } @media (prefers-reduced-motion: reduce) { .ds-thread-line { animation:none; stroke-dashoffset:0; } }"
     },
     {
-      "name": "Hairline Drawing",
+      "name": "Steps and FAQ",
       "kind": "custom",
-      "refersTo": "ink",
-      "description": "A project diagram in 1.3px strokes with one coral hot element and mono labels.",
-      "html": "<svg class=\"ds-drawing\" viewBox=\"0 0 320 180\" role=\"img\" aria-label=\"Line drawing sample\"><rect x=\"10\" y=\"10\" width=\"300\" height=\"130\" rx=\"10\"/><rect class=\"ds-hot\" x=\"26\" y=\"24\" width=\"44\" height=\"18\" rx=\"9\"/><circle cx=\"90\" cy=\"90\" r=\"24\"/><path class=\"ds-dash\" d=\"M130 90h80\"/><rect x=\"220\" y=\"60\" width=\"70\" height=\"60\" rx=\"6\"/><text x=\"34\" y=\"37\">LIVE</text><text x=\"10\" y=\"166\">16:9 · YouTube</text></svg>",
-      "css": ".ds-drawing { width:100%; max-width:420px; background:#faf8f4; color:#141414; fill:none; stroke:currentColor; stroke-width:1.3; stroke-linecap:round; stroke-linejoin:round; overflow:visible; } .ds-drawing text { fill:currentColor; stroke:none; font:500 11px 'JetBrains Mono', ui-monospace, monospace; } .ds-drawing .ds-hot { stroke:#e8552c; } .ds-drawing .ds-dash { stroke-dasharray:5 6; }"
+      "refersTo": "coral-ink",
+      "description": "Coral-ringed step numerals and details/summary rows with a drawn plus that turns to a minus.",
+      "html": "<div class=\"ds-how\"><ol class=\"ds-steps\"><li><h3>You send the brief</h3><p>A few lines on what you need is enough.</p></li><li><h3>Scope, price, timeline</h3><p>All three in writing before anything starts.</p></li></ol><details class=\"ds-faq\" open><summary>How do you price a project?</summary><p>A fixed-scope project gets one fixed price, agreed before we start.</p></details><details class=\"ds-faq\"><summary>What happens after launch?</summary><p>You own the code, the deployment and the notes.</p></details></div>",
+      "css": ".ds-how { background:#faf8f4; color:#141414; padding:32px; font:400 17px/1.6 Inter, system-ui, sans-serif; } .ds-steps { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; margin:0 0 2.5rem; padding:0; list-style:none; counter-reset:step; } .ds-steps li { counter-increment:step; } .ds-steps li::before { content:counter(step); display:grid; place-items:center; width:2.5rem; height:2.5rem; margin-bottom:1rem; border:1.5px solid #e8552c; border-radius:50%; font:700 1rem 'Inter Tight', Inter, sans-serif; color:#b83e18; } .ds-steps h3 { margin:0; font:700 1.25rem 'Inter Tight', Inter, sans-serif; letter-spacing:-0.02em; } .ds-steps p { margin:0.5rem 0 0; color:#55524c; font-size:0.97rem; } .ds-faq { border-top:1px solid #e2ddd2; } .ds-faq:last-child { border-bottom:1px solid #e2ddd2; } .ds-faq summary { position:relative; padding:1.1rem 3rem 1.1rem 0; font-weight:600; font-size:1.08rem; list-style:none; cursor:pointer; } .ds-faq summary::-webkit-details-marker { display:none; } .ds-faq summary::before, .ds-faq summary::after { content:''; position:absolute; top:50%; right:0.4rem; width:14px; height:2px; background:#141414; transition:transform 0.25s cubic-bezier(0.16,1,0.3,1); } .ds-faq summary::after { transform:rotate(90deg); } .ds-faq[open] summary::after { transform:rotate(0deg); } .ds-faq summary:focus-visible { outline:3px solid #e8552c; outline-offset:4px; border-radius:4px; } .ds-faq p { margin:0; padding-bottom:1.25rem; color:#55524c; }"
     }
   ],
   "narrative": {
     "northStar": "The Thread Through the Work",
-    "overview": "**Creative North Star: \"The Thread Through the Work\"**\n\nA cream sheet of paper and full-bleed ink fields, set in poster-scale Inter Tight, with one 2px coral line drawn down the whole page as the visitor scrolls. The thread enters at the top-left of the hero, crosses in front of and behind the headline letters, curls once around the last word, then runs through every shipped project in turn, down the gutter between copy and drawing, until it lands under the contact heading. Everything else stays quiet so the line can lead: no cards, no shadows, no imagery beyond hairline line drawings that ink themselves in when their chapter arrives.\n\nDensity is editorial and low. Each project is a chapter with a giant uppercase title fitted to the container width, a short pitch, a two-row facts ledger, one action, and one drawing. Chapters alternate cream and ink so the scroll reads as a rhythm of pages. Small \"studio is open\" details (a pinging lime status dot, a live IST clock in mono, a full-width wordmark at the foot) make the two-person team feel present without naming anyone.\n\nThe palette is the owner's pinned incumbent theme and is committed: cream, ink, coral, lime, self-hosted Inter / Inter Tight / JetBrains Mono.",
+    "overview": "**Creative North Star: \"The Thread Through the Work\"**\n\n**Creative North Star: \"The Thread Through the Work\"**\n\nA cream sheet of paper and two full-bleed ink fields, set in poster-scale Inter Tight, with one 2px coral line drawn down the whole page as the visitor scrolls. The thread enters at the top-left of the hero, passes in front of \"SHIP\", curls once after \"FOR.\", drops between the offer and its buttons, and dives under the work stage before running on through the services fork and the hiring steps to the contact heading. The work itself is shown, not diagrammed: real screenshots of each shipped product sit inside quiet browser frames, the only objects on the page that lift off the paper. A private client build keeps its hairline line drawing in the same frame, so the absence of a screenshot reads as discretion rather than a gap.\n\nDensity is low and the page moves in two gestures. In the hero, a fan of six framed screens rotates one product to the front at a time. In the ink work stage, scrolling walks through the products one per stop, each a screenshot beside its name, status, brief and what was built. Everything after that is plain lists separated by rules, never boxed. Small \"studio is open\" details (a pinging lime status dot, a live IST clock in mono, a full-width wordmark at the foot) make the two-person team feel present without naming anyone.\n\nThe palette is the owner's pinned incumbent theme and is committed: cream, ink, coral, lime, self-hosted Inter / Inter Tight / JetBrains Mono.",
     "keyCharacteristics": [
       "One continuous coral thread with a ringed tip, drawn to scroll position.",
-      "Poster-scale uppercase Inter Tight 800 with tight negative tracking.",
-      "Hairline (1.3px) ink line drawings with mono labels, inked in on view.",
-      "Cream and ink fields alternate full-bleed; no cards, no shadows.",
+      "Poster-scale uppercase Inter Tight 800 with tight negative tracking in the hero; sentence case elsewhere.",
+      "Real product screenshots in browser frames; the frame is the only lifted surface.",
+      "Cream paper with two full-bleed ink fields (work stage, contact); lists use rules, not cards.",
       "Lime is rare and means \"live, available, act here\"."
     ],
     "rules": [
       {
         "name": "The One Thread Rule",
-        "body": "Coral draws exactly one continuous path per page (plus the fork branches it splits into). It is never a section background, a button fill or a decorative swash elsewhere.",
+        "body": "Coral draws exactly one continuous path per page (plus the fork branches it splits into). Elsewhere coral appears only as small marks of position or sequence: the rail progress line and its dot, step rings, count separators, a hovered frame edge. It is never a section background, a button fill or a decorative swash.",
         "section": "colors"
       },
       {
         "name": "The Lime Means Live Rule",
-        "body": "Lime marks something that is live, available, selected, or the action to take on an ink field. The marker block behind \"A TEAM\" is the one carried-over highlight; it is not a reusable heading treatment.",
+        "body": "Lime marks something live, available or selected, or the action to take on an ink field. The block behind \"WE SHIP\" is the one highlight in the headline, chosen by the owner; it is not a reusable heading treatment.",
         "section": "colors"
       },
       {
         "name": "The Poster Case Rule",
-        "body": "Uppercase belongs to the hero, the chapter giants and the wordmark. Section statements, titles and copy stay in sentence case.",
+        "body": "Uppercase belongs to the hero headline and the wordmark. Section statements, product names, titles and copy stay in sentence case.",
         "section": "typography"
       },
       {
         "name": "The Mono Is Machinery Rule",
-        "body": "JetBrains Mono appears only where a machine would print: times and labels inside drawings. It is never a heading or a label above one.",
+        "body": "JetBrains Mono appears only where a machine would print: the clock, the slide counter, browser URL bars and labels inside drawings. It is never a heading or a label above one.",
         "section": "typography"
       },
       {
-        "name": "The Paper Rule",
-        "body": "Surfaces never lift. Hover is a 2px translate on pills, a colour shift on borders, or an underline; never a shadow.",
+        "name": "The Only Screens Lift Rule",
+        "body": "A soft shadow belongs to a browser frame holding a product screen and to nothing else. Pills, chips, rows and sections respond to hover with a 2px rise, a fill or a colour shift, never a shadow. The outline pill's 1.5px inset ring is a border, not elevation.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "**Do** route new sections through the thread by adding `[data-tp]` markers in the gutter or margin, so the single coral path keeps running.",
-      "**Do** keep coral as a line (2.2px thread, hot strokes) and use Deep Coral (#b83e18) when coral must be read as text on cream.",
-      "**Do** give each new shipped project a chapter: giant uppercase name, pitch, facts ledger, one action, one hairline drawing; alternate cream and ink.",
-      "**Do** use the lime pill on ink fields and the ink pill on cream fields.",
-      "**Do** separate list items with top rules, not boxes.",
-      "**Do** honour reduced motion: thread fully drawn, drawings complete, no pings or nudges."
+      "**Do** route new sections through the thread by adding `[data-tp]` markers in the gutter or margin, marking type-weaving markers `data-wide` so phones keep the margin rail.",
+      "**Do** keep coral as a line or a small mark of position and sequence, and use Deep Coral (#b83e18) when coral must be read as text on cream.",
+      "**Do** show each new shipped product as a real screenshot in the browser frame, with its origin recorded beside the file, and add it to both the deck and the work stage.",
+      "**Do** use the hairline drawing in the frame when a build is private, and say plainly that the screens stay with the client.",
+      "**Do** use the ink pill for the primary action and the outline pill for the secondary on cream; the lime pill on ink.",
+      "**Do** separate list items with rules, not boxes.",
+      "**Do** honour reduced motion: thread fully drawn, deck still, work stage as a native scroller, drawings complete, no pings."
     ],
     "donts": [
       "**Don't** add a second coral line, coral fills or coral backgrounds.",
-      "**Don't** use lime as decoration; it signals live, selected or \"act here\". Don't repeat the \"A TEAM\" marker block on other headings.",
-      "**Don't** add drop shadows, cards or bordered panels.",
-      "**Don't** use photography or stock imagery for project chapters; the drawing is the image.",
+      "**Don't** use lime as decoration; it signals live, selected or \"act here\". Don't repeat the \"WE SHIP\" marker block on other headings.",
+      "**Don't** put a shadow on anything but a browser frame, and don't box copy into cards or bordered panels.",
+      "**Don't** use stock photography, mockups or invented UI; every image is the product's own screen or its line drawing.",
+      "**Don't** caption the side cards of the deck; only the front card speaks.",
       "**Don't** set headings in JetBrains Mono, or put small labels above headings."
     ]
   }

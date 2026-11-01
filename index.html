@@ -47,7 +47,8 @@
         <a class="logo" href="#top" aria-label="2 Founders, back to top">2<span>_</span>founders</a>
         <nav class="nav" aria-label="Main">
           <a href="#work">Work</a>
-          <a href="#how">How we work</a>
+          <a href="#services">Services</a>
+          <a href="#how">How it works</a>
           <a href="#contact">Contact</a>
         </nav>
         <p class="status">
@@ -77,163 +78,115 @@
 
     <main id="main">
       <section class="hero" id="top" aria-labelledby="hero-title">
-        <i class="tp" data-tp style="--x: 2%; --y: 9%"></i>
+        <i class="tp tp-start" data-tp style="--x: 1.5%; --y: 6%"></i>
         <h1 id="hero-title" class="hero-title">
           <span class="line"
-            >We <span class="word">ship<i class="tp" data-tp data-front style="--x: 12%; --y: 46%"></i></span></span
+            ><span class="word mark">We ship<i class="tp" data-tp data-wide data-front style="--x: 52%; --y: 48%"></i></span> what you'd</span
           >
           <span class="line"
-            >what you'd <span class="word">hire<i class="tp" data-tp data-front style="--x: 58%; --y: 52%"></i></span
-          ></span>
-          <span class="line"
-            ><span class="word team">a team</span>
-            <span class="word">for.<i class="tp" data-tp data-front data-loop="0.32" style="--x: 128%; --y: 30%"></i></span></span
+            >hire a team
+            <span class="word">for.<i class="tp" data-tp data-wide data-front data-loop="0.3" style="--x: 126%; --y: 34%"></i></span></span
           >
         </h1>
-        <div class="hero-foot">
+        <div class="hero-row">
+          <i class="tp tp-row" data-tp data-wide style="--x: 63%; --y: 45%"></i>
           <p class="hero-offer">
-            Two developers on contract. We take a product, an AI workflow or an internal tool from the
-            first brief to the day it's live, and we write every line ourselves.
+            Two developers you can hire on contract or by the project. We build products, AI workflows and
+            internal tools from the first brief to launch, and we write every line ourselves.
           </p>
-          <a class="follow" href="#work"
-            >Follow the thread
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15m-6-6 6 6 6-6" /></svg
-          ></a>
-        </div>
-        <i class="tp tp-hero-end" data-tp style="--x: 82%; --y: 98%"></i>
-      </section>
-
-      <section class="brief" aria-labelledby="brief-title">
-        <div class="wrap brief-grid">
-          <div class="brief-copy">
-            <h2 id="brief-title" class="display-m">From a rough brief to something people use.</h2>
-            <p class="lede">
-              We've freelanced for over three years. When AI changed how software gets built, we rebuilt how
-              we work around it. Now two of us ship what used to take a team, and you talk directly to the
-              people writing the code.
-            </p>
-          </div>
-          <i class="tp" data-tp style="--x: 86%; --y: 30%"></i>
-          <div class="fork">
-            <svg class="fork-lines draw" viewBox="0 0 900 220" preserveAspectRatio="none" aria-hidden="true">
-              <path pathLength="1" d="M450 0 V60 C450 110 150 90 150 150 V220" />
-              <path pathLength="1" d="M450 60 V220" />
-              <path pathLength="1" d="M450 60 C450 110 750 90 750 150 V220" />
-            </svg>
-            <i class="tp" data-tp style="--x: 50%; --y: -80px"></i>
-            <i class="tp" data-tp style="--x: 50%; --y: 0%"></i>
-            <i class="tp" data-tp style="--x: 50%; --y: 40px"></i>
-            <i class="tp tp-gap" data-tp style="--y: 150px"></i>
-            <i class="tp tp-gap" data-tp style="--y: 100%"></i>
-            <ul class="fork-ends">
-              <li>
-                <h3>Products and web apps</h3>
-                <p>Full apps with accounts, shared data and exportable reports, built and deployed.</p>
-                <p class="proof">ExpenseWaale · StockTax Pro</p>
-              </li>
-              <li>
-                <h3>AI editors, agents and workflows</h3>
-                <p>Claude- and n8n-based systems that take repeat work off your team.</p>
-                <p class="proof">AI video editor · Assistant agent</p>
-              </li>
-              <li>
-                <h3>Desktop apps and extensions</h3>
-                <p>Native macOS tools and Chrome extensions that live where you already work.</p>
-                <p class="proof">Framecast · Liquid Signal</p>
-              </li>
-            </ul>
+          <div class="hero-actions">
+            <a class="btn btn-ink" href="#contact">Start a project<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg></a>
+            <a class="btn btn-line" href="#work">See what we've shipped<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15m-6-6 6 6 6-6" /></svg></a>
           </div>
         </div>
+        <p class="hero-facts">
+          Six products shipped<span aria-hidden="true">·</span>three built for clients<span aria-hidden="true">·</span>one
+          open-source Mac app<span aria-hidden="true">·</span>3+ years of contract work
+        </p>
+        <div class="deck" role="group" aria-label="Six products we've shipped">
+          <i class="tp" data-tp data-wide style="--x: 63%; --y: 30%"></i>
+            <a class="deck-card" href="#work-framecast" data-go="0" style="--i: 0">
+              <span class="frame"><span class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span class="frame-url">Framecast · live site</span></span><span class="frame-body"><img src="media/work/framecast-800.webp" srcset="media/work/framecast-800.webp 800w, media/work/framecast-1600.webp 1600w" sizes="(max-width: 960px) 90vw, 60vw" alt="" loading="eager" decoding="async" /></span></span>
+              <span class="deck-label"><span class="deck-name">Framecast</span><span class="deck-status">Open source · macOS</span></span>
+            </a>
+            <a class="deck-card" href="#work-editor" data-go="1" style="--i: 1">
+              <span class="frame"><span class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span class="frame-url">AI Video Editor · private client build</span></span><span class="frame-body frame-private"><svg class="editor-drawing" viewBox="0 0 640 420" aria-hidden="true" focusable="false">
+                  <rect x="70" y="64" width="78" height="138" rx="8" />
+                  <rect x="52" y="78" width="78" height="138" rx="8" />
+                  <rect x="34" y="92" width="78" height="138" rx="8" />
+                  <path d="m64 146 22 14-22 14Z" />
+                  <text x="30" y="262">Their reels</text>
+                  <path d="M170 160h40m-10-8 10 8-10 8" />
+                  <rect x="226" y="70" width="150" height="190" rx="6" />
+                  <path d="M246 98h80M246 130h108M246 148h92M246 180h108M246 198h70M246 230h100" />
+                  <text x="226" y="286">Style as skills</text>
+                  <path d="M392 160h40m-10-8 10 8-10 8" />
+                  <rect x="446" y="50" width="170" height="120" rx="6" />
+                  <rect x="462" y="64" width="138" height="78" rx="3" />
+                  <path d="m520 92 18 11-18 11Z" />
+                  <rect x="446" y="186" width="170" height="104" rx="6" />
+                  <path d="M458 206h40m6 0h60m6 0h28M458 236h70m6 0h34m6 0h30M458 266h24m6 0h96" />
+                  <path class="hot-line" d="M548 196v84" />
+                  <text x="446" y="316">Edits on style</text>
+                </svg></span></span>
+              <span class="deck-label"><span class="deck-name">AI Video Editor</span><span class="deck-status">Client build · private</span></span>
+            </a>
+            <a class="deck-card" href="#work-expensewaale" data-go="2" style="--i: 2">
+              <span class="frame"><span class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span class="frame-url">ExpenseWaale · web app</span></span><span class="frame-body"><img src="media/work/expensewaale-800.webp" srcset="media/work/expensewaale-800.webp 800w, media/work/expensewaale-1600.webp 1600w" sizes="(max-width: 960px) 90vw, 60vw" alt="" loading="eager" decoding="async" /></span></span>
+              <span class="deck-label"><span class="deck-name">ExpenseWaale</span><span class="deck-status">Live web app</span></span>
+            </a>
+            <a class="deck-card" href="#work-stocktax" data-go="3" style="--i: 3">
+              <span class="frame"><span class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span class="frame-url">StockTax Pro · web app</span></span><span class="frame-body"><img src="media/work/stocktax-800.webp" srcset="media/work/stocktax-800.webp 800w, media/work/stocktax-1600.webp 1600w" sizes="(max-width: 960px) 90vw, 60vw" alt="" loading="lazy" decoding="async" /></span></span>
+              <span class="deck-label"><span class="deck-name">StockTax Pro</span><span class="deck-status">Live · client build</span></span>
+            </a>
+            <a class="deck-card" href="#work-liquidsignal" data-go="4" style="--i: 4">
+              <span class="frame"><span class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span class="frame-url">Liquid Signal · Chrome Web Store</span></span><span class="frame-body"><img src="media/work/liquidsignal-800.webp" srcset="media/work/liquidsignal-800.webp 800w, media/work/liquidsignal-1600.webp 1600w" sizes="(max-width: 960px) 90vw, 60vw" alt="" loading="lazy" decoding="async" /></span></span>
+              <span class="deck-label"><span class="deck-name">Liquid Signal</span><span class="deck-status">Live · Chrome extension</span></span>
+            </a>
+            <a class="deck-card" href="#work-assistant" data-go="5" style="--i: 5">
+              <span class="frame"><span class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span class="frame-url">Assistant Agent · walkthrough</span></span><span class="frame-body"><img src="media/work/assistant-800.webp" srcset="media/work/assistant-800.webp 800w, media/work/assistant-1600.webp 1600w" sizes="(max-width: 960px) 90vw, 60vw" alt="" loading="lazy" decoding="async" /></span></span>
+              <span class="deck-label"><span class="deck-name">Assistant Agent</span><span class="deck-status">Client build · US</span></span>
+            </a>
+        </div>
+        <i class="tp tp-hero-end" data-tp style="--x: 50%; --y: 100%"></i>
       </section>
 
-      <section class="work" id="work" aria-labelledby="work-title">
-        <h2 id="work-title" class="sr-only">Work we've shipped</h2>
-
-        <!-- Framecast -->
-        <article class="chapter chapter-ink" aria-labelledby="p-framecast">
-          <div class="wrap">
-            <h3 id="p-framecast" class="giant" style="--n: 9">Framecast<i class="tp" data-tp data-loop="0.24" style="--x: 103%; --y: 22%"></i><i class="tp" data-tp data-front style="--x: 56%; --y: 58%"></i></h3>
-            <div class="chapter-body">
-              <i class="tp tp-gutter" data-tp style="--y: 0%"></i>
-              <i class="tp tp-gutter tp-gutter-end" data-tp></i>
-              <div class="chapter-copy">
-                <p class="pitch">
-                  When we started making videos, streaming software kept getting in the way. So we built our own
-                  studio for the Mac, and then open-sourced it.
-                </p>
-                <p>
-                  Framecast streams and records a landscape and a vertical show at the same time. An AI
-                  director listens to what you say and switches layouts and graphics as you reach each topic.
-                  Don't like a switch? One shortcut takes it back.
-                </p>
-                <dl class="facts">
-                  <div><dt>What it is</dt><dd>macOS app, free and open source</dd></div>
-                  <div><dt>Built for</dt><dd>Ourselves first, now anyone who streams</dd></div>
-                </dl>
-                <p class="links">
-                  <a class="btn btn-lime" href="https://dhananjaysarathe.github.io/framecast-site/" target="_blank" rel="noopener"
-                    >See Framecast<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg
-                  ></a>
-                  <a class="text-link" href="https://github.com/DhananjaySarathe/framecast-studio" target="_blank" rel="noopener">Source on GitHub</a>
-                </p>
-              </div>
-              <figure class="drawing">
-                <svg class="draw" viewBox="0 0 640 420" role="img" aria-labelledby="d-framecast">
-                  <title id="d-framecast">Line drawing: one presenter live on a 16:9 and a 9:16 canvas at once, with the undo shortcut keys.</title>
-                  <rect pathLength="1" x="20" y="20" width="600" height="320" rx="12" />
-                  <path pathLength="1" d="M300 340 290 384h60l-10-44M250 386h140" />
-                  <rect pathLength="1" x="50" y="56" width="340" height="191" rx="5" />
-                  <rect pathLength="1" x="220" y="80" width="150" height="96" rx="3" />
-                  <path pathLength="1" d="M236 100h80M236 116h110M236 132h64M236 148h96" />
-                  <circle pathLength="1" cx="140" cy="150" r="30" />
-                  <path pathLength="1" d="M86 247c4-50 104-50 108 0" />
-                  <rect pathLength="1" class="hot" x="64" y="68" width="44" height="18" rx="9" />
-                  <rect pathLength="1" x="430" y="56" width="110" height="191" rx="8" />
-                  <circle pathLength="1" cx="485" cy="128" r="20" />
-                  <path pathLength="1" d="M450 200c3-40 67-40 70 0M452 222h66M462 232h46" />
-                  <text x="72" y="81">LIVE</text>
-                  <text x="50" y="270">16:9 · YouTube</text>
-                  <text x="430" y="270">9:16 · Instagram</text>
-                  <path pathLength="1" d="M50 290h300a10 10 0 0 1 10 10v20a10 10 0 0 1-10 10H90l-16 12 4-12H50a10 10 0 0 1-10-10v-20a10 10 0 0 1 10-10Z" />
-                  <text x="62" y="316">“Share my screen.”</text>
-                  <rect pathLength="1" x="404" y="294" width="36" height="36" rx="7" />
-                  <rect pathLength="1" x="448" y="294" width="36" height="36" rx="7" />
-                  <rect pathLength="1" x="492" y="294" width="36" height="36" rx="7" />
-                  <rect pathLength="1" x="536" y="294" width="36" height="36" rx="7" />
-                  <text class="key" x="422" y="317">⌃</text>
-                  <text class="key" x="466" y="317">⌥</text>
-                  <text class="key" x="510" y="317">⌘</text>
-                  <text class="key" x="554" y="317">U</text>
-                </svg>
-              </figure>
+      <section class="work" id="work" aria-labelledby="work-title" style="--slides: 6">
+        <i class="tp" data-tp style="--x: 50%; --y: 0%"></i>
+        <div class="work-stage">
+          <div class="work-head">
+            <div>
+              <h2 id="work-title" class="display-m">Six products we've shipped.</h2>
+              <p class="work-sub">Five are live, so open them and click around. One stays with the client.</p>
+            </div>
+            <div class="work-nav">
+              <p class="work-count" aria-live="polite"><span data-count>01</span> / 06</p>
+              <button class="round-btn" type="button" data-prev aria-label="Previous project">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+              </button>
+              <button class="round-btn" type="button" data-next aria-label="Next project">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+              </button>
             </div>
           </div>
-        </article>
-
-        <!-- AI video editor -->
-        <article class="chapter" aria-labelledby="p-editor">
-          <div class="wrap">
-            <h3 id="p-editor" class="giant" style="--n: 9">AI Editor<i class="tp" data-tp data-loop="0.24" style="--x: -3%; --y: 26%"></i><i class="tp" data-tp data-front style="--x: 15%; --y: 58%"></i></h3>
-            <div class="chapter-body">
-              <i class="tp tp-gutter" data-tp style="--y: 0%"></i>
-              <i class="tp tp-gutter tp-gutter-end" data-tp></i>
-              <div class="chapter-copy">
-                <p class="pitch">
-                  A creator wanted every edit to look like theirs, every time, without briefing an editor from
-                  scratch.
-                </p>
-                <p>
-                  We went through their videos and reels, turned how they cut, caption and pace into a set of
-                  custom skills, and built a Claude-based editor around them. Raw footage goes in; an edit in
-                  their style comes out, consistently.
-                </p>
-                <dl class="facts">
-                  <div><dt>What it is</dt><dd>Claude-based AI video editor with custom skills</dd></div>
-                  <div><dt>Built for</dt><dd>A client. The code stays private.</dd></div>
+          <div class="work-viewport" tabindex="-1">
+            <ol class="work-track" aria-label="Shipped projects">
+            <li class="slide" id="work-framecast" aria-roledescription="slide" aria-label="1 of 6: Framecast">
+              <figure class="slide-shot"><span class="frame"><span class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span class="frame-url">Framecast · live site</span></span><span class="frame-body"><img src="media/work/framecast-800.webp" srcset="media/work/framecast-800.webp 800w, media/work/framecast-1600.webp 1600w" sizes="(max-width: 960px) 90vw, 60vw" alt="Framecast live demo: the same show on a 16:9 and a 9:16 canvas with the AI director panel" loading="lazy" decoding="async" /></span></span></figure>
+              <div class="slide-info">
+                <h3 class="slide-name">Framecast</h3>
+                <p class="slide-status is-live"><span class="status-pip" aria-hidden="true"></span>Open source · macOS</p>
+                <dl class="slide-story">
+                  <div><dt>The brief</dt><dd>Ours. We started making videos and every streaming app got in the way.</dd></div>
+                  <div><dt>What we built</dt><dd>A Mac studio that streams and records landscape and vertical at once, with an AI director that switches layouts and graphics as you talk.</dd></div>
                 </dl>
+                <p class="slide-meta">macOS app · built for ourselves, now anyone who streams</p>
+                <p class="links"><a class="btn btn-lime" href="https://dhananjaysarathe.github.io/framecast-site/" target="_blank" rel="noopener">See Framecast<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg></a>
+                    <a class="text-link" href="https://github.com/DhananjaySarathe/framecast-studio" target="_blank" rel="noopener">Source on GitHub</a></p>
               </div>
-              <figure class="drawing">
-                <svg class="draw" viewBox="0 0 640 420" role="img" aria-labelledby="d-editor">
+            </li>
+            <li class="slide" id="work-editor" aria-roledescription="slide" aria-label="2 of 6: AI Video Editor">
+              <figure class="slide-shot"><span class="frame"><span class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span class="frame-url">AI Video Editor · private client build</span></span><span class="frame-body frame-private"><svg class="draw editor-drawing" viewBox="0 0 640 420" role="img" aria-labelledby="d-editor">
                   <title id="d-editor">Line drawing: a stack of the client's reels feeds a page of style skills, which feeds an editor timeline that cuts in their style.</title>
                   <rect pathLength="1" x="70" y="64" width="78" height="138" rx="8" />
                   <rect pathLength="1" x="52" y="78" width="78" height="138" rx="8" />
@@ -252,260 +205,140 @@
                   <path pathLength="1" d="M458 206h40m6 0h60m6 0h28M458 236h70m6 0h34m6 0h30M458 266h24m6 0h96" />
                   <path pathLength="1" class="hot-line" d="M548 196v84" />
                   <text x="446" y="316">Edits on style</text>
-                </svg>
-              </figure>
-            </div>
-          </div>
-        </article>
-
-        <!-- ExpenseWaale -->
-        <article class="chapter chapter-ink" aria-labelledby="p-expense">
-          <div class="wrap">
-            <h3 id="p-expense" class="giant" style="--n: 12">ExpenseWaale<i class="tp" data-tp data-loop="0.24" style="--x: 102%; --y: 24%"></i><i class="tp" data-tp data-front style="--x: 72%; --y: 58%"></i></h3>
-            <div class="chapter-body">
-              <i class="tp tp-gutter" data-tp style="--y: 0%"></i>
-              <i class="tp tp-gutter tp-gutter-end" data-tp></i>
-              <div class="chapter-copy">
-                <p class="pitch">
-                  A bill-splitting app built to go head to head with the one everyone already uses, for
-                  flatmates, trips and office lunches.
-                </p>
-                <p>
-                  Keep a separate space for each group, split any expense equally, by shares or by percentage,
-                  and settle up in the fewest payments possible. Reports export as a PDF or a share link.
-                </p>
-                <dl class="facts">
-                  <div><dt>What it is</dt><dd>Web app for shared expenses</dd></div>
-                  <div><dt>Built for</dt><dd>Groups who are done with spreadsheets</dd></div>
+                </svg></span></span></figure>
+              <div class="slide-info">
+                <h3 class="slide-name">AI Video Editor</h3>
+                <p class="slide-status"><span class="status-pip" aria-hidden="true"></span>Client build · private</p>
+                <dl class="slide-story">
+                  <div><dt>The brief</dt><dd>A creator wanted every edit to look like theirs, without briefing an editor from scratch each time.</dd></div>
+                  <div><dt>What we built</dt><dd>We studied their videos and reels, wrote how they cut, caption and pace into custom Claude skills, and built an editor around them that edits in their style.</dd></div>
                 </dl>
-                <p class="links">
-                  <a class="btn btn-lime" href="https://expensewalle.vercel.app/" target="_blank" rel="noopener"
-                    >Open ExpenseWaale<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg
-                  ></a>
-                </p>
+                <p class="slide-meta">Claude-based AI editor · built for a content creator</p>
+                <p class="slide-private">The code and screens stay with the client. Ask us and we'll walk you through how it works.</p>
               </div>
-              <figure class="drawing">
-                <svg class="draw" viewBox="0 0 640 420" role="img" aria-labelledby="d-expense">
-                  <title id="d-expense">Line drawing: four friends owing each other six payments, simplified to two.</title>
-                  <path pathLength="1" d="M92 90H188M70 112V208M85.6 105.6 194.4 214.4M194.4 105.6 85.6 214.4M210 112V208M92 230H188" />
-                  <circle pathLength="1" cx="70" cy="90" r="22" />
-                  <circle pathLength="1" cx="210" cy="90" r="22" />
-                  <circle pathLength="1" cx="70" cy="230" r="22" />
-                  <circle pathLength="1" cx="210" cy="230" r="22" />
-                  <text class="mid" x="70" y="95">A</text>
-                  <text class="mid" x="210" y="95">R</text>
-                  <text class="mid" x="70" y="235">P</text>
-                  <text class="mid" x="210" y="235">S</text>
-                  <text x="56" y="290">Six debts</text>
-                  <path pathLength="1" d="M262 160h80m-10-8 10 8-10 8" />
-                  <circle pathLength="1" cx="430" cy="90" r="22" />
-                  <circle pathLength="1" cx="570" cy="90" r="22" />
-                  <circle pathLength="1" cx="430" cy="230" r="22" />
-                  <circle pathLength="1" cx="570" cy="230" r="22" />
-                  <text class="mid" x="430" y="95">A</text>
-                  <text class="mid" x="570" y="95">R</text>
-                  <text class="mid" x="430" y="235">P</text>
-                  <text class="mid" x="570" y="235">S</text>
-                  <path pathLength="1" class="hot-line" d="M430 208V112m-8 12 8-12 8 12" />
-                  <path pathLength="1" class="hot-line" d="M548 230H452m12-8-12 8 12 8" />
-                  <text x="402" y="290">Two payments</text>
-                  <path pathLength="1" d="M220 320h200v62l-14-8-14 8-14-8-14 8-14-8-14 8-14-8-14 8-14-8-14 8-14-8-14 8-14-8-14 8Z" />
-                  <text x="236" y="344">Pizza night</text>
-                  <text x="236" y="364">split 4 ways</text>
-                </svg>
-              </figure>
-            </div>
-          </div>
-        </article>
-
-        <!-- StockTax Pro -->
-        <article class="chapter" aria-labelledby="p-stocktax">
-          <div class="wrap">
-            <h3 id="p-stocktax" class="giant" style="--n: 12">StockTax Pro<i class="tp" data-tp data-front style="--x: 30%; --y: 52%"></i></h3>
-            <div class="chapter-body">
-              <i class="tp tp-gutter" data-tp style="--y: 0%"></i>
-              <i class="tp tp-gutter tp-gutter-end" data-tp></i>
-              <div class="chapter-copy">
-                <p class="pitch">
-                  A client needed Indian traders to see exactly what tax they owe, and how much of it they can
-                  still legally offset before March 31.
-                </p>
-                <p>
-                  Import trades straight from Angel One, Kite or Upstox. It separates short-term and long-term
-                  capital gains and F&amp;O, then points out which losing positions to book so the loss sets off
-                  your gains.
-                </p>
-                <dl class="facts">
-                  <div><dt>What it is</dt><dd>Capital-gains tax and loss-harvesting tool</dd></div>
-                  <div><dt>Built for</dt><dd>A client, for traders in India</dd></div>
+            </li>
+            <li class="slide" id="work-expensewaale" aria-roledescription="slide" aria-label="3 of 6: ExpenseWaale">
+              <figure class="slide-shot"><span class="frame"><span class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span class="frame-url">ExpenseWaale · web app</span></span><span class="frame-body"><img src="media/work/expensewaale-800.webp" srcset="media/work/expensewaale-800.webp 800w, media/work/expensewaale-1600.webp 1600w" sizes="(max-width: 960px) 90vw, 60vw" alt="ExpenseWaale app: settlements screen showing who owes whom" loading="lazy" decoding="async" /></span></span></figure>
+              <div class="slide-info">
+                <h3 class="slide-name">ExpenseWaale</h3>
+                <p class="slide-status is-live"><span class="status-pip" aria-hidden="true"></span>Live web app</p>
+                <dl class="slide-story">
+                  <div><dt>The brief</dt><dd>Build a challenger to the bill-splitting app everyone already uses.</dd></div>
+                  <div><dt>What we built</dt><dd>A space for every group, splits by share or percentage, settle-up in the fewest payments, and PDF or share-link reports.</dd></div>
                 </dl>
-                <p class="links">
-                  <a class="btn btn-ink" href="https://stock-tax-pro.vercel.app/landing" target="_blank" rel="noopener"
-                    >Open StockTax Pro<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg
-                  ></a>
-                </p>
+                <p class="slide-meta">Web app · for flatmates, trips and office lunches</p>
+                <p class="links"><a class="btn btn-lime" href="https://expensewalle.vercel.app/" target="_blank" rel="noopener">Open ExpenseWaale<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg></a></p>
               </div>
-              <figure class="drawing">
-                <svg class="draw" viewBox="0 0 640 420" role="img" aria-labelledby="d-stocktax">
-                  <title id="d-stocktax">Line drawing: three broker files flow into a tax ledger, where a booked loss is set off against short-term gains.</title>
-                  <rect pathLength="1" x="30" y="60" width="140" height="56" rx="5" />
-                  <rect pathLength="1" x="30" y="132" width="140" height="56" rx="5" />
-                  <rect pathLength="1" x="30" y="204" width="140" height="56" rx="5" />
-                  <text x="46" y="93">Angel One</text>
-                  <text x="46" y="165">Kite</text>
-                  <text x="46" y="237">Upstox</text>
-                  <path pathLength="1" d="M170 88c40 0 40 72 80 72M170 160h80M170 232c40 0 40-72 80-72m-10-8 10 8-10 8" />
-                  <rect pathLength="1" x="262" y="40" width="350" height="270" rx="6" />
-                  <path pathLength="1" d="M262 84h350M262 140h350M262 196h350M262 252h350M420 40v270" />
-                  <text x="280" y="68">Gains</text>
-                  <text x="436" y="68">This year</text>
-                  <text x="280" y="118">Short-term</text>
-                  <text x="280" y="174">Long-term</text>
-                  <text x="280" y="230">F&amp;O</text>
-                  <text class="hot-text" x="280" y="286">Booked loss</text>
-                  <path pathLength="1" d="M436 112h120M436 168h90M436 224h60" />
-                  <path pathLength="1" class="hot-line" d="M436 282h70" />
-                  <path pathLength="1" class="hot-line" d="M576 282c40 0 40-170 0-170m12-6-12 6 10 8" />
-                  <rect pathLength="1" x="40" y="300" width="96" height="92" rx="8" />
-                  <path pathLength="1" d="M40 330h96M66 290v14M110 290v14" />
-                  <text class="mid big" x="88" y="370">31</text>
-                  <text class="mid" x="88" y="322">MAR</text>
-                </svg>
-              </figure>
-            </div>
-          </div>
-        </article>
-
-        <!-- Liquid Signal -->
-        <article class="chapter chapter-ink" aria-labelledby="p-signal">
-          <div class="wrap">
-            <h3 id="p-signal" class="giant" style="--n: 13">Liquid Signal<i class="tp" data-tp data-loop="0.24" style="--x: 102%; --y: 22%"></i><i class="tp" data-tp data-front style="--x: 76%; --y: 58%"></i></h3>
-            <div class="chapter-body">
-              <i class="tp tp-gutter" data-tp style="--y: 0%"></i>
-              <i class="tp tp-gutter tp-gutter-end" data-tp></i>
-              <div class="chapter-copy">
-                <p class="pitch">
-                  A Chrome extension that reads a YouTube video's comments so you don't have to, and tells you
-                  what the audience actually wants next.
-                </p>
-                <p>
-                  Ask your own question or take a suggested one, and Liquid Signal sorts a sample of public
-                  comments into 2 to 6 answers, writes a plain-language summary, and exports the findings as CSV
-                  or JSON.
-                </p>
-                <dl class="facts">
-                  <div><dt>What it is</dt><dd>Chrome extension, on the Web Store</dd></div>
-                  <div><dt>Built for</dt><dd>Creators and marketers reading their audience</dd></div>
+            </li>
+            <li class="slide" id="work-stocktax" aria-roledescription="slide" aria-label="4 of 6: StockTax Pro">
+              <figure class="slide-shot"><span class="frame"><span class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span class="frame-url">StockTax Pro · web app</span></span><span class="frame-body"><img src="media/work/stocktax-800.webp" srcset="media/work/stocktax-800.webp 800w, media/work/stocktax-1600.webp 1600w" sizes="(max-width: 960px) 90vw, 60vw" alt="StockTax Pro tax breakdown: realised gains, harvested losses and current liability" loading="lazy" decoding="async" /></span></span></figure>
+              <div class="slide-info">
+                <h3 class="slide-name">StockTax Pro</h3>
+                <p class="slide-status is-live"><span class="status-pip" aria-hidden="true"></span>Live · client build</p>
+                <dl class="slide-story">
+                  <div><dt>The brief</dt><dd>A client needed Indian traders to see what tax they owe, and what they can still offset before March 31.</dd></div>
+                  <div><dt>What we built</dt><dd>Imports trades from Angel One, Kite and Upstox, splits short-term, long-term and F&amp;O gains, and flags which losses to book to set off gains.</dd></div>
                 </dl>
-                <p class="links">
-                  <a class="btn btn-lime" href="https://chromewebstore.google.com/detail/liquid-signal-d1/bcopabbcdihpdoichjlfgmbllfloicki" target="_blank" rel="noopener"
-                    >Get Liquid Signal<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg
-                  ></a>
-                </p>
+                <p class="slide-meta">Web app · built for a client, used by traders in India</p>
+                <p class="links"><a class="btn btn-lime" href="https://stock-tax-pro.vercel.app/landing" target="_blank" rel="noopener">Open StockTax Pro<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg></a></p>
               </div>
-              <figure class="drawing">
-                <svg class="draw" viewBox="0 0 640 420" role="img" aria-labelledby="d-signal">
-                  <title id="d-signal">Line drawing: a YouTube page with comments, and a side panel splitting them into three answers.</title>
-                  <rect pathLength="1" x="20" y="30" width="600" height="340" rx="10" />
-                  <path pathLength="1" d="M20 62h600" />
-                  <circle pathLength="1" cx="42" cy="46" r="5" />
-                  <circle pathLength="1" cx="60" cy="46" r="5" />
-                  <rect pathLength="1" x="44" y="82" width="320" height="170" rx="6" />
-                  <path pathLength="1" d="m192 146 30 21-30 21Z" />
-                  <circle pathLength="1" cx="58" cy="280" r="10" />
-                  <circle pathLength="1" cx="58" cy="312" r="10" />
-                  <circle pathLength="1" cx="58" cy="344" r="10" />
-                  <path pathLength="1" d="M78 276h170M78 286h110M78 308h200M78 318h90M78 340h150M78 350h120" />
-                  <path pathLength="1" d="M390 62v308" />
-                  <text x="408" y="96">What should we</text>
-                  <text x="408" y="114">cover next?</text>
-                  <path pathLength="1" class="hot-line" d="M408 150h160" />
-                  <path pathLength="1" d="M408 186h64M408 222h34" />
-                  <text x="408" y="140">Answer A</text>
-                  <text x="408" y="176">Answer B</text>
-                  <text x="408" y="212">Answer C</text>
-                  <path pathLength="1" d="M408 252h190M408 266h160M408 280h176" />
-                  <rect pathLength="1" x="408" y="318" width="48" height="24" rx="5" />
-                  <rect pathLength="1" x="464" y="318" width="52" height="24" rx="5" />
-                  <text x="417" y="335">CSV</text>
-                  <text x="469" y="335">JSON</text>
-                </svg>
-              </figure>
-            </div>
-          </div>
-        </article>
-
-        <!-- n8n assistant -->
-        <article class="chapter" aria-labelledby="p-agent">
-          <div class="wrap">
-            <h3 id="p-agent" class="giant" style="--n: 9">Assistant<i class="tp" data-tp data-loop="0.24" style="--x: -3%; --y: 26%"></i><i class="tp" data-tp data-front style="--x: 17%; --y: 58%"></i></h3>
-            <div class="chapter-body">
-              <i class="tp tp-gutter" data-tp style="--y: 0%"></i>
-              <i class="tp tp-gutter tp-gutter-end" data-tp></i>
-              <div class="chapter-copy">
-                <p class="pitch">
-                  A client in the US wanted one chat window to run their calendar, inbox, tasks and expenses. We
-                  built it in n8n, back when AI agents couldn't do this out of the box.
-                </p>
-                <p>
-                  You type a request into a Streamlit chat. An n8n AI agent works out what you mean, calls the
-                  right Google tool, and replies in the same chat: create an event, read Gmail, add a task,
-                  update a note, log an expense to Sheets.
-                </p>
-                <dl class="facts">
-                  <div><dt>What it is</dt><dd>n8n AI agent with a Streamlit chat</dd></div>
-                  <div><dt>Built for</dt><dd>A client in the US</dd></div>
+            </li>
+            <li class="slide" id="work-liquidsignal" aria-roledescription="slide" aria-label="5 of 6: Liquid Signal">
+              <figure class="slide-shot"><span class="frame"><span class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span class="frame-url">Liquid Signal · Chrome Web Store</span></span><span class="frame-body"><img src="media/work/liquidsignal-800.webp" srcset="media/work/liquidsignal-800.webp 800w, media/work/liquidsignal-1600.webp 1600w" sizes="(max-width: 960px) 90vw, 60vw" alt="Liquid Signal panel splitting YouTube comments into answers with percentages" loading="lazy" decoding="async" /></span></span></figure>
+              <div class="slide-info">
+                <h3 class="slide-name">Liquid Signal</h3>
+                <p class="slide-status is-live"><span class="status-pip" aria-hidden="true"></span>Live · Chrome extension</p>
+                <dl class="slide-story">
+                  <div><dt>The brief</dt><dd>Creators scroll through hundreds of comments to guess what their audience wants next.</dd></div>
+                  <div><dt>What we built</dt><dd>A Chrome extension that sorts a sample of a video's comments into 2 to 6 answers, sums them up in plain language and exports CSV or JSON.</dd></div>
                 </dl>
-                <p class="links">
-                  <a class="btn btn-ink" href="https://sartha555k.github.io/n8n-ai-agent-walkthrough/" target="_blank" rel="noopener"
-                    >Watch the walkthrough<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg
-                  ></a>
-                </p>
+                <p class="slide-meta">Chrome extension · for creators and marketers</p>
+                <p class="links"><a class="btn btn-lime" href="https://chromewebstore.google.com/detail/liquid-signal-d1/bcopabbcdihpdoichjlfgmbllfloicki" target="_blank" rel="noopener">Get Liquid Signal<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg></a></p>
               </div>
-              <figure class="drawing">
-                <svg class="draw" viewBox="0 0 640 420" role="img" aria-labelledby="d-agent">
-                  <title id="d-agent">Line drawing: a chat message goes through a webhook to an AI agent that calls six Google tools.</title>
-                  <path pathLength="1" d="M14 164h136a10 10 0 0 1 10 10v44a10 10 0 0 1-10 10H50l-16 12 4-12H14a10 10 0 0 1-10-10v-44a10 10 0 0 1 10-10Z" />
-                  <text x="22" y="190">Log ₹450</text>
-                  <text x="22" y="212">for lunch</text>
-                  <path pathLength="1" d="M166 196h18m-9-7 9 7-9 7" />
-                  <rect pathLength="1" x="190" y="174" width="124" height="44" rx="8" />
-                  <text class="mid" x="252" y="201">Webhook</text>
-                  <path pathLength="1" d="M314 196h18m-9-7 9 7-9 7" />
-                  <rect pathLength="1" class="hot" x="338" y="160" width="122" height="72" rx="10" />
-                  <text class="mid" x="399" y="201">AI agent</text>
-                  <path pathLength="1" d="M460 196C490 196 480 52 512 52M460 196C490 196 482 108 512 108M460 196C490 196 486 164 512 164M460 196C490 196 486 220 512 220M460 196C490 196 482 276 512 276M460 196C490 196 480 332 512 332" />
-                  <rect pathLength="1" x="512" y="36" width="114" height="32" rx="6" />
-                  <rect pathLength="1" x="512" y="92" width="114" height="32" rx="6" />
-                  <rect pathLength="1" x="512" y="148" width="114" height="32" rx="6" />
-                  <rect pathLength="1" x="512" y="204" width="114" height="32" rx="6" />
-                  <rect pathLength="1" x="512" y="260" width="114" height="32" rx="6" />
-                  <rect pathLength="1" x="512" y="316" width="114" height="32" rx="6" />
-                  <text x="526" y="57">Calendar</text>
-                  <text x="526" y="113">Gmail</text>
-                  <text x="526" y="169">Tasks</text>
-                  <text x="526" y="225">Docs</text>
-                  <text x="526" y="281">Sheets</text>
-                  <text x="526" y="337">Search</text>
-                  <path class="dash" d="M400 232v80c0 30-40 40-90 40H90c-30 0-40-20-40-50v-60" />
-                  <text x="190" y="378">Reply in the same chat</text>
-                </svg>
-              </figure>
-            </div>
+            </li>
+            <li class="slide" id="work-assistant" aria-roledescription="slide" aria-label="6 of 6: Assistant Agent">
+              <figure class="slide-shot"><span class="frame"><span class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span class="frame-url">Assistant Agent · walkthrough</span></span><span class="frame-body"><img src="media/work/assistant-800.webp" srcset="media/work/assistant-800.webp 800w, media/work/assistant-1600.webp 1600w" sizes="(max-width: 960px) 90vw, 60vw" alt="The n8n workflow: a webhook into an AI agent wired to Google Search, Calendar, Gmail, Sheets, Docs and Tasks" loading="lazy" decoding="async" /></span></span></figure>
+              <div class="slide-info">
+                <h3 class="slide-name">Assistant Agent</h3>
+                <p class="slide-status is-live"><span class="status-pip" aria-hidden="true"></span>Client build · US</p>
+                <dl class="slide-story">
+                  <div><dt>The brief</dt><dd>A US client wanted one chat window to run their calendar, inbox, tasks and expenses, before AI agents could do that out of the box.</dd></div>
+                  <div><dt>What we built</dt><dd>An n8n AI agent behind a Streamlit chat that works out the request and calls Google Calendar, Gmail, Tasks, Docs, Sheets or web search.</dd></div>
+                </dl>
+                <p class="slide-meta">n8n + Streamlit + OpenAI · built for a client in the US</p>
+                <p class="links"><a class="btn btn-lime" href="https://sartha555k.github.io/n8n-ai-agent-walkthrough/" target="_blank" rel="noopener">Watch the walkthrough<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg></a></p>
+              </div>
+            </li>
+            </ol>
           </div>
-        </article>
+          <div class="work-rail">
+            <div class="rail-line" aria-hidden="true"><span class="rail-fill"></span></div>
+            <ol class="rail-ticks" aria-label="Jump to a project">
+              <li><button type="button" data-go="0">Framecast</button></li>
+              <li><button type="button" data-go="1">AI Video Editor</button></li>
+              <li><button type="button" data-go="2">ExpenseWaale</button></li>
+              <li><button type="button" data-go="3">StockTax Pro</button></li>
+              <li><button type="button" data-go="4">Liquid Signal</button></li>
+              <li><button type="button" data-go="5">Assistant Agent</button></li>
+            </ol>
+          </div>
+        </div>
+        <i class="tp" data-tp style="--x: 50%; --y: 100%"></i>
+      </section>
+
+      <section class="brief" id="services" aria-labelledby="brief-title">
+        <div class="wrap brief-grid">
+          <div class="brief-copy">
+            <h2 id="brief-title" class="display-m">What you can hire us for.</h2>
+            <p class="lede">
+              We've freelanced for over three years. When AI changed how software gets built, we rebuilt how
+              we work around it. Now two of us ship what used to take a team, and you talk directly to the
+              people writing the code. Most projects land in one of these three.
+            </p>
+          </div>
+          <i class="tp" data-tp style="--x: 86%; --y: 30%"></i>
+          <div class="fork">
+            <svg class="fork-lines draw" viewBox="0 0 900 220" preserveAspectRatio="none" aria-hidden="true">
+              <path pathLength="1" d="M450 0 V60 C450 110 150 90 150 150 V220" />
+              <path pathLength="1" d="M450 60 V220" />
+              <path pathLength="1" d="M450 60 C450 110 750 90 750 150 V220" />
+            </svg>
+            <i class="tp" data-tp style="--x: 50%; --y: -80px"></i>
+            <i class="tp" data-tp style="--x: 50%; --y: 0%"></i>
+            <i class="tp" data-tp style="--x: 50%; --y: 40px"></i>
+            <i class="tp tp-gap" data-tp style="--y: 150px"></i>
+            <i class="tp tp-gap" data-tp style="--y: 100%"></i>
+            <ul class="fork-ends">
+              <li>
+                <h3>Products and web apps</h3>
+                <p>Full apps with accounts, shared data and exportable reports, built and deployed.</p>
+                <p class="proof">Like <a href="#work-expensewaale" data-go="2">ExpenseWaale</a> and <a href="#work-stocktax" data-go="3">StockTax Pro</a></p>
+              </li>
+              <li>
+                <h3>AI editors, agents and workflows</h3>
+                <p>Claude- and n8n-based systems that take repeat work off your team.</p>
+                <p class="proof">Like the <a href="#work-editor" data-go="1">AI video editor</a> and the <a href="#work-assistant" data-go="5">assistant agent</a></p>
+              </li>
+              <li>
+                <h3>Desktop apps and extensions</h3>
+                <p>Native macOS tools and Chrome extensions that live where you already work.</p>
+                <p class="proof">Like <a href="#work-framecast" data-go="0">Framecast</a> and <a href="#work-liquidsignal" data-go="4">Liquid Signal</a></p>
+              </li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       <section class="how" id="how" aria-labelledby="how-title">
         <div class="wrap">
-          <h2 id="how-title" class="display-m">Three ways to work with us.</h2>
+          <h2 id="how-title" class="display-m">How hiring us works.</h2>
           <i class="tp" data-tp style="--x: 92%; --y: 6%"></i>
           <div class="ways-wrap">
           <i class="tp tp-gap" data-tp style="--y: -2.5rem"></i>
           <i class="tp tp-gap" data-tp style="--y: 0%"></i>
           <i class="tp tp-gap" data-tp style="--y: 100%"></i>
           <i class="tp tp-gap" data-tp style="--y: calc(100% + 2.5rem)"></i>
-          <i class="tp tp-under" data-tp style="--x: 8%; --y: calc(100% + 4.75rem)"></i>
+          <i class="tp tp-under tp-margin-l" data-tp style="--y: calc(100% + 4.75rem)"></i>
           <ol class="ways">
             <li>
               <h3>A fixed-scope project</h3>
@@ -530,12 +363,33 @@
             </li>
           </ol>
           </div>
-          <p class="promise">
-            However you hire us, it starts the same way. You send the task. We reply with the scope, the price
-            and a timeline, and nothing starts until you agree to all three.
-          </p>
+          <ol class="steps" aria-label="What happens after you get in touch">
+            <li><h3>You send the brief</h3><p>A few lines on what you need is enough. We read it ourselves and come back with questions.</p></li>
+            <li><h3>Scope, price, timeline</h3><p>You get all three in writing, and nothing starts until you agree to them.</p></li>
+            <li><h3>We build</h3><p>You see working software along the way, not slides, and you can change course early.</p></li>
+            <li><h3>Handover</h3><p>You get the code, the deployment and a walkthrough. If you want us to keep going, that becomes a contract.</p></li>
+          </ol>
+          <div class="faq">
+            <h3 class="faq-title">Questions founders ask us</h3>
+            <details>
+              <summary>Do you work with clients outside India?</summary>
+              <p>Yes. We've built for a client in the US, and we work remotely, so your time zone isn't a problem.</p>
+            </details>
+            <details>
+              <summary>How do you price a project?</summary>
+              <p>A fixed-scope project gets one fixed price, agreed before we start. A contract runs on terms we agree upfront. Either way, you get a quote once we've read your brief.</p>
+            </details>
+            <details>
+              <summary>Can you work inside our existing code and team?</summary>
+              <p>Yes. On a contract we work in your repository, your tools and your process, alongside the people you already have.</p>
+            </details>
+            <details>
+              <summary>What happens after launch?</summary>
+              <p>You own what we hand over: the code, the deployment and the notes on how it works. If you'd like us to keep improving it, we can do that on a contract.</p>
+            </details>
+          </div>
         </div>
-        <i class="tp" data-tp style="--x: 8%; --y: 100%"></i>
+        <i class="tp tp-edge" data-tp style="--y: 100%"></i>
       </section>
 
       <section class="contact" id="contact" aria-labelledby="contact-title">

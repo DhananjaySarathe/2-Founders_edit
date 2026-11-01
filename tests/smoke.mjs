@@ -28,7 +28,7 @@ for (const [path, type] of [
   check((await response.arrayBuffer()).byteLength > 0, path + ' is not empty');
 }
 
-const PROJECTS = ['Framecast', 'AI Editor', 'ExpenseWaale', 'StockTax Pro', 'Liquid Signal', 'Assistant'];
+const PROJECTS = ['Framecast', 'AI Video Editor', 'ExpenseWaale', 'StockTax Pro', 'Liquid Signal', 'Assistant Agent'];
 
 const browser = await chromium.launch({ executablePath, headless: true, args: ['--no-sandbox'] });
 try {
@@ -59,9 +59,31 @@ try {
   equal(await page.locator(':focus').innerText(), 'Skip to content', 'Keyboard starts with the skip link');
 
   for (const name of PROJECTS) {
-    equal(await page.getByRole('heading', { level: 3, name, exact: true }).count(), 1, name + ' has its own chapter');
+    equal(await page.getByRole('heading', { level: 3, name, exact: true }).count(), 1, name + ' has its own slide');
   }
-  equal(await page.locator('.drawing svg[role="img"] title').count(), PROJECTS.length, 'Every project drawing has a text alternative');
+  equal(await page.locator('.slide-shot img:not([alt=""])').count(), 5, 'Every project screenshot has a text alternative');
+  equal(await page.locator('.slide-shot svg[role="img"] title').count(), 1, 'The private build drawing has a text alternative');
+  for (const name of ['framecast', 'expensewaale', 'stocktax', 'liquidsignal', 'assistant']) {
+    const r = await fetch(`${base}/media/work/${name}-1600.webp`);
+    equal(r.status, 200, name + ' screenshot is served');
+  }
+
+  // The hero deck fans out six real projects with one in front.
+  check(await page.locator('.deck.is-ready').count() === 1, 'Hero deck is laid out');
+  equal(await page.locator('.deck-card').count(), 6, 'Hero deck shows all six projects');
+  equal(await page.locator('.deck-card[data-pos="0"]').count(), 1, 'One project sits in front');
+
+  // Desktop: the work stage pins and Next moves to the following project.
+  check(await page.evaluate(() => document.documentElement.classList.contains('pin')), 'Work carousel pins on wide screens');
+  await page.evaluate(() => scrollTo(0, document.getElementById('work').offsetTop + 2));
+  await page.waitForTimeout(300);
+  equal(await page.locator('[data-count]').innerText(), '01', 'Carousel starts on the first project');
+  await page.getByRole('button', { name: 'Next project' }).click();
+  await page.waitForFunction(() => document.querySelector('[data-count]').textContent === '02');
+  check(true, 'Next project moves the carousel on');
+  await page.getByRole('button', { name: 'Liquid Signal', exact: true }).click();
+  await page.waitForFunction(() => document.querySelector('[data-count]').textContent === '05');
+  check(true, 'Rail buttons jump straight to a project');
   for (const href of [
     'https://dhananjaysarathe.github.io/framecast-site/',
     'https://expensewalle.vercel.app/',
@@ -108,6 +130,11 @@ try {
   watch(phonePage);
   await phonePage.goto(base + '/', { waitUntil: 'networkidle' });
   equal(await phonePage.evaluate(() => document.documentElement.scrollWidth), 390, 'No sideways scroll on a phone');
+  check(!(await phonePage.evaluate(() => document.documentElement.classList.contains('pin'))), 'Phones get a swipe carousel, not a pinned one');
+  await phonePage.locator('#work').scrollIntoViewIfNeeded();
+  await phonePage.getByRole('button', { name: 'Next project' }).click();
+  await phonePage.waitForFunction(() => document.querySelector('[data-count]').textContent === '02');
+  check(true, 'Next project swipes the phone carousel');
   await phonePage.screenshot({ path: resolve(resultsDir, 'mobile.png'), fullPage: true });
   await phone.close();
 
@@ -135,6 +162,7 @@ try {
   const nojsPage = await nojs.newPage();
   await nojsPage.goto(base + '/', { waitUntil: 'networkidle' });
   check(await nojsPage.getByRole('heading', { name: 'Framecast', exact: true }).isVisible(), 'Work is readable without JavaScript');
+  equal(await nojsPage.evaluate(() => document.documentElement.scrollWidth), 1280, 'No sideways scroll without JavaScript');
   equal(await nojsPage.locator('#enquiryForm').getAttribute('action'), 'mailto:hello@2founders.space', 'Form falls back to a mailto action');
   await nojs.close();
 

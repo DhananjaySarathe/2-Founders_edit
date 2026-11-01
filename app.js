@@ -27,7 +27,7 @@ const thread = (() => {
   let raf = 0;
   let intro = !reduce;
 
-  const compact = () => innerWidth < 640;
+  const compact = () => innerWidth <= 640;
 
   // A cursive curl: it enters along the incoming direction, turns once round
   // and leaves heading for the next marker, so the strands cross rather than
@@ -66,6 +66,8 @@ const thread = (() => {
     const raw = [];
     const fronts = [];
     for (const el of $$("[data-tp]")) {
+      // Wide-only markers weave through type; on phones the thread keeps to the margin.
+      if (compact() && el.dataset.wide !== undefined) continue;
       const r = el.getBoundingClientRect();
       const p = { x: r.left + scrollX, y: r.top + scrollY };
       const size = parseFloat(getComputedStyle(el.parentElement).fontSize) || 16;
@@ -234,6 +236,152 @@ if (!reduce && "IntersectionObserver" in window) {
 } else {
   $$(".draw").forEach((el) => el.classList.add("in"));
 }
+
+/* ---------- Shipped work carousel ----------
+   Wide screens (with motion welcome): the stage pins and vertical scroll moves
+   the track sideways. Elsewhere: a native sideways scroll with snap points. */
+const work = (() => {
+  const section = $("#work");
+  const viewport = $(".work-viewport", section);
+  const track = $(".work-track", section);
+  const slides = $$(".slide", section);
+  const rail = $(".work-rail", section);
+  const count = $("[data-count]", section);
+  const prev = $("[data-prev]", section);
+  const next = $("[data-next]", section);
+  const ticks = $$(".rail-ticks [data-go]", section);
+  const last = slides.length - 1;
+  const wide = matchMedia("(min-width: 961px)");
+  let pinned = false;
+  let active = -1;
+
+  const range = () => Math.max(1, section.offsetHeight - innerHeight);
+  // Each stop lines a slide up with the left edge, so the last stop shows no leftovers.
+  const travel = () => slides[last].offsetLeft - slides[0].offsetLeft;
+
+  function progress() {
+    if (pinned) return Math.min(1, Math.max(0, (scrollY - section.offsetTop) / range()));
+    const max = viewport.scrollWidth - viewport.clientWidth;
+    return max > 0 ? viewport.scrollLeft / max : 0;
+  }
+
+  function render() {
+    const p = progress();
+    if (pinned) track.style.transform = `translate3d(${(-p * travel()).toFixed(1)}px, 0, 0)`;
+    rail.style.setProperty("--progress", p.toFixed(4));
+    const i = Math.round(p * last);
+    if (i === active) return;
+    active = i;
+    count.textContent = String(i + 1).padStart(2, "0");
+    prev.disabled = i === 0;
+    next.disabled = i === last;
+    ticks.forEach((t, k) => t.setAttribute("aria-current", k === i ? "true" : "false"));
+    slides.forEach((s, k) => s.classList.toggle("is-current", k === i));
+  }
+
+  function goTo(i, instant = false) {
+    i = Math.max(0, Math.min(last, i));
+    const behavior = reduce || instant ? "auto" : "smooth";
+    if (pinned) {
+      scrollTo({ top: section.offsetTop + (i / last) * range(), behavior });
+    } else {
+      const sectionTop = section.getBoundingClientRect().top;
+      if (sectionTop > innerHeight * 0.5 || sectionTop < -section.offsetHeight * 0.5) {
+        section.scrollIntoView({ behavior, block: "start" });
+      }
+      viewport.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior });
+    }
+  }
+
+  section.classList.add("is-scripted");
+
+  function setMode() {
+    pinned = wide.matches && !reduce;
+    document.documentElement.classList.toggle("pin", pinned);
+    if (!pinned) track.style.transform = "";
+    active = -1;
+    render();
+  }
+
+  prev.addEventListener("click", () => goTo(active - 1));
+  next.addEventListener("click", () => goTo(active + 1));
+  section.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") goTo(active + 1);
+    else if (e.key === "ArrowLeft") goTo(active - 1);
+    else return;
+    e.preventDefault();
+  });
+  // Keyboard users tabbing into an off-screen slide bring it into view.
+  slides.forEach((s, i) => s.addEventListener("focusin", () => i !== active && goTo(i, true)));
+  addEventListener("scroll", render, { passive: true });
+  viewport.addEventListener("scroll", render, { passive: true });
+  addEventListener("resize", render);
+  wide.addEventListener("change", setMode);
+  setMode();
+  return { goTo };
+})();
+
+// Any link to a project (deck, service lanes, rail) opens it in the carousel.
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("[data-go]");
+  if (!link || link.closest(".deck-card")) return;
+  e.preventDefault();
+  work.goTo(Number(link.dataset.go));
+});
+const hashSlide = $$(".slide").findIndex((s) => `#${s.id}` === location.hash);
+if (hashSlide >= 0) addEventListener("load", () => work.goTo(hashSlide, true));
+
+/* ---------- Hero deck: the six projects, fanned, one in front ---------- */
+(() => {
+  const deck = $(".deck");
+  const cards = $$(".deck-card", deck);
+  const n = cards.length;
+  let front = 0;
+  let timer = 0;
+  let paused = false;
+  let visible = true;
+
+  function layout() {
+    cards.forEach((card, i) => {
+      const pos = ((i - front + n + 2) % n) - 2;
+      card.dataset.pos = pos;
+      card.tabIndex = pos === 0 ? 0 : -1;
+      card.setAttribute("aria-hidden", Math.abs(pos) > 2 ? "true" : "false");
+    });
+  }
+  const advance = () => {
+    front = (front + 1) % n;
+    layout();
+  };
+  const schedule = () => {
+    clearInterval(timer);
+    if (!reduce && !paused && visible) timer = setInterval(advance, 3400);
+  };
+
+  cards.forEach((card, i) => {
+    card.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (card.dataset.pos !== "0") {
+        front = i;
+        layout();
+        schedule();
+      } else {
+        work.goTo(Number(card.dataset.go));
+      }
+    });
+  });
+  deck.addEventListener("pointerenter", () => ((paused = true), schedule()));
+  deck.addEventListener("pointerleave", () => ((paused = false), schedule()));
+  deck.addEventListener("focusin", () => ((paused = true), schedule()));
+  deck.addEventListener("focusout", () => ((paused = false), schedule()));
+  new IntersectionObserver(([e]) => {
+    visible = e.isIntersecting;
+    schedule();
+  }).observe(deck);
+  deck.classList.add("is-ready");
+  layout();
+  schedule();
+})();
 
 /* ---------- Header ---------- */
 const header = $(".site-header");
